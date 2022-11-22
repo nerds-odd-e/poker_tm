@@ -9,17 +9,20 @@ const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[]) => {
     player1_hand.filter((e) => e.includes('A')).length ==
     player2_hand.filter((e) => e.includes('A')).length
   ) {
+    const p1 = player1_hand
+      .filter((e) => !e.includes('A'))
+      .map((e) => Number.parseInt(e.charAt(0)));
+    const p2 = player2_hand
+      .filter((e) => !e.includes('A'))
+      .map((e) => Number.parseInt(e.charAt(0)));
+
     return (
-      Math.max(
-        ...player1_hand
-          .filter((e) => !e.includes('A'))
-          .map((e) => Number.parseInt(e.charAt(0)))
-      ) >
-      Math.max(
-        ...player2_hand
-          .filter((e) => !e.includes('A'))
-          .map((e) => Number.parseInt(e.charAt(0)))
-      )
+      p1.reduce(function (a, b) {
+        return a + b;
+      }) >
+      p2.reduce(function (a, b) {
+        return a + b;
+      })
     );
   }
   return false;
