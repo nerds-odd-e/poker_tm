@@ -14,7 +14,19 @@ describe('winrate calculator', () => {
   });
 
   it('should return Wu with 100% and Mike 0%', () => {
-    expect(getWinrate('Mike: 7D 2S 5D 3S AC Wu: 5C AD 5D AC 9C')).toBe(
+    expect(getWinrate('Mike: 7D 2S 5D 3S AC Wu: 5C AD 5D AH 9C')).toBe(
+      'Wu:100,Mike:0'
+    );
+  });
+
+  it('should return Wu (2A higher) with 100% and Mike (2A) 0%', () => {
+    expect(getWinrate('Wu: 5C AD 6D AC 9C Mike: 5D AH 5S AH 8S')).toBe(
+      'Wu:100,Mike:0'
+    );
+  });
+
+  it('should return Wu (2A higher 9) with 100% and Mike (2A) 0%', () => {
+    expect(getWinrate('Mike: 5D AH 5S AH 8S Wu: 5C AD 6D AC 9C')).toBe(
       'Wu:100,Mike:0'
     );
   });

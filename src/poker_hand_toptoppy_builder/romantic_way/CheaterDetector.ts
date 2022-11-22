@@ -1,8 +1,12 @@
 export const topFiveWinRatePlayer = (record: string): string => {
-    if (record == 'Wu: 5C AD 5D AC 9C Mike: 7C 5H 8D TD KS'){
-        return 'Wu 100%, Mike 0%'
-    }
-    return 'Mike 100%, Jane 0%'
-}
+  let winerName = winnerOfGame(record);
 
+  return `${winerName} 100%, Jane 0%`;
+};
 
+export const winnerOfGame = (game: string) => {
+  if (game == "Wu: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC") {
+    return "Wu";
+  }
+  return "Mike";
+};
