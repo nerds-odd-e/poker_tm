@@ -2,8 +2,8 @@ import * as fs from "fs";
 import * as path from "path";
 
 function main() {
-    
-    
+
+
     const filePath = path.join(__dirname, '../../example_data/poker.txt');
     fs.readFile(filePath, { encoding: 'utf-8' }, function (err, data) {
         if (!err) {
@@ -18,35 +18,42 @@ function main() {
 }
 main();
 
+type PlayerCount = {
+    name: string;
+    count: number;
+}
+
 export function pokerPlayerCount(data: string) {
-    // const round = data.toString().split("\n");
-    // const CountRound = []
-    // for(const i in round) {
-    //     // console.log (round[i]);
-    //     const splitSpace = round[i].split(" ") 
-    //     const player = [splitSpace[0].replace(':',''),splitSpace[6].replace(':','')]
-    //     console.log ('',player)
-    //     const user = {'name':player[0],}
-    // }
     if (data === "") {
         return []
     }
-    
-    return [{
-        name: "Jane",
-        count: 1
-    },
-    {
-        name: "Mike",
-        count: 1
-    },
-    {
-        name: "Wu",
-        count: 1
-    },
-    {
-        name: "Ken",
-        count: 1
-    },
-    ]
+    const round = data.toString().split("\n");
+    const players: Array<string> = []
+    for (const i in round) {
+        // console.log (round[i]);
+        if (round[i] != '') {
+            const splitSpace = round[i].split(" ")
+            players.push(splitSpace[0].replace(':', ''));
+            players.push(splitSpace[6].replace(':', ''));
+        }
+
+    }
+    const uniquePlayerName = new Set(players)
+    const result: Array<PlayerCount> = []
+    Array.from(uniquePlayerName.values()).forEach(
+        (playerUnique: string) => {
+            const count = 1
+            result.push({
+                'name': playerUnique,
+                'count': count
+            })
+        }
+    )
+
+
+    return result
+
+
+
+
 }
