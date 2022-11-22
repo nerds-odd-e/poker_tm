@@ -1,4 +1,4 @@
-import { fizzBuzz } from "../src/services/FizzBuzzService";
+import { fizzBuzz } from "../../src/services/tao_maxim_poker/FizzBuzzService";
 
 describe("fizzBuzz", ()=> {
     it("given 1 should return 1", ()=> {
