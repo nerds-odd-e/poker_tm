@@ -4,10 +4,10 @@ describe("CheaterDetector", () => {
     it("return empty list when no player", () => {
         const games = [];
         const players = getListOfPlayers(games);
-        expect(players).toEqual(new Set());
+        expect(players).toEqual({});
     });
 
-    it("return 2 players in list when get 1 game", () => {
+    it("return 2 players with number of plays in list when get 1 game", () => {
         const games = [
             {
                 p1: "newii",
@@ -15,10 +15,13 @@ describe("CheaterDetector", () => {
             }
         ];
         const players = getListOfPlayers(games);
-        expect(players).toEqual(new Set(["newii", "kan"]));
+        expect(players).toEqual({
+            newii: { numberOfPlays: 1 },
+            kan: { numberOfPlays: 1 }
+        });
     });
 
-    it("return 3 players in list when get 2 games with one repeat player", () => {
+    it("return 3 players with number of plays in list when get 2 games with one repeat player", () => {
         const games = [
             {
                 p1: "newii",
@@ -30,7 +33,10 @@ describe("CheaterDetector", () => {
             },
         ];
         const players = getListOfPlayers(games);
-        expect(players).toEqual(new Set(["newii", "kan", "Jane"]));
+        expect(players).toEqual({
+            newii: { numberOfPlays: 2 },
+            kan: { numberOfPlays: 1 },
+            Jane: { numberOfPlays: 1 }
+        });
     });
-
 })
