@@ -21,8 +21,8 @@ enum pointOfCard {
 }
 
 export function isSameSuit(cards: string[]): boolean {
-    console.log(cards[0][1]);
-    console.log(cardSuit.S);
+    // console.log(cards[0][1]);
+    // console.log(cardSuit.S);
 
     return cards[0][1] == cardSuit.S
 
