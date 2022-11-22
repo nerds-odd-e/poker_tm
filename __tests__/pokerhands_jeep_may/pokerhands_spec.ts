@@ -7,4 +7,10 @@ describe('Poker anti-cheat system', () => {
         const actual = PokerHandsService.countPersonPlayed(fileName)
         expect(actual).toBe("Jane: 999 Mike: 998 Wu:2 Ken: 1")
     })
+
+    it('show empty string when no data', () => {
+        const fileName = 'empty.txt'
+        const actual = PokerHandsService.countPersonPlayed(fileName)
+        expect(actual).toBe('')   
+    })
 })
