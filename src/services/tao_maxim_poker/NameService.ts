@@ -66,12 +66,12 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
   return allResults;
 }
 
-type Card = {
+interface Card {
     suit : string,
     value : string
 }
 
-type Hand = {
+interface Hand {
     cards : Set<Card>   
 }
 
