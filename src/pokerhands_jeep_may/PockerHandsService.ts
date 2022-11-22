@@ -19,9 +19,9 @@ const countPersonPlayed = (fileName: string): string => {
 
     var s = ''
     for (var i = 0; i < data.keys.length ; i++) {
-        s += result.next().value + " " + 
+        s += result.next().value + " " + ""
     }
-    return result.next()
+    return s
 } 
 
 export default { countPersonPlayed }
