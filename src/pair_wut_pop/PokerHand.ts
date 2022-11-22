@@ -1,9 +1,26 @@
 const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[]) => {
   if (
-    player1_hand.filter((e) => e.includes('A')).length >=
+    player1_hand.filter((e) => e.includes('A')).length >
     player2_hand.filter((e) => e.includes('A')).length
   ) {
     return true;
+  }
+  if (
+    player1_hand.filter((e) => e.includes('A')).length ==
+    player2_hand.filter((e) => e.includes('A')).length
+  ) {
+    return (
+      Math.max(
+        ...player1_hand
+          .filter((e) => !e.includes('A'))
+          .map((e) => Number.parseInt(e.charAt(0)))
+      ) >
+      Math.max(
+        ...player2_hand
+          .filter((e) => !e.includes('A'))
+          .map((e) => Number.parseInt(e.charAt(0)))
+      )
+    );
   }
   return false;
 };
