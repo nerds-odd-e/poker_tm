@@ -12,7 +12,7 @@ describe('Cheater detector', () => {
 
     it('Show win rate with Wu, Mike', () => {
         // Given
-        const record = 'Wu: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC'
+        const record = 'Wu: 5C AD 5D AC 9C Mike: 7C 5H 8D TD KS'
         // When
         const result = topFiveWinRatePlayer(record)
         // Then
@@ -27,6 +27,15 @@ describe('Cheater detector', () => {
         // When
         const winer = winnerOfGame(record)
         //
-        expect(winer).toEqual('Mike') 
+        expect(winer).toEqual('Mike')
+    })
+
+    it('Show Mike is winer when record is Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S', () => {
+        // Given
+        const record = 'Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S'
+        // When
+        const winer = winnerOfGame(record)
+        //
+        expect(winer).toEqual('Jane')
     })
 })
