@@ -1,4 +1,4 @@
-import { getListOfPlayers, getWinner } from '../../src/poker_hands_newii_kan/poker_hands_newii_kan'
+import { getListOfPlayers, getWinner, isStraight } from '../../src/poker_hands_newii_kan/poker_hands_newii_kan'
 
 describe("CheaterDetector", () => {
     it("return empty list when no player", () => {
@@ -49,5 +49,11 @@ describe("CheaterDetector", () => {
         };
         const winner = getWinner(game);
         expect(winner).toEqual("newii");
+    });
+
+    it("return true when poker hands is straight", () => {
+        const cards = ["10", "J", "Q", "K", "A"];
+        const pokerHandsRank = isStraight(cards);
+        expect(pokerHandsRank).toBe(true);
     });
 })
