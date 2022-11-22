@@ -14,7 +14,7 @@ describe("Win-rate Detector", () => {
         );
     });
 
-    it("should display winrate of all players when player1 wins.", () => {
+    xit("should display winrate of all players when player1 wins.", () => {
         // Given
         const gameRecord = "Wu: AC QS KC 9H 4S Ken: 7D 2S 5D 3S KH";
 
