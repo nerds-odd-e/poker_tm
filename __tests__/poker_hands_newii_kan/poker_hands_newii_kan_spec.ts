@@ -1,4 +1,4 @@
-import { getListOfPlayers } from '../../src/poker_hands_newii_kan/poker_hands_newii_kan'
+import { getListOfPlayers, getWinner } from '../../src/poker_hands_newii_kan/poker_hands_newii_kan'
 
 describe("CheaterDetector", () => {
     it("return empty list when no player", () => {
@@ -38,5 +38,16 @@ describe("CheaterDetector", () => {
             kan: { numberOfPlays: 1 },
             Jane: { numberOfPlays: 1 }
         });
+    });
+
+    it("return newii as the winner when newii has higher poker hands ranking", () => {
+        const game = {
+            p1: "newii",
+            p2: "kan",
+            p1Cards: "10S JS QS KS AS",
+            p2Cards: "4H 5H 6H 7H 8H"
+        };
+        const winner = getWinner(game);
+        expect(winner).toEqual("newii");
     });
 })

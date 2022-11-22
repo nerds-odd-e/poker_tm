@@ -19,3 +19,14 @@ export const getListOfPlayers = (games: Array<Object>) => {
 
     return players;
 }
+
+export const getWinner = (game: Object) => {
+    const p1PokerHands = 10;
+    const p2PokerHands = 9;
+
+    if (p1PokerHands > p2PokerHands) {
+        return game.p1;
+    } else {
+        return game.p2;
+    }
+}
