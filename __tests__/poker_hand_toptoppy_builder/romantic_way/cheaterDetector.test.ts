@@ -29,4 +29,13 @@ describe('Cheater detector', () => {
         //
         expect(winer).toEqual('Mike')
     })
+
+    it('Show Mike is winer when record is Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S', () => {
+        // Given
+        const record = 'Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S'
+        // When
+        const winer = winnerOfGame(record)
+        //
+        expect(winer).toEqual('Jane')
+    })
 })

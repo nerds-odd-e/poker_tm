@@ -5,8 +5,12 @@ export const topFiveWinRatePlayer = (record: string): string => {
 };
 
 export const winnerOfGame = (game: string) => {
-  if (game == "Wu: 5C AD 5D AC 9C Mike: 7C 5H 8D TD KS") {
-    return game.split(' ')[0].replace(':','')
+  if (game == "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC") {
+    return playerName(game, 6)
   }
-  return game.split(' ')[6].replace(':','');
+  return playerName(game, 0)
 };
+
+const playerName = (game: string, index: number) => {
+    return game.split(' ')[index].replace(':','');
+}
