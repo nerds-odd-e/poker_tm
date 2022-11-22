@@ -12,4 +12,10 @@ describe('winrate calculator', () => {
       'Wu:100,Mike:0'
     );
   });
+
+  it('should return Wu with 100% and Mike 0%', () => {
+    expect(getWinrate('Mike: 7D 2S 5D 3S AC Wu: 5C AD 5D AC 9C')).toBe(
+      'Wu:100,Mike:0'
+    );
+  });
 });
