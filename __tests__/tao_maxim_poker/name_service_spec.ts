@@ -1,7 +1,7 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import describeWithDB from "../../test_helpers/describeWithDB";
 
-import { getNames } from "../../src/services/tao_maxim_poker/NameService";
+import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker/NameService";
 import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker/NameService";
 
 describeWithDB("product ", () => {
@@ -43,4 +43,10 @@ describeWithDB("product ", () => {
     const expected = new Map<string, number>();
     expect(s).toStrictEqual(expected);
   });
+
+  it("should return amount of game won by player for single line file", async () => {
+    const s = getNamesAndWinCount("tao_maxim_file/singleLine.txt");
+    expect(s.get("Jane")).toBe(1);
+  });  
 });
+

@@ -1,26 +1,18 @@
+const totalACard = (cards: string[]) =>
+  cards.filter((e) => e.includes('A')).length;
+
 const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[]) => {
-  if (
-    player1_hand.filter((e) => e.includes('A')).length >
-    player2_hand.filter((e) => e.includes('A')).length
-  ) {
+  if (totalACard(player1_hand) > totalACard(player2_hand)) {
     return true;
   }
-  if (
-    player1_hand.filter((e) => e.includes('A')).length ==
-    player2_hand.filter((e) => e.includes('A')).length
-  ) {
-    return (
-      Math.max(
-        ...player1_hand
-          .filter((e) => !e.includes('A'))
-          .map((e) => Number.parseInt(e.charAt(0)))
-      ) >
-      Math.max(
-        ...player2_hand
-          .filter((e) => !e.includes('A'))
-          .map((e) => Number.parseInt(e.charAt(0)))
-      )
-    );
+  if (totalACard(player1_hand) == totalACard(player2_hand)) {
+    const p1 = player1_hand
+      .filter((e) => !e.includes('A'))
+      .map((e) => Number.parseInt(e.charAt(0)));
+    const p2 = player2_hand
+      .filter((e) => !e.includes('A'))
+      .map((e) => Number.parseInt(e.charAt(0)));
+    return p1.reduce((a, b) => a + b) > p2.reduce((a, b) => a + b);
   }
   return false;
 };

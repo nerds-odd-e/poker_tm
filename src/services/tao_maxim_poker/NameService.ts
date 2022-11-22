@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import { Types } from "mongoose";
 
 export function getNames(fileName: string): Set<string> {
   if (!fs.existsSync(fileName)) {
@@ -38,4 +39,44 @@ function extractNames(line: string): string[] {
 
 function splitIntoNames(content: string): string[][] {
   return content.split(/\r?\n/).map((line) => extractNames(line));
+}
+
+export function getNamesAndWinCount(fileName: string): Map<string, number> {
+  if (!fs.existsSync(fileName)) {
+    return new Map();
+  }
+
+  const allResults = new Map<string,number>();
+  const content = fs.readFileSync(fileName, "utf8");
+  content
+    .split(/\r?\n/)
+    .map((game) => play(game))
+    .forEach((result) => {
+        for (let name of result.keys()) {
+            const res = result.get(name) as number;
+            if (allResults.has(name)) {
+                const allRes = allResults.get(name) as number;
+                allResults.set(name, allRes + res);
+            } else {
+                allResults.set(name, res);
+            }
+        }
+    });
+
+  return allResults;
+}
+
+interface Card {
+    suit : string,
+    value : string
+}
+
+interface Hand {
+    cards : Set<Card>   
+}
+
+function play(game: string): Map<string, number> {
+  return new Map([
+    ["Jane",1]
+  ]);
 }
