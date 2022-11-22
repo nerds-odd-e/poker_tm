@@ -30,11 +30,17 @@ describeWithDB("product ", () => {
   it("should return names with games played list for multiple line file", async () => {
     const s = getNamesAndGamesCount("tao_maxim_file/multipleLine.txt");
     const expected = new Map<string, number>([
-      ["Jane", 999],
       ["Mike", 998],
+      ["Jane", 999],
       ["Wu", 2],
       ["Ken", 1],
     ]);
+    expect(s).toStrictEqual(expected);
+  });
+
+  it("should return empty played game list for empty file", async () => {
+    const s = getNamesAndGamesCount("tao_maxim_file/emptyNameList.txt");
+    const expected = new Map<string, number>();
     expect(s).toStrictEqual(expected);
   });
 });
