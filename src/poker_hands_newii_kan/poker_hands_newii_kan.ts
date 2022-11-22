@@ -21,7 +21,6 @@ export const getListOfPlayers = (games: Array<Object>) => {
 }
 
 export const getWinner = (game: Object) => {
-    ß
     const p1PokerHands = 10;
     const p2PokerHands = 9;
 
