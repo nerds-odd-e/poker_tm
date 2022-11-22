@@ -12,6 +12,12 @@ describeWithDB('product ', () => {
 
   it('should return empty list for empty file', async () => {
     const s = getNames('tao_maxim_file/emptyNameList.txt');
-    expect(s).toStrictEqual([])
+    expect(s).toStrictEqual([]);
+  })
+
+  it('should return names list for single line file', async () => {
+    const s = getNames('tao_maxim_file/singleLine.txt');
+    const expected = ["Jane","Mike"];
+    expect(s).toStrictEqual(expected);
   })
 });
