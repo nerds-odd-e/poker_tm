@@ -1,5 +1,13 @@
+import * as fs from 'fs';
+
+
 const countPersonPlayed = (fileName: string): string => {
-    return "Jane: 999 Mike: 998 Wu:2 Ken: 1"
+    try {
+        const line = fs.readFileSync('example_data/' + fileName,'utf8');
+        return line
+    } catch (err) {
+        return ''
+    }
 } 
 
 export default { countPersonPlayed }
