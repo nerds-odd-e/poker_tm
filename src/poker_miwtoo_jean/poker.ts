@@ -49,12 +49,9 @@ export function pokerPlayerCount(data: string) {
             })
         }
     )
-
-    
-
     return result
+}
 
-
-
-
+export function winnerDetector() {
+    return ""
 }
