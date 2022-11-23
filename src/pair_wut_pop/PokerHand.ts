@@ -21,6 +21,13 @@ const getWinrate = (input: String) => {
   if (input === '') {
     return '';
   }
+  const rounds = input.split(',')
+  const winners = rounds.map(round => getWinner(round))
+
+  return winners.join(",");
+};
+
+const  getWinner = (input: String) => {
   const s = input.split(' ');
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);
@@ -28,6 +35,6 @@ const getWinrate = (input: String) => {
     return `${s[0]}100,${s[6]}0`;
   }
   return `${s[6]}100,${s[0]}0`;
-};
+}
 
 export default getWinrate;
