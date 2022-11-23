@@ -18,6 +18,9 @@ const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[]) => {
 };
 
 const getWinrate = (input: String) => {
+  if (input === '') {
+    return '';
+  }
   const s = input.split(' ');
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);

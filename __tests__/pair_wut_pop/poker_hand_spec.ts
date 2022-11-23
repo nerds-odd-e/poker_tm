@@ -3,6 +3,12 @@ import getWinrate from '../../src/pair_wut_pop/PokerHand';
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
 describe('winrate calculator', () => {
+  it('should return empty when it input empty', () => {
+    expect(
+      getWinrate('')
+    ).toBe('');
+  });
+
   it('should return Mike with 100% and Jane 0%', () => {
     expect(
       getWinrate(
