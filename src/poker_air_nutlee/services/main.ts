@@ -40,17 +40,20 @@ function playWithStatistics(game: string, statistics: PlayerStatistics[]) {
 
 const getResult = (game: string) => {
   const playerSplitted = game.split(" ");
-  const player1Name = playerSplitted[0].replace(":", "");
-  const player2Name = playerSplitted[6].replace(":", "");
-  const play1Hand = playerSplitted.slice(1, 6);
-  const play2Hand = playerSplitted.slice(7);
 
+  const player1Name = playerSplitted[0].replace(":", "");
+  const play1Hand = playerSplitted.slice(1, 6);
   const highestCardInHand1 = play1Hand
     .map((c) => new Card(c))
-    .sort(compareCards).pop() as Card;
+    .sort(compareCards)
+    .pop() as Card;
+
+  const player2Name = playerSplitted[6].replace(":", "");
+  const play2Hand = playerSplitted.slice(7);
   const highestCardInHand2 = play2Hand
     .map((c) => new Card(c))
-    .sort(compareCards).pop() as Card;
+    .sort(compareCards)
+    .pop() as Card;
 
   const player1win = compareCards(highestCardInHand1, highestCardInHand2) > 0;
 
