@@ -17,23 +17,6 @@ const cardFace: Map<string, number> = new Map([
     ['2', 2]
 ]);
 
-function main() {
-
-
-    const filePath = path.join(__dirname, '../../example_data/poker.txt');
-    fs.readFile(filePath, { encoding: 'utf-8' }, function (err, data) {
-        if (!err) {
-            // console.log('data: ',data)
-            pokerPlayerCount(data)
-        } else {
-            console.log(err);
-        }
-    });
-
-
-}
-main();
-
 type PlayerCount = {
     name: string;
     count: number;
@@ -66,44 +49,6 @@ export function pokerPlayerCount(data: string) {
         }
     )
     return result
-}
-
-export function winnerDetector(data: string) {
-    const round = data.toString().split("\n");
-    for (const i in round) {
-        if (round[i] != '') {
-            const splitSpace = round[i].split(" ")
-            const player1 = splitSpace[0].replace(':', '');
-            const player1Hands = splitSpace.slice(1, 6).toString();
-
-            const player2 = splitSpace[6].replace(':', '');
-            const player2Hands = splitSpace.slice(7, 12).toString();
-            if (isPair(player1Hands)) {
-                return player1
-            }
-
-            if (isTwoPair(player2Hands)) {
-                return player2
-            }
-
-            if (isThreeOfAKind(player2Hands)) {
-                return player2
-            }
-        }
-    }
-    return "Mike"
-}
-
-const isPair = (cards: string) => {
-    return cards == '8C,8S,KC,9H,4S';
-}
-
-const isTwoPair = (cards: string) => {
-    return cards == 'AD,2S,2D,3S,AC';
-}
-
-const isThreeOfAKind = (cards: string) => {
-    return cards == '7H,7D,7C,3S,AC';
 }
 
 export function winnerDetector2(gamesRaw: String) {
