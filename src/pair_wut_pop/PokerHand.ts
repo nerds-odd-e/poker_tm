@@ -22,7 +22,7 @@ const getWinRate = (game: String) => {
     return '';
   }
   const games = game.split(',')
-  const winners = games.map(game => getWinner(game))
+  const winners = games.map(game => getGameResult(game))
 
   return winners.join(",");
 };
@@ -32,40 +32,36 @@ interface GameRecord {
   gameResults: string[];
 }
 
-const  getWinner = (game: String) => {
-  let gameResult = getGameResult(game);
-  const gameRecord: GameRecord[] = [
-    {
-      playerName: gameResult.winner,
-      gameResults: ['win']
-    },
-    {
-      playerName: gameResult.loser,
-      gameResults: ['lose']
-    }
-  ]
-  return [`${gameResult.winner}${calWinRate(gameRecord[0])}`,`${gameResult.loser}${calWinRate(gameRecord[1])}`];
-}
-
-interface GameResult {
-  winner: string
-  loser: string
-}
-
-const  getGameResult = (game: String): GameResult => {
+const  getGameResult = (game: String) => {
   const s = game.split(' ');
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);
+  let gameRecord
   if (isFirstPlayerWin(player1_hand, player2_hand)) {
-    return {
-      winner: s[0],
-      loser: s[6]
+    gameRecord = [
+      {
+        playerName: s[0],
+        gameResults: ['win']
+      },
+      {
+        playerName: s[6],
+        gameResults: ['lose']
+      }
+    ]
+  }
+  else {
+  gameRecord = [
+    {
+      playerName: s[6],
+      gameResults: ['win']
+    },
+    {
+      playerName: s[0],
+      gameResults: ['lose']
     }
-  }
-  return {
-      winner: s[6],
-      loser: s[0]
-  }
+  ]
+}
+  return [`${gameRecord[0].playerName}${calWinRate(gameRecord[0])}`,`${gameRecord[1].playerName}${calWinRate(gameRecord[1])}`];
 }
 const calWinRate = (game: GameRecord) => {
   const winCount = game.gameResults.filter(gameResult => gameResult == 'win').length;
