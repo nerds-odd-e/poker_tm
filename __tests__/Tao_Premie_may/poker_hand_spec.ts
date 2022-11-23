@@ -20,6 +20,8 @@ class GameBuilder{
     return this;
   }
   vs(name: string) {
+    this.currentPlayer+= 1
+    this.players[this.currentPlayer].name = name
     this.player2Name = name
     return this;
   }
