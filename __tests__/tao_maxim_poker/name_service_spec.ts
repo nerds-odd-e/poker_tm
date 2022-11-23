@@ -45,12 +45,12 @@ describeWithDB("product ", () => {
   });
 
   it("should return amount of game won by player1 for single line file", async () => {
-    const s = getNamesAndWinCount("tao_maxim_file/singleLine.txt");
+    const s = getNamesAndWinCount("tao_maxim_file/singleLinePlayer1RoyalFlush.txt");
     expect(s.get("Jane")).toBe(1);
   });
 
   it("should return amount of game won by player2 for single line file", async () => {
-    const s = getNamesAndWinCount("tao_maxim_file/singleLinePlayer2Wins.txt");
+    const s = getNamesAndWinCount("tao_maxim_file/singleLinePlayer2RoyalFlush.txt");
     expect(s.get("Mike")).toBe(1);
   });  
 
