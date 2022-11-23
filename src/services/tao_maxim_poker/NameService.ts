@@ -71,12 +71,16 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
   const player1Name:string = extractNames(game)[0]
   const player2Name:string = extractNames(game)[1]
 
-  const player1Hands = game.split(" ").slice(1, 6).join("")
 
   return new Map<string, number>([
-    [player1Name, player1Hands == "ADKDQDJD10D" ? 1.0: 0 ], 
-    [player2Name, player1Hands == "ADKDQDJD10D" ? 0: 1.0] 
+    [player1Name, isPlayer1Win(game) ? 1.0: 0 ], 
+    [player2Name, isPlayer1Win(game) ? 0: 1.0] 
   ]);
+}
+
+function isPlayer1Win(game: string) {
+  const player1Hands = game.split(" ").slice(1, 6).join("")
+  return player1Hands == "ADKDQDJD10D";
 }
 
 interface Card {
