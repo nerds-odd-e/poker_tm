@@ -42,18 +42,31 @@ export function pokerPlayerCount(data: string) {
     const result: Array<PlayerCount> = []
     Array.from(uniquePlayerName.values()).forEach(
         (playerUnique: string) => {
-            const count = 1
+            const count = players.filter((name) => name === playerUnique).length
             result.push({
                 'name': playerUnique,
                 'count': count
             })
         }
     )
-
-
     return result
+}
 
+export function winnerDetector(data: string) {
+    const round = data.toString().split("\n");
+    for (const i in round) {
+        if (round[i] != '') {
+            const splitSpace = round[i].split(" ")
+            const player1 = splitSpace[0].replace(':', '');
+            const player1Hands = splitSpace.slice(1,6).toString();
+            if(isPair(player1Hands)) {
+                return player1
+            }
+        }
+    }
+    return "Mike"
+}
 
-
-
+const isPair = (cards: string) => {
+    return cards == '8C,8S,KC,9H,4S';
 }

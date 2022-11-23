@@ -1,4 +1,4 @@
-import getWinrate from '../../src/pair_wut_pop/PokerHand';
+import getWinrate from '../../src/Tao_Premie_may/PokerHand';
 
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
