@@ -40,6 +40,14 @@ export const winnerOfGame = (game: string) => {
       thirdHighestCard(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 6)
     }
+    if (fouthHighestCard(getCardOnHand(firstPlayerHand)) >
+      fouthHighestCard(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 0)
+    }
+    if (fouthHighestCard(getCardOnHand(firstPlayerHand)) <
+      fouthHighestCard(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 6)
+    }
   }
 
   if (isFirstPlayerWinA(firstPlayerHand, secondPlayerHand)) {
@@ -78,6 +86,10 @@ function secondHighestCard(cards: string[]) {
 function thirdHighestCard(cards: string[]) {
   const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
   return sorted[2];
+}
+function fouthHighestCard(cards: string[]) {
+  const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
+  return sorted[3];
 }
 
 const mappedRanking = (rank: string) => {
