@@ -91,22 +91,22 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
   return result;
 }
 
-function updateRecord(records: Map<string, Map<string, number>>, player2Name: string, player2WinScore: number) {
-  if (records.has(player2Name)) {
-    const count = records.get(player2Name)!.get("count") as number;
-    records.get(player2Name)!.set("count", count + 1);
+function updateRecord(records: Map<string, Map<string, number>>, playerName: string, playerWinScore: number) {
+  if (records.has(playerName)) {
+    const count = records.get(playerName)!.get("count") as number;
+    records.get(playerName)!.set("count", count + 1);
 
-    const win = records.get(player2Name)!.get("win") as number;
-    records.get(player2Name)!.set("win", win + player2WinScore);
+    const win = records.get(playerName)!.get("win") as number;
+    records.get(playerName)!.set("win", win + playerWinScore);
 
-    records.get(player2Name)!.set("rate", (records.get(player2Name)!.get("win") as number) / (records.get(player2Name)!.get("count") as number));
+    records.get(playerName)!.set("rate", (records.get(playerName)!.get("win") as number) / (records.get(playerName)!.get("count") as number));
 
   } else {
-    records.set(player2Name, new Map<string, number>());
-    const player2Record = records.get(player2Name)!;
+    records.set(playerName, new Map<string, number>());
+    const player2Record = records.get(playerName)!;
     player2Record.set("count", 1);
-    player2Record.set("win", player2WinScore);
-    player2Record.set("rate", player2WinScore);
+    player2Record.set("win", playerWinScore);
+    player2Record.set("rate", playerWinScore);
 
   }
 }
