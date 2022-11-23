@@ -5,7 +5,13 @@ export const topFiveWinRatePlayer = (record: string): string => {
 
 export const winnerOfGame = (game: string) => {
   const gameData = game.split(" ");
+  const firstPlayerHand = gameData.slice(0, 5)
   const secondPlayerHand = gameData.slice(6)
+  if (firstPlayerHand.toString().includes("A") &&
+    !secondPlayerHand.toString().includes("A")) {
+    return playerName(game, 0)
+  }
+
   if (secondPlayerHand.toString().includes("A") &&
     (secondPlayerHand.toString().includes("K") ||
       secondPlayerHand.toString().includes("9D"))) {
