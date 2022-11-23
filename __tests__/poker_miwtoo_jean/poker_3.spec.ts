@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-import { winnerDetector } from "../../src/poker_miwtoo_jean/poker";
+import { winnerDetector2 } from "../../src/poker_miwtoo_jean/poker";
 
 describe('CheaterDetector', () => {
 
@@ -8,7 +8,7 @@ describe('CheaterDetector', () => {
         const filePath = path.join(__dirname, '../poker_miwtoo_jean/data/data1.txt');
         const buffer = fs.readFileSync(filePath, "utf8");
         const file = buffer.toString();
-        expect(winnerDetector(file)).toEqual([
+        expect(winnerDetector2(file)).toEqual([
             {
                 name: "Mike",
                 winrate: 100
@@ -24,7 +24,7 @@ describe('CheaterDetector', () => {
         const filePath = path.join(__dirname, '../poker_miwtoo_jean/data/data2.txt');
         const buffer = fs.readFileSync(filePath, "utf8");
         const file = buffer.toString();
-        expect(winnerDetector(file)).toEqual([
+        expect(winnerDetector2(file)).toEqual([
             {
                 name: "Mike",
                 winrate: 100
@@ -40,7 +40,7 @@ describe('CheaterDetector', () => {
         const filePath = path.join(__dirname, '../poker_miwtoo_jean/data/data3.txt');
         const buffer = fs.readFileSync(filePath, "utf8");
         const file = buffer.toString();
-        expect(winnerDetector(file)).toEqual([
+        expect(winnerDetector2(file)).toEqual([
             {
                 name: "Jane",
                 winrate: 50
@@ -51,5 +51,6 @@ describe('CheaterDetector', () => {
             }
         ])
     })
+
 
 })
