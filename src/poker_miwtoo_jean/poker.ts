@@ -65,19 +65,6 @@ export function winnerOfGame(gameRaw: string) {
         }
 }
 
-function calculateHighCard(playerHands: string[]) {
-    let maxPlayerPoint = 0
-    playerHands.forEach(
-        hand => {
-            const number = hand.charAt(0);
-            const point = cardFace.get(number) || 0;
-            if (point > maxPlayerPoint)
-                maxPlayerPoint = point;
-        }
-    );
-    return maxPlayerPoint;
-}
-
 function compareHands(player1: PlayerHand, player2: PlayerHand) {
     if (player1.point > player2.point) {
         return [
@@ -123,6 +110,21 @@ class Hand {
     constructor(cards: string[]) {
         this.cards = cards
     }
+
+
+    calculateHighCard() {
+        let maxPlayerPoint = 0
+        this.cards.forEach(
+            hand => {
+                const number = hand.charAt(0);
+                const point = cardFace.get(number) || 0;
+                if (point > maxPlayerPoint)
+                    maxPlayerPoint = point;
+            }
+        );
+        return maxPlayerPoint;
+    }
+
 }
 
 
@@ -143,6 +145,7 @@ class PlayerHand {
     }
 
     get point() {
-        return calculateHighCard(this.hand.cards);
+    
+        return this.hand.calculateHighCard();
     }
 } 
