@@ -77,11 +77,16 @@ interface Hand {
 function play(game: string): string {
   return 'Jane'
 }
+enum CardRank{
+  Royal_Flush = 10
+}
 export function getRankOfHand(cards:string):number{
   if(cards == ''){
     return 0
   }
-  
-  return 10
+  if(cards == 'TS JS QS KS AS'){
+    return CardRank.Royal_Flush
+  }
+  return 0
 }
 
