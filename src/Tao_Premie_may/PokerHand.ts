@@ -45,3 +45,13 @@ function checkFlush(player1_hand: string[]): Boolean {
   });
   return true;
 }
+function checkThreeOfAKind(player1_hand: string[]): Boolean {
+  const count ={}
+  const listOfNumber = player1_hand.map((card) =>{
+    return card[0]
+  })
+  listOfNumber.forEach((number) => {
+    count[number] = (count[number] || 0)+1
+  });
+  return true;
+}
