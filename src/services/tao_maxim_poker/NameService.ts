@@ -69,13 +69,12 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
 export function getNamesAndWinRate(fileName: string): Map<string, number> {
   const game = fs.readFileSync(fileName, "utf8");
   const player1Name:string = extractNames(game)[0]
-  const player2Name:string = extractNames(game)[1]
+  const player2Name:string = extractNames(game)[1];
 
-
-  return new Map<string, number>([
-    [player1Name, isPlayer1Win(game) ? 1.0: 0 ], 
-    [player2Name, isPlayer1Win(game) ? 0: 1.0] 
-  ]);
+  const result = new Map<string, number>();
+  result.set(player1Name, isPlayer1Win(game) ? 1.0: 0);
+  result.set(player2Name, isPlayer1Win(game) ? 0: 1.0);
+  return result;
 }
 
 function isPlayer1Win(game: string) {
