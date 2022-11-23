@@ -26,7 +26,7 @@ class GameBuilder{
   }
 
   build() {
-    return `${this.player1Name}: ${this.player1HHand} ${this.player2Name}: ${highCardWithHighest('A')}`
+    return `${this.player1Name}: ${this.player1HHand} ${this.player2Name}: ${this.player2HHand}`
   }
 }
   
