@@ -8,6 +8,7 @@ type PlayerHand = {
 }
 class GameBuilder{
   players: PlayerHand[] = [{}, {}];
+  currentPlayer: number = 0
 
   player2HHand: string;
   player1Name?: string
