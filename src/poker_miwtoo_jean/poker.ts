@@ -91,5 +91,14 @@ const isThreeOfAKind = (cards: string) => {
 }
 
 export function winnerDetector2() {
-    return []
+    return ([
+        {
+            name: "Jane",
+            winrate: 100
+        }, 
+        {
+            name: "Mike",
+            winrate: 0
+        },
+    ])
 }
