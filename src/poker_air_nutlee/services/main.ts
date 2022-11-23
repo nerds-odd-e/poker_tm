@@ -12,7 +12,6 @@ class GameResult {
 }
 
 const winRateDetector = (game: string) => {
-
     const playerCollection: PlayerCollection[] = []
     const gameResult = play(game) as GameResult[]
 
