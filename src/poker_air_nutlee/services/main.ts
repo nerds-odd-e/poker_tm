@@ -66,11 +66,11 @@ function highestCardInHand(hand: string[]): Card {
 }
 
 export class Card {
-  value: string;
+  value: Value;
   suit: Suit;
 
   constructor(card: string) {
-    this.value = card.charAt(0);
+    this.value = card.charAt(0) as Value;
     this.suit = card.charAt(1) as Suit;
   }
 
