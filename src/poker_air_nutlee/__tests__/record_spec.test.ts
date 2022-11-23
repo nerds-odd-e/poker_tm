@@ -23,12 +23,15 @@ describe("Win-rate Detector", () => {
     // When
     const result = process(gameRecords);
 
-    // Then
-    // expect(result[0].name).toBe("Jane");
-    // expect(result[0].winRate).toBe(0);
-    // expect(result[1].name).toBe("Wu");
-    // expect(result[1].winRate).toBe(100);
-    // expect(result[2].name).toBe("Mike");
-    // expect(result[2].winRate).toBe(100);
+    //Then
+    // expect(result).toContainEqual(
+    //    { name: "Jane", winRate: 0}
+    //);
+    //expect(result).toContainEqual(
+    //    { name: "Wu", winRate: 100}
+    //);
+    //expect(result).toContainEqual(
+    //    { name: "Mike", winRate: 100}
+    //);
   });
 });
