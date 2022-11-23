@@ -17,7 +17,7 @@ const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[]) => {
   return false;
 };
 
-const getWinrate = (game: String) => {
+const getWinRate = (game: String) => {
   if (game === '') {
     return '';
   }
@@ -55,4 +55,4 @@ const  getWinner = (game: String) => {
 }
 
 
-export default getWinrate;
+export default getWinRate;
