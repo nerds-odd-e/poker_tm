@@ -1,6 +1,6 @@
 class PlayerStatistics {
   name: string;
-  winningCount: number;
+  winCount: number;
   gameCount: number;
   winRate: number;
 }
@@ -12,6 +12,19 @@ class GameResult {
 
 export function play(game: string) {
   const statistics: PlayerStatistics[] = [];
+  playWithStatistics(game, statistics);
+  return statistics;
+}
+
+export function process(games: string[]): PlayerStatistics[] {
+  const statistics: PlayerStatistics[] = [];
+  games.forEach((game) => {
+    playWithStatistics(game, statistics);
+  });
+  return statistics;
+}
+
+function playWithStatistics(game: string, statistics: PlayerStatistics[]) {
   const gameResult = getResult(game) as GameResult[];
 
   const player1 = statistics.find(
@@ -23,12 +36,6 @@ export function play(game: string) {
     (player) => player.name === gameResult[1].name
   ) as PlayerStatistics;
   statistics.push(getPlayerResult(player2, gameResult[1]));
-
-  return statistics
-};
-
-export function process(games: string[]): PlayerStatistics[] {
-    return []
 }
 
 const getResult = (game: string) => {
@@ -42,24 +49,24 @@ const getResult = (game: string) => {
 };
 
 const getPlayerResult = (
-  playerCollection: PlayerStatistics,
-  findWinnerResult: GameResult
+  playerStatistics: PlayerStatistics,
+  gameResult: GameResult
 ) => {
-  if (playerCollection) {
-    playerCollection.gameCount++;
-    playerCollection.winningCount = findWinnerResult.winner
-      ? playerCollection.winningCount + 1
-      : playerCollection.winningCount;
-    playerCollection.winRate =
-      (playerCollection.winningCount / playerCollection.gameCount) * 100;
-    return playerCollection;
+  if (playerStatistics) {
+    playerStatistics.gameCount++;
+    playerStatistics.winCount = gameResult.winner
+      ? playerStatistics.winCount + 1
+      : playerStatistics.winCount;
+    playerStatistics.winRate =
+      (playerStatistics.winCount / playerStatistics.gameCount) * 100;
+    return playerStatistics;
   } else {
-    const player2Data = {
-      name: findWinnerResult.name,
-      winningCount: findWinnerResult.winner ? 1 : 0,
+    const playerData = {
+      name: gameResult.name,
+      winCount: gameResult.winner ? 1 : 0,
       gameCount: 1,
-      winRate: findWinnerResult.winner ? 100 : 0,
+      winRate: gameResult.winner ? 100 : 0,
     };
-    return player2Data;
+    return playerData;
   }
 };

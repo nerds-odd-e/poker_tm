@@ -24,14 +24,14 @@ describe("Win-rate Detector", () => {
     const result = process(gameRecords);
 
     //Then
-    // expect(result).toContainEqual(
-    //    { name: "Jane", winRate: 0}
-    //);
-    //expect(result).toContainEqual(
-    //    { name: "Wu", winRate: 100}
-    //);
-    //expect(result).toContainEqual(
-    //    { name: "Mike", winRate: 100}
-    //);
+    expect(result).toContainEqual(
+        { name: "Jane", winRate: 0, gameCount: 2, winCount: 0}
+    );
+    expect(result).toContainEqual(
+        { name: "Wu", winRate: 100, gameCount: 1, winCount: 1}
+    );
+    expect(result).toContainEqual(
+        { name: "Mike", winRate: 100, gameCount: 1, winCount: 1}
+    );
   });
 });
