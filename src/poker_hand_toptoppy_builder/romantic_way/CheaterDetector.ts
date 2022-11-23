@@ -16,20 +16,20 @@ export const winnerOfGame = (game: string) => {
 
   if (!isHaveAOnHand(firstPlayerHand) &&
     !isHaveAOnHand(secondPlayerHand)) {
-    if (totalOnHand(getCardOnHand(firstPlayerHand)) >
-      totalOnHand(getCardOnHand(secondPlayerHand))) {
+    if (highestCard(getCardOnHand(firstPlayerHand)) >
+      highestCard(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 0)
     }
-    if (totalOnHand(getCardOnHand(firstPlayerHand)) <
-      totalOnHand(getCardOnHand(secondPlayerHand))) {
+    if (highestCard(getCardOnHand(firstPlayerHand)) <
+      highestCard(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 6)
     }
-    if (totalOnHand2(getCardOnHand(firstPlayerHand)) >
-      totalOnHand2(getCardOnHand(secondPlayerHand))) {
+    if (secondHighestCard(getCardOnHand(firstPlayerHand)) >
+      secondHighestCard(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 0)
     }
-    if (totalOnHand2(getCardOnHand(firstPlayerHand)) <
-      totalOnHand2(getCardOnHand(secondPlayerHand))) {
+    if (secondHighestCard(getCardOnHand(firstPlayerHand)) <
+      secondHighestCard(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 6)
     }
   }
@@ -57,12 +57,12 @@ function getCardOnHand(player: string[]) {
   return player.filter(e => !e.includes(":"));
 }
 
-function totalOnHand(cards: string[]) {
+function highestCard(cards: string[]) {
   const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
   return sorted[0];
 }
 
-function totalOnHand2(cards: string[]) {
+function secondHighestCard(cards: string[]) {
   const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
   return sorted[0];
 }
