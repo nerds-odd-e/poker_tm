@@ -48,6 +48,14 @@ export const winnerOfGame = (game: string) => {
       fouthHighestCard(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 6)
     }
+    if (fifthHighestCard(getCardOnHand(firstPlayerHand)) >
+      fifthHighestCard(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 0)
+    }
+    if (fifthHighestCard(getCardOnHand(firstPlayerHand)) <
+      fifthHighestCard(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 6)
+    }
   }
 
   if (isFirstPlayerWinA(firstPlayerHand, secondPlayerHand)) {
