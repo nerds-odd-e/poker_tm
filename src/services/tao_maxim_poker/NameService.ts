@@ -67,27 +67,57 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
 }
 
 export function getNamesAndWinRate(fileName: string): Map<string, number> {
-  const game = fs.readFileSync(fileName, "utf8");
-  const player1Name:string = extractNames(game)[0]
-  const player2Name:string = extractNames(game)[1];
+  const content = fs.readFileSync(fileName, "utf8");
 
-  const record = new Map<string, Map<string, number>>();
-  record.set(player1Name, new Map<string, number>());
-  const player1Record = record.get(player1Name)!;
-  player1Record.set("count", 1);
-  player1Record.set("win", isPlayer1Win(game) ? 1: 0);
-  player1Record.set("rate", isPlayer1Win(game) ? 1: 0);
-  
-  record.set(player2Name, new Map<string, number>());
-  const player2Record = record.get(player2Name)!;
-  player2Record.set("count", 1);
-  player2Record.set("win", isPlayer1Win(game) ? 0: 1);
-  player2Record.set("rate", isPlayer1Win(game) ? 0: 1);
+  const records = new Map<string, Map<string, number>>();
+  content
+    .split(/\r?\n/)
+    .forEach((game) => {
+      const player1Name:string = extractNames(game)[0]
+      const player2Name:string = extractNames(game)[1];
+    
+      if (records.has(player1Name)) {
+        const count = records.get(player1Name)!.get("count") as number;
+        records.get(player1Name)!.set("count", count + 1);
+
+        const win = records.get(player1Name)!.get("win") as number;
+        records.get(player1Name)!.set("win", isPlayer1Win(game) ? win + 1: win);
+        records.get(player1Name)!.set("rate", (records.get(player1Name)!.get("win") as number)/(records.get(player1Name)!.get("count") as number));
+
+      } else {
+        records.set(player1Name, new Map<string, number>());
+        const player1Record = records.get(player1Name)!;
+        player1Record.set("count", 1);
+        player1Record.set("win", isPlayer1Win(game) ? 1: 0);
+        player1Record.set("rate", isPlayer1Win(game) ? 1: 0);
+
+      }
+
+      if (records.has(player2Name)) {
+        const count = records.get(player2Name)!.get("count") as number;
+        records.get(player2Name)!.set("count", count + 1);
+
+        const win = records.get(player2Name)!.get("win") as number;
+        records.get(player2Name)!.set("win", isPlayer1Win(game) ? win: win + 1);
+
+        records.get(player2Name)!.set("rate", (records.get(player2Name)!.get("win") as number)/(records.get(player2Name)!.get("count") as number));
+
+      } else {
+        records.set(player2Name, new Map<string, number>());
+        const player2Record = records.get(player2Name)!;
+        player2Record.set("count", 1);
+        player2Record.set("win", isPlayer1Win(game) ? 0: 1);
+        player2Record.set("rate", isPlayer1Win(game) ? 0: 1);
+          
+      }
+    });
 
 
   const result = new Map<string, number>();
-  result.set(player1Name, record.get(player1Name)!.get("rate")!);
-  result.set(player2Name, record.get(player2Name)!.get("rate")!);
+  
+  records.forEach((value: Map<string, number>, playerName: string) => {
+    result.set(playerName, value.get("rate")!);
+  });
   return result;
 }
 

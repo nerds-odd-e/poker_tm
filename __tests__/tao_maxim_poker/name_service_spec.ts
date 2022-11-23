@@ -72,8 +72,8 @@ describeWithDB("WinRateCollector ", () => {
   }); 
 
   it("should return amount of game won by both player1 and player2 for two games", () => {
-    const winRateCollection = getNamesAndWinRate("tao_maxim_file/singleLinePlayer2RoyalFlush.txt");
-    expect(winRateCollection.get("Mike")).toBe(1);
-    expect(winRateCollection.get("Jane")).toBe(0);
+    const winRateCollection = getNamesAndWinRate("tao_maxim_file/twoGames.txt");
+    expect(winRateCollection.get("Mike")).toBe(0.5);
+    expect(winRateCollection.get("Jane")).toBe(0.5);
   }); 
 });
