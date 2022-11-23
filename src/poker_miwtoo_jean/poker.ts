@@ -116,12 +116,12 @@ export function winnerDetector2(data: String) {
                 point: calculateHighCard(splitSpace.slice(1, 6))
             }
 
-            const player2 = splitSpace[6].replace(':', '');
-            const player2Hands = splitSpace.slice(7, 12);
+            const player2: Player = {
+                name: splitSpace[6].replace(':', ''),
+                point: calculateHighCard(splitSpace.slice(7, 12))
+            }
 
-            const maxPlayer2Point = calculateHighCard(player2Hands);
-
-            return compareHands(player1, maxPlayer2Point, player2)
+            return compareHands(player1, player2)
         }
     }
 
@@ -138,24 +138,24 @@ export function winnerDetector2(data: String) {
         return maxPlayerPoint;
     }
 
-    function compareHands(player1: Player, player2Point: number, player2: string) {
-        if (player1.point > player2Point) {
+    function compareHands(player1: Player, player2: Player) {
+        if (player1.point > player2.point) {
             return [
                 {
                     name: player1.name,
                     winrate: 100
                 },
                 {
-                    name: player2,
+                    name: player2.name,
                     winrate: 0
                 }
             ]
         }
 
-        if (player2Point > player1.point) {
+        if (player2.point > player1.point) {
             return [
                 {
-                    name: player2,
+                    name: player2.name,
                     winrate: 100
                 },
                 {
