@@ -36,6 +36,7 @@ describe("Win-rate Detector", () => {
         { name: "Mike", winRate: 100, gameCount: 1, winCount: 1}
     );
   });
+
   it("should display win-rate of all players when player2 wins in single game", () => {
     // Given
     const gameRecords = ["Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S"]
@@ -50,5 +51,16 @@ describe("Win-rate Detector", () => {
     expect(result).toContainEqual(
         { name: "Wu", winRate: 100, gameCount: 1, winCount: 1}
     );
+  });
+
+  it("should not display win-rate of all players when games list is empty", () => {
+    // Given
+    const gameRecords = []
+
+    // When
+    const result = process(gameRecords);
+
+    //Then
+    expect(result).toStrictEqual([]);
   });
 });
