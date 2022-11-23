@@ -126,7 +126,8 @@ class PlayerHand {
     point: number
     hand: string[]
 
-    constructor(gameRaw: string, splitSpace: string[], startPosition: number) {
+    constructor(gameRaw: string, splitSpacex: string[], startPosition: number) {
+        const splitSpace = gameRaw.split(" ")
         return {
             name: splitSpace[startPosition].replace(':', ''),
             hand: splitSpace.slice(startPosition + 1, startPosition + 6),
