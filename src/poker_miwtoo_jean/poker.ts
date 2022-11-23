@@ -1,6 +1,3 @@
-import * as fs from "fs";
-import * as path from "path";
-
 const cardFace: Map<string, number> = new Map([
     ['A', 14],
     ['K', 13],
