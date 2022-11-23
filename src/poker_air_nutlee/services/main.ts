@@ -53,29 +53,40 @@ const getResult = (game: string) => {
 };
 
 export class Card {
-    value: string;
-    suit: string;
+  value: string;
+  suit: string;
 
-    constructor(card: string){
-        this.value = card.charAt(0)
-        this.suit = card.charAt(1)
-    }
+  constructor(card: string) {
+    this.value = card.charAt(0);
+    this.suit = card.charAt(1);
+  }
 
-    valueAsNumber(): number {
-        switch(this.value) {
-            case "A": return 14;
-            case "K": return 13;
-            case "Q": return 12;
-            case "J": return 11;
-            case "T": return 10;
-            default: return parseInt(this.value)
-        }
+  valueAsNumber(): number {
+    switch (this.value) {
+      case "A":
+        return 14;
+      case "K":
+        return 13;
+      case "Q":
+        return 12;
+      case "J":
+        return 11;
+      case "T":
+        return 10;
+      default:
+        return parseInt(this.value);
     }
+  }
 }
 
 export function compareCards(card1: Card, card2: Card): number {
-    
-    return 0
+  if (card1.valueAsNumber() > card2.valueAsNumber()) {
+    return 1;
+  }
+  if (card1.valueAsNumber() < card2.valueAsNumber()) {
+    return -1;
+  }
+  return 0;
 }
 
 const getPlayerResult = (
