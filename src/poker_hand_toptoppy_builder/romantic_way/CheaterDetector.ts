@@ -50,8 +50,12 @@ function getCardOnHand(player: string[]) {
 }
 
 function totalOnHand(cards: string[]) {
-  return cards.map(e => Number.parseInt(e.slice(0).replace("T", "10").replace("J", "11").replace("Q", "12"))).reduce(
+  return cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).reduce(
     (a, c) => a + c);
+}
+
+const mappedRanking = (rank: string) => {
+  return rank.replace("T", "10").replace("J", "11").replace("Q", "12");
 }
 
 function isHaveAOnHand(player: string[]) {
