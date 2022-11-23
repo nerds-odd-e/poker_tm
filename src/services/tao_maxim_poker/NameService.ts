@@ -15,8 +15,8 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
   content
     .split(/\r?\n/)
     .forEach((game) => {
-      const player1Name:string = extractNames(game)[0]
-      const player2Name:string = extractNames(game)[1];
+      const player1Name = extractNames(game)[0]
+      const player2Name = extractNames(game)[1];
     
       updateRecord(records, player1Name, isPlayer1Win(game));
       updateRecord(records, player2Name, !isPlayer1Win(game));
