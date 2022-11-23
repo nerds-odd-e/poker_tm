@@ -3,11 +3,21 @@ import getWinrate from '../../src/Tao_Premie_may/PokerHand';
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
 class GameBuilder{
+  player2HHand: string;
+  highCardWithHighestPlayer2(rank: string) {
+    this.player2HHand = highCardWithHighest(rank)
+    return this;
+  }
   player1Name?: string
   player1HHand?: string
+  player2Name?: string;
 
   of(name: string) {
     this.player1Name = name
+    return this;
+  }
+  vs(name: string) {
+    this.player2Name = name
     return this;
   }
   highCardWithHighest(rank: string) {
@@ -16,10 +26,9 @@ class GameBuilder{
   }
 
   build() {
-        return `${this.player1Name}: ${this.player1HHand} Mike: ${highCardWithHighest('A')}`
-          }
-        }
-
+    return `${this.player1Name}: ${this.player1HHand} Mike: ${highCardWithHighest('A')}`
+  }
+}
   
 
 const aGame = new GameBuilder()
@@ -34,7 +43,7 @@ describe('winrate calculator', () => {
   it('should return Mike with 100% and Jane 0%', () => {
     expect(
       getWinrate(
-        aGame.of("Jane").highCardWithHighest('K').build()//.vs("Make").highCardWithHighest("A")
+        aGame.of("Jane").highCardWithHighest('K').vs("Make").highCardWithHighestPlayer2("A").build()
       )
     ).toBe('Mike:100,Jane:0');
   });
