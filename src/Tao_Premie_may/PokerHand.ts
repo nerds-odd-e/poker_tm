@@ -2,10 +2,10 @@ const totalACard = (cards: string[]) =>
   cards.filter((e) => e.includes("A")).length;
 
 const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[], hand1: Hand) => {
-  if (totalACard(player1_hand) > totalACard(player2_hand)) {
+  if (totalACard(hand1.cards) > totalACard(player2_hand)) {
     return true;
   }
-  if (totalACard(player1_hand) == totalACard(player2_hand)) {
+  if (totalACard(hand1.cards) == totalACard(player2_hand)) {
     const p1 = player1_hand
       .filter((e) => !e.includes("A"))
       .map((e) => Number.parseInt(e.charAt(0)));
