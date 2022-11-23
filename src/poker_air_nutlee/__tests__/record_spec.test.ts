@@ -128,6 +128,7 @@ describe("Win-rate Detector", () => {
 
     //add shuffle - ????
     const shuffledDeck = sortedDeck.sort(() => Math.random() - 0.5);
+    shuffledDeck.forEach(e => console.log(`${e}`))
     const sorted = shuffledDeck.sort(compareCards);
     expect(sorted).toBe(sortedDeck);
   });
