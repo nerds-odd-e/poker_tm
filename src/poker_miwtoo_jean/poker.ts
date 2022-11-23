@@ -107,7 +107,6 @@ const isThreeOfAKind = (cards: string) => {
 }
 
 export function winnerDetector2(gamesRaw: String) {
-    const round = gamesRaw.toString().split("\n");
     const gameRaw = gamesRaw;
 
         if (gameRaw != '') {
