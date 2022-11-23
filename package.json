@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tcr": "test && commit || revert",
+    "tcr": "yarn test && yarn commit || yarn revert",
     "test": "npx jest",
     "commit": "git add .;git commit -am \"tcring\" | tee /dev/tty | grep -qE \"nothing to commit$$\" || echo",
     "revert": "git reset --hard; echo '----- TCR reverted -----'; exit 1"
