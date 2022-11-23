@@ -5,7 +5,7 @@ export const topFiveWinRatePlayer = (record: string): string => {
 
 export const winnerOfGame = (game: string) => {
   const gameData = game.split(" ");
-  const firstPlayerHand = gameData.slice(0, 5)
+  const firstPlayerHand = gameData.slice(0, 6)
   const secondPlayerHand = gameData.slice(6)
   if (game == "Mike: 7D 2S 5D 3S AC Jane: 8C AS KC AH 4S") {
     return playerName(game, 6)
@@ -19,6 +19,10 @@ export const winnerOfGame = (game: string) => {
     if (totalOnHand(getCardOnHand(firstPlayerHand)) <
       totalOnHand(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 6)
+    }
+    if (totalOnHand(getCardOnHand(firstPlayerHand)) >
+      totalOnHand(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 0)
     }
   }
 
