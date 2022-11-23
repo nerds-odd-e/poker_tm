@@ -43,28 +43,26 @@ function splitIntoNames(content: string): string[][] {
 
 export function getNamesAndWinCount(fileName: string): Map<string, number> {
   if (!fs.existsSync(fileName)) {
-  
-    
     return new Map();
   }
-
+  
 
   const allResults = new Map<string, number>();
-  // const content = fs.readFileSync(fileName, "utf8");
-  // content
-  //   .split(/\r?\n/)
-  //   .map((game) => play(game))
-  //   .forEach((winner) => {
+  const content = fs.readFileSync(fileName, "utf8");
+  content
+    .split(/\r?\n/)
+    .map((game) => play(game))
+    .forEach((winner) => {
       
-  //     if (allResults.has(winner)) {
-  //       const allRes = allResults.get(winner) as number;
-  //       allResults.set(winner, allRes + 1);
-  //     } 
-  //     if (!allResults.has(winner)){
-  //       allResults.set(winner, 1);
-  //     }
+      if (allResults.has(winner)) {
+        const allRes = allResults.get(winner) as number;
+        allResults.set(winner, allRes + 1);
+      } 
+      if (!allResults.has(winner)){
+        allResults.set(winner, 1);
+      }
 
-  //   });
+    });
 
   return allResults;
 }

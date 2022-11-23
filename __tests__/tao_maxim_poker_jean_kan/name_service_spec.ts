@@ -1,8 +1,8 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import describeWithDB from "../../test_helpers/describeWithDB";
 
-import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker/NameService";
-import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker/NameService";
+import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
+import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 import { CardRank, extractCards, extractNames, getRankOfHand, play } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 
 describeWithDB("product ", () => {
@@ -48,6 +48,11 @@ describeWithDB("product ", () => {
   it("should return amount of game won by player for single line file", async () => {
     const s = getNamesAndWinCount("tao_maxim_file_jean_kan/singleLine.txt");
     expect(s.get("Jane")).toBe(1);
+  });
+
+  it("should return amount of game won by player2 for single line file", async () => {
+    const s = getNamesAndWinCount("tao_maxim_file_jean_kan/singleLine2.txt");
+    expect(s.get("Mike")).toBe(1);
   });
   
   it("should return rank 0 when we have nothing",() => {
