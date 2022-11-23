@@ -46,7 +46,7 @@ describeWithDB("product ", () => {
   });
 
   it("should return amount of game won by player for single line file", async () => {
-    const s = getNamesAndWinCount("tao_maxim_file_jean_kan/singleLine.txt");
+    const s = getNamesAndWinCount("tao_maxim_file_jean_kan/singleLine2.txt");
     expect(s.get("Jane")).toBe(1);
   });
   
