@@ -21,7 +21,7 @@ const getWinRate = (game: String) => {
   if (game === '') {
     return '';
   }
-  const games = game.split(',')
+  const games = game.split(',').filter(game => game !== '')
   const gameResults = games.map(game => getGameResult(game))
   const winners: string[] = []
   const playerList = gameResults.flatMap(gameResult => {

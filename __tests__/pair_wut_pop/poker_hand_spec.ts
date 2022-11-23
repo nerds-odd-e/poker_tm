@@ -85,7 +85,7 @@ describe('winrate calculator', () => {
       );
     });
 
-    xit('should get result from file', () => {
+    it('should get result from file', () => {
       const result = fs.readFileSync(process.cwd() + "/example_data/poker.txt", "utf8");
 
       expect(getWinRate(result.replace(/\n/g, ','))).toBe("");
