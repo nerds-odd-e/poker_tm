@@ -141,7 +141,6 @@ describe("Win-rate Detector", () => {
       new Card("AS"),
     ];
 
-    //add shuffle - ????
     const shuffledDeck = sortedDeck.sort(() => Math.random() - 0.5);
     const sorted = shuffledDeck.sort(compareCards);
     expect(sorted).toStrictEqual(sortedExpected);
@@ -155,13 +154,12 @@ describe("Win-rate Detector", () => {
       new Card("AC"),
     ];
     const sortedExpected: Card[] = [
-        new Card("AC"),
-        new Card("AD"),
-        new Card("AH"),
-        new Card("AS"),
+      new Card("AC"),
+      new Card("AD"),
+      new Card("AH"),
+      new Card("AS"),
     ];
 
-    //add shuffle - ????
     const shuffledDeck = sortedDeck.sort(() => Math.random() - 0.5);
     const sorted = shuffledDeck.sort(compareCards);
     expect(sorted).toStrictEqual(sortedExpected);
