@@ -37,4 +37,5 @@ const  getWinner = (input: String) => {
   return `${s[6]}100,${s[0]}0`;
 }
 
+
 export default getWinrate;
