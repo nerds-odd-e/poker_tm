@@ -2,6 +2,11 @@ import getWinrate from '../../src/Tao_Premie_may/PokerHand';
 
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
+const aGame = {
+  of(name) {
+    return  `Jane: ${highCardWithHighest('K')} Mike: ${highCardWithHighest('A')}`
+  }
+}
 describe('winrate calculator', () => {
   it('should return empty when it input empty', () => {
     expect(
@@ -12,7 +17,7 @@ describe('winrate calculator', () => {
   it('should return Mike with 100% and Jane 0%', () => {
     expect(
       getWinrate(
-        `Jane: ${highCardWithHighest('K')} Mike: ${highCardWithHighest('A')}`
+        aGame.of("Jane")//.highCardWithHighest('K').vs("Make").highCardWithHighest("A")
       )
     ).toBe('Mike:100,Jane:0');
   });
