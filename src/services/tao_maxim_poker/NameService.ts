@@ -76,29 +76,31 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
       const player1Name:string = extractNames(game)[0]
       const player2Name:string = extractNames(game)[1];
     
+      const player1WinScore = isPlayer1Win(game) ? 1: 0;
       if (records.has(player1Name)) {
         const count = records.get(player1Name)!.get("count") as number;
         records.get(player1Name)!.set("count", count + 1);
 
         const win = records.get(player1Name)!.get("win") as number;
-        records.get(player1Name)!.set("win", isPlayer1Win(game) ? win + 1: win);
+        records.get(player1Name)!.set("win", win + player1WinScore);
         records.get(player1Name)!.set("rate", (records.get(player1Name)!.get("win") as number)/(records.get(player1Name)!.get("count") as number));
 
       } else {
         records.set(player1Name, new Map<string, number>());
         const player1Record = records.get(player1Name)!;
         player1Record.set("count", 1);
-        player1Record.set("win", isPlayer1Win(game) ? 1: 0);
-        player1Record.set("rate", isPlayer1Win(game) ? 1: 0);
+        player1Record.set("win", player1WinScore);
+        player1Record.set("rate", player1WinScore);
 
       }
 
+      const player2WinScore = isPlayer1Win(game) ? 0: 1;
       if (records.has(player2Name)) {
         const count = records.get(player2Name)!.get("count") as number;
         records.get(player2Name)!.set("count", count + 1);
 
         const win = records.get(player2Name)!.get("win") as number;
-        records.get(player2Name)!.set("win", isPlayer1Win(game) ? win: win + 1);
+        records.get(player2Name)!.set("win", win + player2WinScore);
 
         records.get(player2Name)!.set("rate", (records.get(player2Name)!.get("win") as number)/(records.get(player2Name)!.get("count") as number));
 
@@ -106,8 +108,8 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
         records.set(player2Name, new Map<string, number>());
         const player2Record = records.get(player2Name)!;
         player2Record.set("count", 1);
-        player2Record.set("win", isPlayer1Win(game) ? 0: 1);
-        player2Record.set("rate", isPlayer1Win(game) ? 0: 1);
+        player2Record.set("win", player2WinScore);
+        player2Record.set("rate", player2WinScore);
           
       }
     });
