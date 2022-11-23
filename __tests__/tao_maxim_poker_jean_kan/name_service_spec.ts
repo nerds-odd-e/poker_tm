@@ -60,6 +60,11 @@ describeWithDB("product ", () => {
     expect(rank).toBe(CardRank.Royal_Flush);
   }); 
 
+  it("should return rank of Straight Flush when we have 4H 5H 6H 7H 8H",() => {
+    const rank =  getRankOfHand("4H 5H 6H 7H 8H") ;
+    expect(rank).toBe(CardRank.Straight_Flush);
+  }); 
+
 
 });
 

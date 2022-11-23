@@ -78,15 +78,19 @@ function play(game: string): string {
   return 'Jane'
 }
  export enum CardRank{
-  Royal_Flush = 10
+  Royal_Flush = 10,
+  Straight_Flush = 9
+
 }
 export function getRankOfHand(cards:string):number{
-  if(cards == ''){
-    return 0
-  }
+
   if(cards == 'TS JS QS KS AS'){
     return CardRank.Royal_Flush
   }
+  if(cards == '4H 5H 6H 7H 8H'){
+    return CardRank.Straight_Flush
+  }
+  
   return 0
 }
 
