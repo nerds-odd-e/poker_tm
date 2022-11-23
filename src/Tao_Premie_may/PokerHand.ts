@@ -56,7 +56,10 @@ function checkThreeOfAKind(player1_hand: string[]): Boolean {
 
   });
   console.log("=================================================",count);
-  
-  
-  return true;
+  const setOfNumber = new Set(listOfNumber)
+
+  for (let [key, value] of setOfNumber.entries()) {
+    if(value == '3' ) return true
+}
+  return false;
 }
