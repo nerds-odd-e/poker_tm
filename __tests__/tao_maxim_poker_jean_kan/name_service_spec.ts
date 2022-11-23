@@ -50,7 +50,12 @@ describeWithDB("product ", () => {
     expect(s.get("Jane")).toBe(1);
   });
   
-  it("should return rank of royal flush when we have TS JS QS KS AS", async () => {
+  it("should return rank 0 when we have nothing",() => {
+    const rank =  getRankOfHand('') ;
+    expect(rank).toBe(0);
+  }); 
+
+  it("should return rank of royal flush when we have TS JS QS KS AS",() => {
     const rank =  getRankOfHand("TS JS QS KS AS") ;
     expect(rank).toBe(10);
   }); 

@@ -78,7 +78,10 @@ function play(game: string): string {
   return 'Jane'
 }
 export function getRankOfHand(cards:string):number{
-
+  if(cards == ''){
+    return 0
+  }
+  
   return 10
 }
 
