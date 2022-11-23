@@ -1,5 +1,9 @@
 import * as fs from "fs";
 
+function getGames(content:string){
+  return  content
+  .split(/\r?\n/)
+}
 
 export function getNames(fileName: string): Set<string> {
   if (!fs.existsSync(fileName)) {
@@ -7,8 +11,7 @@ export function getNames(fileName: string): Set<string> {
   }
   const content = fs.readFileSync(fileName, "utf8");
   return new Set(
-    content
-    .split(/\r?\n/).map(game => extractNames(game)).flatMap((array) => array)
+    getGames(content).map(game => extractNames(game)).flatMap((array) => array)
   );
 }
 
@@ -20,8 +23,7 @@ export function getNamesAndGamesCount(fileName: string): Map<string, number> {
   const mapNameAndGame = new Map();
   const content = fs.readFileSync(fileName, "utf8");
 
-  content
-    .split(/\r?\n/)
+  getGames(content)
     .forEach((game) => {
       extractNames(game).forEach((name)=>{
          if (mapNameAndGame.has(name)) {
@@ -49,8 +51,7 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
 
   const allResults = new Map<string, number>();
   const content = fs.readFileSync(fileName, "utf8");
-  content
-    .split(/\r?\n/)
+  getGames(content)
     .map((game) => getTheWinner(game))
     .forEach((winner) => {
       
