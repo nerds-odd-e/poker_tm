@@ -43,6 +43,7 @@ export default getWinrate;
 function checkFlush(player1_hand: string[]): Boolean {
   let shouldSkip = true;
   const firstCharacter = player1_hand[0][1];
+  console.log(player1_hand);
   player1_hand.every((card) => {
     console.log(card[1],firstCharacter);
     if (card[1] != firstCharacter) {
