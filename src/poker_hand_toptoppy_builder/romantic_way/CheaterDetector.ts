@@ -24,6 +24,14 @@ export const winnerOfGame = (game: string) => {
       totalOnHand(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 6)
     }
+    if (totalOnHand2(getCardOnHand(firstPlayerHand)) >
+      totalOnHand2(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 0)
+    }
+    if (totalOnHand2(getCardOnHand(firstPlayerHand)) <
+      totalOnHand2(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 6)
+    }
   }
 
   if (isFirstPlayerWinA(firstPlayerHand, secondPlayerHand)) {
@@ -50,6 +58,11 @@ function getCardOnHand(player: string[]) {
 }
 
 function totalOnHand(cards: string[]) {
+  const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
+  return sorted[0];
+}
+
+function totalOnHand2(cards: string[]) {
   const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
   return sorted[0];
 }
