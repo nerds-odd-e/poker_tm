@@ -6,7 +6,7 @@ describe("winrate calculator", () => {
     expect(getWinrate("")).toBe("");
   });
 
-  it("should return Jane with 100% with flush and Mike 0%", () => {
+  xit("should return Jane with 100% with flush and Mike 0%", () => {
     expect(
       getWinrate(
         aGame
