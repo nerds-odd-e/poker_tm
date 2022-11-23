@@ -22,19 +22,8 @@ class GameBuilder{
 
   
 
-const aGame = {
-  of(name: string) {
-    return  {
-      highCardWithHighest(rank: string) {
-        return {
-          build() {
-        return `${name}: ${highCardWithHighest(rank)} Mike: ${highCardWithHighest('A')}`
-          }
-        }
-      }
-    }
-    }
-}
+const aGame = new GameBuilder()
+
 describe('winrate calculator', () => {
   it('should return empty when it input empty', () => {
     expect(
