@@ -32,7 +32,7 @@ interface GameRecord {
   gameResults: string[];
 }
 
-const  getGameResult = (game: String) => {
+const getGameResult = (game: String) => {
   const s = game.split(' ');
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);
@@ -50,18 +50,18 @@ const  getGameResult = (game: String) => {
     ]
   }
   else {
-  gameRecord = [
-    {
-      playerName: s[6],
-      gameResults: ['win']
-    },
-    {
-      playerName: s[0],
-      gameResults: ['lose']
-    }
-  ]
-}
-  return [`${gameRecord[0].playerName}${calWinRate(gameRecord[0])}`,`${gameRecord[1].playerName}${calWinRate(gameRecord[1])}`];
+    gameRecord = [
+      {
+        playerName: s[6],
+        gameResults: ['win']
+      },
+      {
+        playerName: s[0],
+        gameResults: ['lose']
+      }
+    ]
+  }
+  return [`${gameRecord[0].playerName}${calWinRate(gameRecord[0])}`, `${gameRecord[1].playerName}${calWinRate(gameRecord[1])}`];
 }
 const calWinRate = (game: GameRecord) => {
   const winCount = game.gameResults.filter(gameResult => gameResult == 'win').length;
