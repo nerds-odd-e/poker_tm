@@ -3,7 +3,7 @@ import describeWithDB from "../../test_helpers/describeWithDB";
 
 import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker/NameService";
 import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker/NameService";
-import { CardRank, getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
+import { CardRank, extractCards, getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 
 describeWithDB("product ", () => {
   it("should return empty list of name for not existing file", async () => {
@@ -63,6 +63,11 @@ describeWithDB("product ", () => {
   it("should return rank of Straight Flush when we have 4H 5H 6H 7H 8H",() => {
     const rank =  getRankOfHand("4H 5H 6H 7H 8H") ;
     expect(rank).toBe(CardRank.Straight_Flush);
+  }); 
+
+  it("extractCards",() => {
+    const cards =  extractCards("Jane: TS JS QS KS AS Mike: 4H 5H 6H 7H 8H") ;
+    expect(cards).toEqual(["TS JS QS KS AS","4H 5H 6H 7H 8H"]);
   }); 
 
 

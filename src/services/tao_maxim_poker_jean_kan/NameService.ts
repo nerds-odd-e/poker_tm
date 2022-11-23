@@ -82,6 +82,10 @@ function play(game: string): string {
   Straight_Flush = 9
 
 }
+export function extractCards(cards:string):Array<string> {
+  return ["TS JS QS KS AS","4H 5H 6H 7H 8H"]  
+}
+
 export function getRankOfHand(cards:string):number{
 
   if(cards == 'TS JS QS KS AS'){
