@@ -167,8 +167,8 @@ describe("Win-rate Detector", () => {
       14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2,
     ];
 
-    const actual = deck.map(c => c.valueAsNumber)
+    const actual = deck.map(c => c.valueAsNumber())
 
-    //expect(actual).toBe(expected);
+    expect(actual).toStrictEqual(expected);
   });
 });
