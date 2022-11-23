@@ -106,8 +106,8 @@ const isThreeOfAKind = (cards: string) => {
     return cards == '7H,7D,7C,3S,AC';
 }
 
-export function winnerDetector2(data: String) {
-    const round = data.toString().split("\n");
+export function winnerDetector2(gamesRaw: String) {
+    const round = gamesRaw.toString().split("\n");
     for (const i in round) {
         if (round[i] != '') {
             const splitSpace = round[i].split(" ")
@@ -124,59 +124,60 @@ export function winnerDetector2(data: String) {
             return compareHands(player1, player2)
         }
     }
+}
 
-    function calculateHighCard(playerHands: string[]) {
-        let maxPlayerPoint = 0
-        playerHands.forEach(
-            hand => {
-                const number = hand.charAt(0);
-                const point = cardFace.get(number) || 0;
-                if (point > maxPlayerPoint)
-                    maxPlayerPoint = point;
-            }
-        );
-        return maxPlayerPoint;
-    }
-
-    function compareHands(player1: Player, player2: Player) {
-        if (player1.point > player2.point) {
-            return [
-                {
-                    name: player1.name,
-                    winrate: 100
-                },
-                {
-                    name: player2.name,
-                    winrate: 0
-                }
-            ]
+function calculateHighCard(playerHands: string[]) {
+    let maxPlayerPoint = 0
+    playerHands.forEach(
+        hand => {
+            const number = hand.charAt(0);
+            const point = cardFace.get(number) || 0;
+            if (point > maxPlayerPoint)
+                maxPlayerPoint = point;
         }
+    );
+    return maxPlayerPoint;
+}
 
-        if (player2.point > player1.point) {
-            return [
-                {
-                    name: player2.name,
-                    winrate: 100
-                },
-                {
-                    name: player1.name,
-                    winrate: 0
-                }
-            ]
-        }
-
+function compareHands(player1: Player, player2: Player) {
+    if (player1.point > player2.point) {
         return [
             {
                 name: player1.name,
-                winrate: 50
+                winrate: 100
             },
             {
                 name: player2.name,
-                winrate: 50
+                winrate: 0
             }
         ]
     }
+
+    if (player2.point > player1.point) {
+        return [
+            {
+                name: player2.name,
+                winrate: 100
+            },
+            {
+                name: player1.name,
+                winrate: 0
+            }
+        ]
+    }
+
+    return [
+        {
+            name: player1.name,
+            winrate: 50
+        },
+        {
+            name: player2.name,
+            winrate: 50
+        }
+    ]
 }
+
 
 interface Player {
     name: string,
