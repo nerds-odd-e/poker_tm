@@ -87,9 +87,15 @@ function thirdHighestCard(cards: string[]) {
   const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
   return sorted[2];
 }
+
 function fouthHighestCard(cards: string[]) {
   const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
   return sorted[3];
+}
+
+function fifthHighestCard(cards: string[]) {
+  const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
+  return sorted[4];
 }
 
 const mappedRanking = (rank: string) => {
