@@ -108,9 +108,10 @@ const isThreeOfAKind = (cards: string) => {
 
 export function winnerDetector2(gamesRaw: String) {
     const round = gamesRaw.toString().split("\n");
-    const i = 0;
-        if (round[i] != '') {
-            const splitSpace = round[i].split(" ")
+    const gameRaw = round[0];
+
+        if (gameRaw != '') {
+            const splitSpace = gameRaw.split(" ")
             const player1: Player = {
                 name: splitSpace[0].replace(':', ''),
                 point: calculateHighCard(splitSpace.slice(1, 6))
