@@ -11,24 +11,24 @@ describeWithDB("product ", () => {
   });
 
   it("should return empty list for empty file", async () => {
-    const s = getNames("tao_maxim_file/emptyNameList.txt");
+    const s = getNames("tao_maxim_file_jean_kan/emptyNameList.txt");
     expect(s).toStrictEqual(new Set());
   });
 
   it("should return names list for single line file", async () => {
-    const s = getNames("tao_maxim_file/singleLine.txt");
+    const s = getNames("tao_maxim_file_jean_kan/singleLine.txt");
     const expected = ["Jane", "Mike"];
     expect(s).toStrictEqual(new Set(expected));
   });
 
   it("should return names list for multiple line file", async () => {
-    const s = getNames("tao_maxim_file/multipleLine.txt");
+    const s = getNames("tao_maxim_file_jean_kan/multipleLine.txt");
     const expected = ["Jane", "Mike", "Wu", "Ken"];
     expect(s).toStrictEqual(new Set(expected));
   });
 
   it("should return names with games played list for multiple line file", async () => {
-    const s = getNamesAndGamesCount("tao_maxim_file/multipleLine.txt");
+    const s = getNamesAndGamesCount("tao_maxim_file_jean_kan/multipleLine.txt");
     const expected = new Map<string, number>([
       ["Mike", 998],
       ["Jane", 999],
@@ -39,13 +39,13 @@ describeWithDB("product ", () => {
   });
 
   it("should return empty played game list for empty file", async () => {
-    const s = getNamesAndGamesCount("tao_maxim_file/emptyNameList.txt");
+    const s = getNamesAndGamesCount("tao_maxim_file_jean_kan/emptyNameList.txt");
     const expected = new Map<string, number>();
     expect(s).toStrictEqual(expected);
   });
 
   it("should return amount of game won by player for single line file", async () => {
-    const s = getNamesAndWinCount("tao_maxim_file/singleLine.txt");
+    const s = getNamesAndWinCount("tao_maxim_file_jean_kan/singleLine.txt");
     expect(s.get("Jane")).toBe(1);
   });  
 });
