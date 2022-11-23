@@ -9,7 +9,7 @@ describe('winrate calculator', () => {
     ).toBe('');
   });
 
-  it('should return Mike with 100% and Jane 0%', () => {
+  it('should return Mike with 100% with High Card and Jane 0%', () => {
     expect(
       getWinrate(
         aGame.between("Jane").highCardWithHighest('K').vs("Mike").highCardWithHighest("A").please()
@@ -17,33 +17,33 @@ describe('winrate calculator', () => {
     ).toBe('Mike:100,Jane:0');
   });
 
-  it('should return Wu with 100% and Mike 0%', () => {
+  xit('should return Wu with 100% and Mike 0%', () => {
     expect(getWinrate(
       aGame.between("Wu").highCardWithHighest('A').vs("Mike").highCardWithHighest('K').please())).toBe(
       'Wu:100,Mike:0'
     );
   });
 
-  it('should return Wu with 100% and Mike 0%', () => {
+  xit('should return Wu with 100% and Mike 0%', () => {
     expect(getWinrate('Mike: 7D 2S 5D 3S AC Wu: 5C AD 5D AH 9C')).toBe(
       'Wu:100,Mike:0'
     );
   });
 
-  it('should return Wu with 100% and Mike 0%', () => {
+  xit('should return Wu with 100% and Mike 0%', () => {
     expect(getWinrate('Mike: 7D 2S 5D 3S AC Wu: 5C AD 5D AH 9C,Jane: 5C AD 6D AC 9C Ken: 5D AH 5S KH 8S')).toBe(
       'Wu:100,Mike:0,Jane:100,Ken:0'
     );
   });
 
-  it('should return Mike with 100% and Wu 0% and Jane with 100% and Ken 0%', () => {
+  xit('should return Mike with 100% and Wu 0% and Jane with 100% and Ken 0%', () => {
     expect(getWinrate('Wu: 7D 2S 5D 3S AC Mike: 5C AD 5D AH 9C,Jane: 5C AD 6D AC 9C Ken: 5D AH 5S KH 8S')).toBe(
       'Mike:100,Wu:0,Jane:100,Ken:0'
     );
   });
 
   describe('Both Players got Equal A cards', () => {
-    it('should return Wu (higher 9C) with 100% and Mike 0%', () => {
+    xit('should return Wu (higher 9C) with 100% and Mike 0%', () => {
       expect(getWinrate('Wu: 5C AD 6D AC 9C Mike: 5D AH 3S AS 8S')).toBe(
         'Wu:100,Mike:0'
       );
