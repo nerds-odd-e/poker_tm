@@ -126,6 +126,18 @@ export function compareCards(card1: Card, card2: Card): number {
   return compareSuits(card1.suit, card2.suit);
 }
 
+function compareValues(v1: Value, v2: Value): number {
+    if (Object.keys(Value).indexOf(v1) > Object.keys(Value).indexOf(v2)) {
+        return 1;
+      }
+    
+      if (Object.keys(Value).indexOf(v1) < Object.keys(Value).indexOf(v2)) {
+        return -1;
+      }
+    
+      return 0;
+}
+
 function compareSuits(s1: Suit, s2: Suit): number {
   if (Object.keys(Suit).indexOf(s1) > Object.keys(Suit).indexOf(s2)) {
     return 1;
