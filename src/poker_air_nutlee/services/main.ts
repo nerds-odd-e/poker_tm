@@ -1,49 +1,29 @@
-const winRateDetector = (record: string) => {
-    const playerCollection: {
-        name: string;
-        winningCount: number;
-        gameCount: number;
-        winRate: number;
-    }[] = []
-    const findWinnerResult = findWinner(record)
 
-    let player1result
-    const player1Collection = playerCollection.find(player => player.name === findWinnerResult[0].name)
-    if (player1Collection) {
-        player1Collection.gameCount++
-        player1Collection.winningCount = findWinnerResult[0].winner ? player1Collection.winningCount + 1 : player1Collection.winningCount
-        player1Collection.winRate = player1Collection.winningCount / player1Collection.gameCount * 100
-        player1result = player1Collection
-    }
-    else {
-        const player1Data = {
-            name: findWinnerResult[0].name,
-            winningCount: findWinnerResult[0].winner ? 1 : 0,
-            gameCount: 1,
-            winRate: findWinnerResult[0].winner ? 100 : 0,
-        }
-        playerCollection.push(player1Data)
-        player1result = player1Data
-    }
+class PlayerCollection {
+    name: string;
+    winningCount: number;
+    gameCount: number;
+    winRate: number;
+}
 
-    let player2result
-    const player2Collection = playerCollection.find(player => player.name === findWinnerResult[1].name)
-    if (player2Collection) {
-        player2Collection.gameCount++
-        player2Collection.winningCount = findWinnerResult[1].winner ? player2Collection.winningCount + 1 : player2Collection.winningCount
-        player2Collection.winRate = player2Collection.winningCount / player2Collection.gameCount * 100
-        player2result = player2Collection
-    }
-    else {
-        const player2Data = {
-            name: findWinnerResult[1].name,
-            winningCount: findWinnerResult[1].winner ? 1 : 0,
-            gameCount: 1,
-            winRate: findWinnerResult[1].winner ? 100 : 0,
-        }
-        playerCollection.push(player2Data)
-        player2result = player2Data
-    }
+class FindWinnerResult {
+    name: string;
+    winner: boolean;
+}
+
+const winRateDetector = (game: string) => {
+
+    const playerCollection: PlayerCollection[] = []
+    const findWinnerResult = findWinner(game) as FindWinnerResult[]
+
+
+    const player1Collection = playerCollection.find(player => player.name === findWinnerResult[0].name) as PlayerCollection
+    let player1result = getPlayerResult(player1Collection, findWinnerResult[0])
+    
+
+    const player2Collection = playerCollection.find(player => player.name === findWinnerResult[1].name) as PlayerCollection
+    let player2result = getPlayerResult(player2Collection, findWinnerResult[1])
+    
 
     return [
         { name: player1result.name, rate: player1result.winRate },
@@ -61,6 +41,24 @@ const findWinner = (record: string) => {
         { name: player1Name, winner: false },
         { name: player2Name, winner: true },
     ]
+}
+
+const getPlayerResult = (playerCollection: PlayerCollection, findWinnerResult: FindWinnerResult ) => {
+    if (playerCollection) {
+        playerCollection.gameCount++
+        playerCollection.winningCount = findWinnerResult.winner ? playerCollection.winningCount + 1 : playerCollection.winningCount
+        playerCollection.winRate = playerCollection.winningCount / playerCollection.gameCount * 100
+        return playerCollection
+    }
+    else {
+        const player2Data = {
+            name: findWinnerResult.name,
+            winningCount: findWinnerResult.winner ? 1 : 0,
+            gameCount: 1,
+            winRate: findWinnerResult.winner ? 100 : 0,
+        }
+        return player2Data
+    }
 }
 
 export { winRateDetector };
