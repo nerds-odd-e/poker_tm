@@ -48,7 +48,7 @@ export function pokerPlayerCount(data: string) {
     return result
 }
 
-export function winnerDetector2(gamesRaw: string) {
+export function winnerDetector(gamesRaw: string) {
     const gameRaw = gamesRaw;
     return winnerOfGame(gameRaw);
 }
