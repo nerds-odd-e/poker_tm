@@ -92,6 +92,11 @@ describe("Infomation getter", () => {
     expect(rank).toBe(CardRank.Royal_Flush);
   }); 
 
+  it("should return rank of royal flush when we have QS AS TS KS JS",() => {
+    const rank =  getRankOfHand("QS AS TS KS JS") ;
+    expect(rank).toBe(CardRank.Royal_Flush);
+  }); 
+
   it("should return rank of Straight Flush when we have 4H 5H 6H 7H 8H",() => {
     const rank =  getRankOfHand("4H 5H 6H 7H 8H") ;
     expect(rank).toBe(CardRank.Straight_Flush);

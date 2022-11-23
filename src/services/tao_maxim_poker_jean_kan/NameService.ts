@@ -100,10 +100,11 @@ export function extractCards(game: string): Array<string> {
 }
 
 export function getRankOfHand(cards: string): number {
-  if (cards == 'TS JS QS KS AS') {
+  const sortedCard = sortCard(cards)
+  if (sortedCard == 'TS JS QS KS AS') {
     return CardRank.Royal_Flush
   }
-  if (cards == '4H 5H 6H 7H 8H') {
+  if (sortedCard == '4H 5H 6H 7H 8H') {
     return CardRank.Straight_Flush
   }
   return 0
