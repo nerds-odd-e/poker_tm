@@ -25,7 +25,7 @@ class GameBuilder{
     return this;
   }
 
-  build() {
+  please() {
     return `${this.players[0].name}: ${this.players[0].hand} ${this.players[1].name}: ${this.players[1].hand}`
   }
 }
@@ -43,7 +43,7 @@ describe('winrate calculator', () => {
   it('should return Mike with 100% and Jane 0%', () => {
     expect(
       getWinrate(
-        aGame.of("Jane").highCardWithHighest('K').vs("Mike").highCardWithHighest("A").build()
+        aGame.of("Jane").highCardWithHighest('K').vs("Mike").highCardWithHighest("A").please()
       )
     ).toBe('Mike:100,Jane:0');
   });
