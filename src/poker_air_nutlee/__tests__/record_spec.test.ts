@@ -26,7 +26,7 @@ describe("Win-rate Detector", () => {
   it("should display win-rate of all players when player2 wins in multiple games", () => {
     // Given
     const gameRecords = [
-      "Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S",
+      "Jane: 3H 7H 6S KC JS Wu: AH TD JC 2D 8S",
       "Jane: TH 8H 5C QS TC Mike: 9H 4D JC KS JS",
     ];
 
@@ -56,7 +56,7 @@ describe("Win-rate Detector", () => {
 
   it("should display win-rate of all players when player2 wins in single game", () => {
     // Given
-    const gameRecords = ["Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S"];
+    const gameRecords = ["Jane: 3H 7H 6S KC JS Wu: AH TD JC 2D 8S"];
 
     // When
     const result = process(gameRecords);
@@ -96,13 +96,13 @@ describe("Win-rate Detector", () => {
 
     //Then
     expect(result).toContainEqual({
-      name: "Wu",
+      name: "Jane",
       winRate: 100,
       gameCount: 1,
       winCount: 1,
     });
     expect(result).toContainEqual({
-      name: "Jane",
+      name: "Wu",
       winRate: 0,
       gameCount: 1,
       winCount: 0,

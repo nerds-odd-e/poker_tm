@@ -46,9 +46,18 @@ const getResult = (game: string) => {
   const play1Hand = playerSplitted.slice(1, 6);
   const play2Hand = playerSplitted.slice(7);
 
+  const highestCardInHand1 = play1Hand
+    .map((c) => new Card(c))
+    .sort(compareCards)[4];
+  const highestCardInHand2 = play2Hand
+    .map((c) => new Card(c))
+    .sort(compareCards)[4];
+
+  const player1win = compareCards(highestCardInHand1, highestCardInHand2) > 0;
+
   return [
-    { name: player1Name, winner: false },
-    { name: player2Name, winner: true },
+    { name: player1Name, winner: player1win },
+    { name: player2Name, winner: !player1win },
   ];
 };
 
@@ -101,7 +110,7 @@ export function compareCards(card1: Card, card2: Card): number {
   if (card1.valueAsNumber() < card2.valueAsNumber()) {
     return -1;
   }
-  
+
   if (card1.suitAsNumber() > card2.suitAsNumber()) {
     return 1;
   }
@@ -110,7 +119,7 @@ export function compareCards(card1: Card, card2: Card): number {
     return -1;
   }
 
-  return 0
+  return 0;
 }
 
 const getPlayerResult = (
