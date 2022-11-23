@@ -51,10 +51,10 @@ function checkFlush(player1_hand: string[]): Boolean {
       return;
     }
   });
-  console.log("should skip =========", shouldSkip);
 
   return shouldSkip;
 }
+
 function checkThreeOfAKind(player1_hand: string[]): Boolean {
   const count = {};
   const listOfNumber = player1_hand.map((card) => {
@@ -65,8 +65,6 @@ function checkThreeOfAKind(player1_hand: string[]): Boolean {
   });
 
   const setOfNumber = new Set(listOfNumber);
-  console.log("-----------------", setOfNumber);
-  console.log("================", count);
   for (let [key, value] of setOfNumber.entries()) {
     if (count[key] == 3) return true;
   }
