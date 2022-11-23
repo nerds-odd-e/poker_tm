@@ -39,7 +39,6 @@ function playWithStatistics(game: string, statistics: PlayerStatistics[]) {
 }
 
 const getResult = (game: string) => {
-  // "Jane: AH TD JC 2D 8S Wu: 3H 7H 6S KC JS"
   const playerSplitted = game.split(" ");
   const player1Name = playerSplitted[0].replace(":", "");
   const player2Name = playerSplitted[6].replace(":", "");
