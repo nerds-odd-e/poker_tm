@@ -17,4 +17,17 @@ describe('CheaterDetector', () => {
         ])
     })
 
+    it("should return player whos has higher high card (7C 9C 6D KD 3H) vs (4C QS TC AC KH)", () => {
+        expect(winnerDetector2()).toEqual([
+            {
+                name: "Jane",
+                winrate: 100
+            }, 
+            {
+                name: "Mike",
+                winrate: 0
+            },
+        ])
+    })
+
 })
