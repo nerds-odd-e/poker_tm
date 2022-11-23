@@ -50,7 +50,8 @@ describe('winrate calculator', () => {
   });
 
   it('should return Wu with 100% and Mike 0%', () => {
-    expect(getWinrate(`Wu: ${highCardWithHighest('A')} Mike: ${highCardWithHighest('K')}`)).toBe(
+    expect(getWinrate(
+      aGame.between("Wu").highCardWithHighest('A').vs("Mike").highCardWithHighest('K').please())).toBe(
       'Wu:100,Mike:0'
     );
   });
