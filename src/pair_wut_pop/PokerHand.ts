@@ -44,7 +44,7 @@ const  getWinner = (game: String) => {
       gameResults: ['lose']
     }
   ]
-  return `${gameResult.winner}${calWinRate(gameRecord[0])},${gameResult.loser}${calWinRate(gameRecord[1])}`;
+  return [`${gameResult.winner}${calWinRate(gameRecord[0])}`,`${gameResult.loser}${calWinRate(gameRecord[1])}`];
 }
 
 interface GameResult {
