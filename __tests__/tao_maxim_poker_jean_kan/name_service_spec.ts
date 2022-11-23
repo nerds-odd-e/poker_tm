@@ -1,9 +1,9 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import describeWithDB from "../../test_helpers/describeWithDB";
 
-import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
+import { getNames, getNamesAndWinCount, getTheWinner } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
-import { CardRank, extractCards, extractNames, getRankOfHand, getTheWinner } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
+import { CardRank, extractCards, extractNames, getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 
 describeWithDB("product ", () => {
   it("should return empty list of name for not existing file", async () => {
