@@ -12,7 +12,7 @@ describe('winrate calculator', () => {
   it('should return Mike with 100% with High Card and Jane 0%', () => {
     expect(
       getWinrate(
-        aGame.between("Jane").highCardWithHighest('K').vs("Mike").highCardWithHighest("A").please()
+        aGame.between("Jane").diamondFlushHand().vs("Mike").highCardWithKHeart().please()
       )
     ).toBe('Mike:100,Jane:0');
   });
