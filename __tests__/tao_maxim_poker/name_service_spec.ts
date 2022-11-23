@@ -2,7 +2,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import describeWithDB from "../../test_helpers/describeWithDB";
 
 import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker/NameService";
-import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker/NameService";
+import { getNamesAndGamesCount, getNamesAndWinRate } from "../../src/services/tao_maxim_poker/NameService";
 
 describeWithDB("product ", () => {
   it("should return empty list of name for not existing file", async () => {
@@ -56,3 +56,11 @@ describeWithDB("product ", () => {
 
 });
 
+
+describeWithDB("WinRateCollector ", () => {
+
+it("should return amount of game won by player2 for single line file", () => {
+    const winRateCollection = getNamesAndWinRate("tao_maxim_file/singleLinePlayer2RoyalFlush.txt");
+    expect(winRateCollection["Mike"]).toBe(1);
+  });  
+});

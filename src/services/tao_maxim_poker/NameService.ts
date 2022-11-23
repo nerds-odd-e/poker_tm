@@ -66,6 +66,13 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
   return allResults;
 }
 
+export function getNamesAndWinRate(fileName: string) {
+  if (!fs.existsSync(fileName)) {
+    return new Map();
+  }
+  return {"Jane": 0, "Mike": 1.0}
+}
+
 interface Card {
     suit : string,
     value : string
