@@ -76,7 +76,8 @@ interface Hand {
 }
 
 function play(game: string): Map<string, number> {
+  const player1Name:string = extractNames(game)[0]
   return new Map([
-    ["Jane",1]
+    [player1Name,1]
   ]);
 }
