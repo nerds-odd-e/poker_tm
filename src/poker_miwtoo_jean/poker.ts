@@ -114,14 +114,7 @@ export function winnerDetector2(data: String) {
             const player1 = splitSpace[0].replace(':', '');
             const player1Hands = splitSpace.slice(1, 6);
 
-            let maxPlayer1Point = 0
-            player1Hands.forEach(
-                hand => {
-                    const number = hand.charAt(0)
-                    const point = cardFace.get(number) || 0
-                    if (point > maxPlayer1Point) maxPlayer1Point = point
-                }
-            )
+            let maxPlayer1Point = calculateHighCard(player1Hands);
 
             const player2 = splitSpace[6].replace(':', '');
             const player2Hands = splitSpace.slice(7, 12);
@@ -129,7 +122,7 @@ export function winnerDetector2(data: String) {
             let maxPlayer2Point = 0
             player2Hands.forEach(
                 hand => {
-                    const number = hand.charAt(0)                    
+                    const number = hand.charAt(0)
                     const point = cardFace.get(number) || 0
                     if (point > maxPlayer2Point) maxPlayer2Point = point
                 }
@@ -146,8 +139,8 @@ export function winnerDetector2(data: String) {
                         winrate: 0
                     }
                 ]
-            } 
-            
+            }
+
             if (maxPlayer2Point > maxPlayer1Point) {
                 return [
                     {
@@ -163,5 +156,17 @@ export function winnerDetector2(data: String) {
         }
     }
 
+    function calculateHighCard(playerHands: string[]) {
+        let maxPlayerPoint = 0
+        playerHands.forEach(
+            hand => {
+                const number = hand.charAt(0);
+                const point = cardFace.get(number) || 0;
+                if (point > maxPlayerPoint)
+                    maxPlayerPoint = point;
+            }
+        );
+        return maxPlayerPoint;
+    }
 }
 
