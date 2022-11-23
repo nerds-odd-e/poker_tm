@@ -61,7 +61,7 @@ describeWithDB("WinRateCollector ", () => {
 
 it("should return amount of game won by player2 for single line file", () => {
     const winRateCollection = getNamesAndWinRate("tao_maxim_file/singleLinePlayer2RoyalFlush.txt");
-    expect(winRateCollection["Mike"]).toBe(1);
-    expect(winRateCollection["Jane"]).toBe(0);
+    expect(winRateCollection.get("Mike")).toBe(1);
+    expect(winRateCollection.get("Jane")).toBe(0);
   });  
 });

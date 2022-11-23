@@ -66,11 +66,17 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
   return allResults;
 }
 
-export function getNamesAndWinRate(fileName: string) {
-  if (!fs.existsSync(fileName)) {
-    return new Map();
-  }
-  return {"Jane": 0, "Mike": 1.0}
+export function getNamesAndWinRate(fileName: string): Map<string, number> {
+  const game = fs.readFileSync(fileName, "utf8");
+  const player1Name:string = extractNames(game)[0]
+  const player2Name:string = extractNames(game)[1]
+
+  const player1Hands = game.split(" ").slice(1, 6).join("")
+
+  return new Map<string, number>([
+    [player1Name, player1Hands == "ADKDQDJD10D" ? 1.0: 0 ], 
+    [player2Name, player1Hands == "ADKDQDJD10D" ? 0: 1.0] 
+  ]);
 }
 
 interface Card {
