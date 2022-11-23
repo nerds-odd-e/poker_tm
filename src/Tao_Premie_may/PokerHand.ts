@@ -1,13 +1,12 @@
 const totalACard = (cards: string[]) =>
   cards.filter((e) => e.includes("A")).length;
 
-const isFirstPlayerWin = (hand1: Hand , hand2:Hand) => {
-  
+const isFirstPlayerWin = (hand1: Hand, hand2: Hand) => {
   // if (checkFlush(hand1.cards)) {
   //   return true;
   // }
-  if(checkThreeOfAKind(hand1.cards)){
-    return true
+  if (checkThreeOfAKind(hand1.cards)) {
+    return true;
   }
   return false;
 };
@@ -45,31 +44,30 @@ function checkFlush(player1_hand: string[]): Boolean {
   const firstCharacter = player1_hand[0][1];
   console.log(player1_hand);
   player1_hand.every((card) => {
-    console.log(card[1],firstCharacter);
+    console.log(card[1], firstCharacter);
     if (card[1] != firstCharacter) {
-      console.log(card[1])
+      console.log(card[1]);
       shouldSkip = false;
-      return
+      return;
     }
   });
-  console.log('should skip =========' , shouldSkip );
-  
+  console.log("should skip =========", shouldSkip);
+
   return shouldSkip;
 }
 function checkThreeOfAKind(player1_hand: string[]): Boolean {
-  const count ={}
-  const listOfNumber = player1_hand.map((card) =>{
-    return card[0]
-  })
-  listOfNumber.forEach((number) => {
-    count[number] = (count[number] || 0)+1
-
+  const count = {};
+  const listOfNumber = player1_hand.map((card) => {
+    return card[0];
   });
-  console.log("=================================================",count);
-  const setOfNumber = new Set(listOfNumber)
+  listOfNumber.forEach((number) => {
+    count[number] = (count[number] || 0) + 1;
+  });
 
+  const setOfNumber = new Set(listOfNumber);
+  console.log("-----------------", setOfNumber);
   for (let [key, value] of setOfNumber.entries()) {
-    if(value == '3' ) return true
-}
+    if (value == "3") return true;
+  }
   return false;
 }
