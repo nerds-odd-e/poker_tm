@@ -22,15 +22,15 @@ describe('CheaterDetector', () => {
         //assert
         expect(result).toEqual([{
             name: "Jane",
-            count: 1
+            count: 999
         },
         {
             name: "Mike",
-            count: 1
+            count: 998
         },
         {
             name: "Wu",
-            count: 1
+            count: 2
         },
         {
             name: "Ken",

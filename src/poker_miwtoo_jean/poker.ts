@@ -42,7 +42,7 @@ export function pokerPlayerCount(data: string) {
     const result: Array<PlayerCount> = []
     Array.from(uniquePlayerName.values()).forEach(
         (playerUnique: string) => {
-            const count = 1
+            const count = players.filter((name) => name === playerUnique).length
             result.push({
                 'name': playerUnique,
                 'count': count
@@ -50,6 +50,7 @@ export function pokerPlayerCount(data: string) {
         }
     )
 
+    
 
     return result
 
