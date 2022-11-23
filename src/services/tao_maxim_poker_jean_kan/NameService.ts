@@ -52,7 +52,6 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
     .split(/\r?\n/)
     .map((game) => play(game))
     .forEach((winner) => {
-      console.log("====>>",winner);
       
       if (allResults.has(winner)) {
         const allRes = allResults.get(winner) as number;
@@ -75,7 +74,7 @@ interface Hand {
   cards: Set<Card>
 }
 
-function play(game: string): string {
+export function play(game: string): string {
   const cards = extractCards(game);
   const player = extractNames(game);
   if (getRankOfHand(cards[0]) < getRankOfHand(cards[1])) {
