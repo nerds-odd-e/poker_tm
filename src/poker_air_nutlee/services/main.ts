@@ -38,30 +38,31 @@ function playWithStatistics(game: string, statistics: PlayerStatistics[]) {
   statistics.push(getPlayerResult(player2, gameResult[1]));
 }
 
-const getResult = (game: string) => {
+function getResult(game: string) {
   const playerSplitted = game.split(" ");
 
-  const player1Name = playerSplitted[0].replace(":", "");
-  const play1Hand = playerSplitted.slice(1, 6);
-  const highestCardInHand1 = play1Hand
-    .map((c) => new Card(c))
-    .sort(compareCards)
-    .pop() as Card;
+  const firstPlayerName = playerSplitted[0].replace(":", "");
+  const firstHand = playerSplitted.slice(1, 6);
+  const firstHandHighestCard = highestCardInHand(firstHand)
 
-  const player2Name = playerSplitted[6].replace(":", "");
-  const play2Hand = playerSplitted.slice(7);
-  const highestCardInHand2 = play2Hand
-    .map((c) => new Card(c))
-    .sort(compareCards)
-    .pop() as Card;
+  const secondPlayerName = playerSplitted[6].replace(":", "");
+  const secondHand = playerSplitted.slice(7);
+  const secondHandHighestCard = highestCardInHand(secondHand)
 
-  const player1win = compareCards(highestCardInHand1, highestCardInHand2) > 0;
+  const firstPlayerWin = compareCards(firstHandHighestCard, secondHandHighestCard) > 0;
 
   return [
-    { name: player1Name, winner: player1win },
-    { name: player2Name, winner: !player1win },
+    { name: firstPlayerName, winner: firstPlayerWin },
+    { name: secondPlayerName, winner: !firstPlayerWin },
   ];
-};
+}
+
+function highestCardInHand(hand: string[]): Card {
+  return hand
+    .map((c) => new Card(c))
+    .sort(compareCards)
+    .pop() as Card
+}
 
 export class Card {
   value: string;
