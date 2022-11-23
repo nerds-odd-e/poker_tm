@@ -51,14 +51,13 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
   content
     .split(/\r?\n/)
     .map((game) => play(game))
-    .forEach((result) => {
-        for (let name of result.keys()) {
-            const res = result.get(name) as number;
+    .forEach((winners) => {
+        for (let name of winners) {
             if (allResults.has(name)) {
                 const allRes = allResults.get(name) as number;
-                allResults.set(name, allRes + res);
+                allResults.set(name, allRes + 1);
             } else {
-                allResults.set(name, res);
+                allResults.set(name, 1);
             }
         }
     });
@@ -75,8 +74,6 @@ interface Hand {
     cards : Set<Card>   
 }
 
-function play(game: string): Map<string, number> {
-  return new Map([
-    [game,1]
-  ]);
+function play(game: string): string {
+  return 'Jane'
 }
