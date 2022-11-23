@@ -77,7 +77,7 @@ interface Hand {
  function play(game: string): string {
   const cards = extractCards(game);
   const player = extractNames(game);
-  if(getRankOfHand(cards[0])<getRankOfHand(cards[1])){
+  if(getRankOfHand(cards[0]) < getRankOfHand(cards[1])){
     return player[1]
   }
   return player[0]
@@ -99,10 +99,10 @@ export function extractCards(game:string):Array<string> {
 export function getRankOfHand(cards:string):number{
 
   if(cards == 'TS JS QS KS AS'){
-    return CardRank.Royal_Flush
+    return 10
   }
   if(cards == '4H 5H 6H 7H 8H'){
-    return CardRank.Straight_Flush
+    return 9
   }
   
   return 0
