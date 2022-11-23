@@ -59,29 +59,4 @@ describe('CheaterDetector', () => {
         }
         ]);
     })
-
-    it('should be count only 2 records', () => {
-        //arrange
-        const filePath = path.join(__dirname, '../poker_miwtoo_jean/data/data2.txt');
-        const buffer = fs.readFileSync(filePath, "utf8");
-        const file = buffer.toString();
-
-        // act
-        const result = pokerPlayerCount(file)
-
-        //assert
-        expect(result).toEqual([{
-            name: "Jane",
-            count: 1
-        },
-        {
-            name: "Mike",
-            count: 2
-        },
-        {
-            name: "Wu",
-            count: 1
-        }
-        ]);
-    })
 })

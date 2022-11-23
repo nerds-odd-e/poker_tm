@@ -164,6 +164,17 @@ export function winnerDetector2(data: String) {
                 }
             ]
         }
+
+        return [
+            {
+                name: player1.name,
+                winrate: 50
+            },
+            {
+                name: player2.name,
+                winrate: 50
+            }
+        ]
     }
 }
 
