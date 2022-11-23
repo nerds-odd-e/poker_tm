@@ -50,6 +50,7 @@ function getCardOnHand(player: string[]) {
 }
 
 function totalOnHand(cards: string[]) {
+  const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => a - b);
   return cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).reduce(
     (a, c) => a + c);
 }
