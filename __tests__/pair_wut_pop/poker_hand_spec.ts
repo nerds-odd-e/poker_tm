@@ -1,4 +1,5 @@
 import getWinRate from '../../src/pair_wut_pop/PokerHand';
+import * as fs from 'fs';
 
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
@@ -82,6 +83,12 @@ describe('winrate calculator', () => {
       expect(getWinRate('Wu: AC KC QC JC TC Mike: 5D AH 5S AS 9S')).toBe(
         'Mike:100,Wu:0'
       );
+    });
+
+    xit('should get result from file', () => {
+      const result = fs.readFileSync(process.cwd() + "/example_data/poker.txt", "utf8");
+
+      expect(getWinRate(result.replace(/\n/g, ','))).toBe("");
     });
   });
 });
