@@ -1,7 +1,7 @@
 const totalACard = (cards: string[]) =>
   cards.filter((e) => e.includes("A")).length;
 
-const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[], _) => {
+const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[], hand1: Hand) => {
   if (totalACard(player1_hand) > totalACard(player2_hand)) {
     return true;
   }
