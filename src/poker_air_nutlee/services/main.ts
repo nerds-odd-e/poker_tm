@@ -77,6 +77,21 @@ export class Card {
         return parseInt(this.value);
     }
   }
+
+  suitAsNumber(): number {
+    switch (this.suit) {
+      case "S":
+        return 4;
+      case "H":
+        return 3;
+      case "D":
+        return 2;
+      case "C":
+        return 1;
+      default:
+        return 0;
+    }
+  }
 }
 
 export function compareCards(card1: Card, card2: Card): number {
@@ -86,7 +101,16 @@ export function compareCards(card1: Card, card2: Card): number {
   if (card1.valueAsNumber() < card2.valueAsNumber()) {
     return -1;
   }
-  return 0;
+  
+  if (card1.suitAsNumber() > card2.suitAsNumber()) {
+    return 1;
+  }
+
+  if (card1.suitAsNumber() < card2.suitAsNumber()) {
+    return -1;
+  }
+
+  return 0
 }
 
 const getPlayerResult = (
