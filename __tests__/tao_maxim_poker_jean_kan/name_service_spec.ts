@@ -3,7 +3,7 @@ import describeWithDB from "../../test_helpers/describeWithDB";
 
 import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker/NameService";
 import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker/NameService";
-import { CardRank, extractCards, getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
+import { CardRank, extractCards, extractNames, getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 
 describeWithDB("product ", () => {
   it("should return empty list of name for not existing file", async () => {
@@ -70,6 +70,10 @@ describeWithDB("product ", () => {
     expect(cards).toEqual(["TS JS QS KS AS","4H 5H 6H 7H 8H"]);
   }); 
 
+  it("extractName should retirn [Jane, Mike]",() => {
+    const player =  extractNames("Jane: TS JS QS KS AS Mike: 4H 5H 6H 7H 8H") ;
+    expect(player).toEqual(["Jane","Mike"]);
+  }); 
 
 });
 

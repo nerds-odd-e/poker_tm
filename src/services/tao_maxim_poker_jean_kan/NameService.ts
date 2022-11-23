@@ -30,7 +30,7 @@ export function getNamesAndGamesCount(fileName: string): Map<string, number> {
   return mapNameAndGame;
 }
 
-function extractNames(line: string): string[] {
+export function extractNames(line: string): string[] {
   return line
     .split(/(\s)/)
     .filter((item) => item.endsWith(":"))
