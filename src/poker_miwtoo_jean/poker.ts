@@ -89,3 +89,7 @@ const isTwoPair = (cards: string) => {
 const isThreeOfAKind = (cards: string) => {
     return cards == '7H,7D,7C,3S,AC';
 }
+
+export function winnerDetector2() {
+    return []
+}
