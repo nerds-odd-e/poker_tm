@@ -52,7 +52,8 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
     .split(/\r?\n/)
     .map((game) => play(game))
     .forEach((winner) => {
-
+      console.log("====>>",winner);
+      
       if (allResults.has(winner)) {
         const allRes = allResults.get(winner) as number;
         allResults.set(winner, allRes + 1);
