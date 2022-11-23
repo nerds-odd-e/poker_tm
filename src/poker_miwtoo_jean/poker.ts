@@ -58,9 +58,8 @@ export function winnerDetector2(gamesRaw: string) {
 
 export function winnerOfGame(gameRaw: string) {
         if (gameRaw != '') {
-            const player1: PlayerHand =  new PlayerHand(gameRaw, 0)
-
-            const player2: PlayerHand =new PlayerHand(gameRaw, 6)
+            const player1: PlayerHand = PlayerHand.playerHand1(gameRaw)
+            const player2: PlayerHand = PlayerHand.playerHand2(gameRaw)
 
             return compareHands(player1, player2)
         }
@@ -120,11 +119,17 @@ function compareHands(player1: PlayerHand, player2: PlayerHand) {
 
 
 class PlayerHand {
+    static playerHand1(gameRaw: string): PlayerHand {
+        return  new PlayerHand(gameRaw, 0)
+    }
+    static playerHand2(gameRaw: string): PlayerHand {
+        return  new PlayerHand(gameRaw, 6)
+    }
     name: string
     point: number
     hand: string[]
 
-    constructor(gameRaw: string, startPosition: number) {
+    private constructor(gameRaw: string, startPosition: number) {
         const splitSpace = gameRaw.split(" ")
         return {
             name: splitSpace[startPosition].replace(':', ''),
