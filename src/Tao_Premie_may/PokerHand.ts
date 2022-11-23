@@ -18,18 +18,21 @@ const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[]) => {
   return false;
 };
 
-const getWinrate = (input: String) => {
-  if (input === "") {
+const getWinrate = (gamesRaw: String) => {
+  if (gamesRaw === "") {
     return "";
   }
-  const rounds = input.split(",");
+  const rounds = gamesRaw.split(",");
   const winners = rounds.map((round) => getWinner(round));
 
   return winners.join(",");
 };
 
-const getWinner = (input: String) => {
-  const s = input.split(" ");
+class Hand {
+  
+}
+const getWinner = (gameRaw: String) => {
+  const s = gameRaw.split(" ");
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);
   if (isFirstPlayerWin(player1_hand, player2_hand)) {
