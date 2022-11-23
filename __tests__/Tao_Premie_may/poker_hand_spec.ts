@@ -18,7 +18,7 @@ describe('winrate calculator', () => {
   });
 
   it('should return Wu with 100% and Mike 0%', () => {
-    expect(getWinrate(`Wu: 5C AD 5D AC 9C Mike: 7C 5H 8D TD KS`)).toBe(
+    expect(getWinrate(`Wu: ${highCardWithHighest('A')} Mike: 7C 5H 8D TD KS`)).toBe(
       'Wu:100,Mike:0'
     );
   });
