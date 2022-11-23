@@ -22,7 +22,11 @@ const getWinRate = (game: String) => {
     return '';
   }
   const games = game.split(',')
-  const winners = games.map(game => getGameResult(game))
+  const winners = games.map(game => {
+
+    const gameResult = getGameResult(game)
+    return [`${gameResult[0].playerName}${calWinRate(gameResult[0])}`, `${gameResult[1].playerName}${calWinRate(gameResult[1])}`];
+  })
 
   return winners.join(",");
 };
@@ -36,9 +40,8 @@ const getGameResult = (game: String) => {
   const s = game.split(' ');
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);
-  let gameRecord
   if (isFirstPlayerWin(player1_hand, player2_hand)) {
-    gameRecord = [
+    return [
       {
         playerName: s[0],
         gameResults: ['win']
@@ -50,7 +53,7 @@ const getGameResult = (game: String) => {
     ]
   }
   else {
-    gameRecord = [
+    return [
       {
         playerName: s[6],
         gameResults: ['win']
@@ -61,7 +64,6 @@ const getGameResult = (game: String) => {
       }
     ]
   }
-  return [`${gameRecord[0].playerName}${calWinRate(gameRecord[0])}`, `${gameRecord[1].playerName}${calWinRate(gameRecord[1])}`];
 }
 const calWinRate = (game: GameRecord) => {
   const winCount = game.gameResults.filter(gameResult => gameResult == 'win').length;
