@@ -18,11 +18,8 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
       const player1Name:string = extractNames(game)[0]
       const player2Name:string = extractNames(game)[1];
     
-      const player1WinScore = isPlayer1Win(game) ? 1: 0;
-      updateRecord(records, player1Name, player1WinScore);
-
-      const player2WinScore = isPlayer1Win(game) ? 0: 1;
-      updateRecord(records, player2Name, player2WinScore);
+      updateRecord(records, player1Name, isPlayer1Win(game));
+      updateRecord(records, player2Name, !isPlayer1Win(game));
     });
 
 
@@ -34,7 +31,8 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
   return result;
 }
 
-function updateRecord(records: Map<string, Map<string, number>>, playerName: string, playerWinScore: number) {
+function updateRecord(records: Map<string, Map<string, number>>, playerName: string, isPlayerWin: boolean) {
+  const playerWinScore = isPlayerWin ? 1: 0;
   if (records.has(playerName)) {
     const playerRecord = records.get(playerName)!;
     const count = playerRecord.get("count")! + 1;
