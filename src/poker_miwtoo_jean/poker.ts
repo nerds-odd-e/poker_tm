@@ -114,12 +114,12 @@ export function winnerDetector2(gamesRaw: String) {
 export function winnerOfGame(gameRaw: String) {
         if (gameRaw != '') {
             const splitSpace = gameRaw.split(" ")
-            const player1: Player = {
+            const player1: PlayerHand = {
                 name: splitSpace[0].replace(':', ''),
                 point: calculateHighCard(splitSpace.slice(1, 6))
             }
 
-            const player2: Player = {
+            const player2: PlayerHand = {
                 name: splitSpace[6].replace(':', ''),
                 point: calculateHighCard(splitSpace.slice(7, 12))
             }
@@ -141,7 +141,7 @@ function calculateHighCard(playerHands: string[]) {
     return maxPlayerPoint;
 }
 
-function compareHands(player1: Player, player2: Player) {
+function compareHands(player1: PlayerHand, player2: PlayerHand) {
     if (player1.point > player2.point) {
         return [
             {
@@ -181,7 +181,7 @@ function compareHands(player1: Player, player2: Player) {
 }
 
 
-interface Player {
+interface PlayerHand {
     name: string,
     point: number
 } 
