@@ -3,9 +3,9 @@ const totalACard = (cards: string[]) =>
 
 const isFirstPlayerWin = (hand1: Hand , hand2:Hand) => {
   
-  if (checkFlush(hand1.cards)) {
-    return true;
-  }
+  // if (checkFlush(hand1.cards)) {
+  //   return true;
+  // }
   if(checkThreeOfAKind(hand1.cards)){
     return true
   }
