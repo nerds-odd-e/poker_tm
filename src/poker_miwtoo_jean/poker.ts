@@ -121,31 +121,7 @@ export function winnerDetector2(data: String) {
 
             const maxPlayer2Point = calculateHighCard(player2Hands);
 
-            if (maxPlayer1Point > maxPlayer2Point) {
-                return [
-                    {
-                        name: player1,
-                        winrate: 100
-                    },
-                    {
-                        name: player2,
-                        winrate: 0
-                    }
-                ]
-            }
-
-            if (maxPlayer2Point > maxPlayer1Point) {
-                return [
-                    {
-                        name: player2,
-                        winrate: 100
-                    },
-                    {
-                        name: player1,
-                        winrate: 0
-                    }
-                ]
-            }
+            return compareHands(maxPlayer1Point, player1, maxPlayer2Point, player2)
         }
     }
 
@@ -160,6 +136,34 @@ export function winnerDetector2(data: String) {
             }
         );
         return maxPlayerPoint;
+    }
+
+    function compareHands(player1Point: number, player1: string, player2Point: number, player2: string) {
+        if (player1Point > player2Point) {
+            return [
+                {
+                    name: player1,
+                    winrate: 100
+                },
+                {
+                    name: player2,
+                    winrate: 0
+                }
+            ]
+        }
+
+        if (player2Point > player1Point) {
+            return [
+                {
+                    name: player2,
+                    winrate: 100
+                },
+                {
+                    name: player1,
+                    winrate: 0
+                }
+            ]
+        }
     }
 }
 
