@@ -48,10 +48,30 @@ const  getGameResult = (game: String): GameResult => {
   }
 }
 
-const  getWinner = (game: String) => {
-  let gameResult = getGameResult(game);
-  return `${gameResult.winner}100,${gameResult.loser}0`;
+interface GameRecord {
+  playerName: string;
+  gameResults: string[];
 }
 
+const  getWinner = (game: String) => {
+  let gameResult = getGameResult(game);
+  const gameRecord: GameRecord[] = [
+    {
+      playerName: gameResult.winner,
+      gameResults: ['win']
+    },
+    {
+      playerName: gameResult.loser,
+      gameResults: ['lose']
+    }
+  ]
+  return `${gameResult.winner}${calWinRate(gameRecord[0])},${gameResult.loser}${calWinRate(gameRecord[1])}`;
+}
+const calWinRate = (game: GameRecord) => {
+  const winCount = game.gameResults.filter(gameResult => gameResult == 'win').length;
+  const gameCount = game.gameResults.length;
+
+  return winCount / gameCount * 100;
+}
 
 export default getWinRate;
