@@ -59,11 +59,10 @@ export function winnerDetector2(gamesRaw: String) {
 export function winnerOfGame(gameRaw: String) {
         if (gameRaw != '') {
             const splitSpace = gameRaw.split(" ")
-            let startPosition = 0
-            const player1: PlayerHand =  new PlayerHand(splitSpace, startPosition)
+            
+            const player1: PlayerHand =  new PlayerHand(splitSpace, 0)
 
-            startPosition = 6
-            const player2: PlayerHand =new PlayerHand(splitSpace, startPosition)
+            const player2: PlayerHand =new PlayerHand(splitSpace, 6)
 
             return compareHands(player1, player2)
         }
