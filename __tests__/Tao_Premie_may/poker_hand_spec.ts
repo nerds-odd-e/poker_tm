@@ -16,7 +16,6 @@ class GameBuilder{
   player2Name?: string;
 
   of(name: string) {
-    this.player1Name = name
     this.players[this.currentPlayer].name = name
     return this;
   }
