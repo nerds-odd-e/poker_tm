@@ -16,13 +16,13 @@ export const winnerOfGame = (game: string) => {
 
   if (!isHaveAOnHand(firstPlayerHand) &&
     !isHaveAOnHand(secondPlayerHand)) {
-    if (totalOnHand(getCardOnHand(firstPlayerHand)) <
-      totalOnHand(getCardOnHand(secondPlayerHand))) {
-      return playerName(game, 6)
-    }
     if (totalOnHand(getCardOnHand(firstPlayerHand)) >
       totalOnHand(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 0)
+    }
+    if (totalOnHand(getCardOnHand(firstPlayerHand)) <
+      totalOnHand(getCardOnHand(secondPlayerHand))) {
+      return playerName(game, 6)
     }
   }
 
