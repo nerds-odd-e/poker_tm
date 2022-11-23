@@ -146,4 +146,29 @@ describe("Win-rate Detector", () => {
     const sorted = shuffledDeck.sort(compareCards);
     //expect(sorted).toBe(sortedExpected);
   });
+
+  it("should produce correct number from card by value", () => {
+    const deck: Card[] = [
+      new Card("AS"),
+      new Card("KS"),
+      new Card("QS"),
+      new Card("JS"),
+      new Card("TS"),
+      new Card("9S"),
+      new Card("8S"),
+      new Card("7S"),
+      new Card("6S"),
+      new Card("5S"),
+      new Card("4S"),
+      new Card("3S"),
+      new Card("2S"),
+    ];
+    const expected: number[] = [
+      14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2,
+    ];
+
+    const actual = deck.map(c => c.valueAsNumber)
+
+    //expect(actual).toBe(expected);
+  });
 });

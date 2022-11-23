@@ -74,6 +74,7 @@ export class Card {
 }
 
 export function compareCards(card1: Card, card2: Card): number {
+    
     return 0
 }
 
