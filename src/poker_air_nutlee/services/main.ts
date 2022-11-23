@@ -16,20 +16,15 @@ const winRateDetector = (game: string) => {
     const playerCollection: PlayerCollection[] = []
     const findWinnerResult = findWinner(game) as FindWinnerResult[]
 
-
     const player1Collection = playerCollection.find(player => player.name === findWinnerResult[0].name) as PlayerCollection
     let player1result = getPlayerResult(player1Collection, findWinnerResult[0])
     
-
     const player2Collection = playerCollection.find(player => player.name === findWinnerResult[1].name) as PlayerCollection
     let player2result = getPlayerResult(player2Collection, findWinnerResult[1])
     
-
     return [
         { name: player1result.name, rate: player1result.winRate },
         { name: player2result.name, rate: player2result.winRate },
-        // { name: findWinnerResult[0].name, rate: 0 },
-        // { name: findWinnerResult[1].name, rate: 100 },
     ]
 }
 
