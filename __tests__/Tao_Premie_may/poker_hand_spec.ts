@@ -10,7 +10,8 @@ class GameBuilder{
   players: PlayerHand[] = [{}, {}];
   currentPlayer: number = 0
 
-  of(name: string) {
+  between(name: string) {
+    this.currentPlayer = 0
     this.players[this.currentPlayer].name = name
     return this;
   }
@@ -43,7 +44,7 @@ describe('winrate calculator', () => {
   it('should return Mike with 100% and Jane 0%', () => {
     expect(
       getWinrate(
-        aGame.of("Jane").highCardWithHighest('K').vs("Mike").highCardWithHighest("A").please()
+        aGame.between("Jane").highCardWithHighest('K').vs("Mike").highCardWithHighest("A").please()
       )
     ).toBe('Mike:100,Jane:0');
   });
