@@ -25,6 +25,12 @@ describe('Cheater detector', () => {
         expect(result).toContain('Mike 100%')
     })
 
+    it('Show win rate is Jane 100% when have equal A and 9D', () => {
+        const record = 'Jane: 9D 2S 5D 3S AC Mike: 8C 2D 5C 7H AS'
+        const result = topFiveWinRatePlayer(record)
+        expect(result).toContain('Jane 100%')
+    })
+
 })
 
 describe('Check Hands winer', () => {
