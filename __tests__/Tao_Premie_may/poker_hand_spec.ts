@@ -26,7 +26,7 @@ class GameBuilder{
   }
 
   build() {
-    return `${this.player1Name}: ${this.player1HHand} Mike: ${highCardWithHighest('A')}`
+    return `${this.player1Name}: ${this.player1HHand} ${this.player2Name}: ${highCardWithHighest('A')}`
   }
 }
   
@@ -43,7 +43,7 @@ describe('winrate calculator', () => {
   it('should return Mike with 100% and Jane 0%', () => {
     expect(
       getWinrate(
-        aGame.of("Jane").highCardWithHighest('K').vs("Make").highCardWithHighestPlayer2("A").build()
+        aGame.of("Jane").highCardWithHighest('K').vs("Mike").highCardWithHighestPlayer2("A").build()
       )
     ).toBe('Mike:100,Jane:0');
   });
