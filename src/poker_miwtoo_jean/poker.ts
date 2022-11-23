@@ -117,6 +117,14 @@ function compareHands(player1: PlayerHand, player2: PlayerHand) {
     ]
 }
 
+class Hand {
+    cards: string[];
+
+    constructor(cards: string[]) {
+        this.cards = cards
+    }
+}
+
 
 class PlayerHand {
     static playerHand1(gameRaw: string): PlayerHand {
@@ -126,15 +134,15 @@ class PlayerHand {
         return  new PlayerHand(gameRaw, 6)
     }
     name: string
-    hand: string[]
+    hand: Hand
 
     private constructor(gameRaw: string, startPosition: number) {
         const splitSpace = gameRaw.split(" ")
         this.name =  splitSpace[startPosition].replace(':', '')
-        this.hand = splitSpace.slice(startPosition + 1, startPosition + 6)
+        this.hand = new Hand(splitSpace.slice(startPosition + 1, startPosition + 6))
     }
 
     get point() {
-        return calculateHighCard(this.hand);
+        return calculateHighCard(this.hand.cards);
     }
 } 
