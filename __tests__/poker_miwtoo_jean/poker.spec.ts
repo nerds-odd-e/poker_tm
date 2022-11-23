@@ -3,9 +3,7 @@ import * as path from "path";
 import { pokerPlayerCount } from "../../src/poker_miwtoo_jean/poker";
 
 describe('CheaterDetector', () => {
-    const filePath = path.join(__dirname, '../../example_data/poker.txt');
-    const buffer = fs.readFileSync(filePath, "utf8");
-    const file = buffer.toString();
+
     it("should return empty result if the file is empty", () => {
         const result = pokerPlayerCount("");
 
@@ -14,6 +12,9 @@ describe('CheaterDetector', () => {
 
     it("should be count Jane", () => {
         //arrange
+        const filePath = path.join(__dirname, '../poker_miwtoo_jean/data/poker.txt');
+        const buffer = fs.readFileSync(filePath, "utf8");
+        const file = buffer.toString();
 
         // act
         const result = pokerPlayerCount(file)
