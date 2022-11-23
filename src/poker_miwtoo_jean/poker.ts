@@ -52,6 +52,22 @@ export function pokerPlayerCount(data: string) {
     return result
 }
 
-export function winnerDetector(fileName: string) {
+export function winnerDetector(data: string) {
+    const round = data.toString().split("\n");
+    const playerHands: Map<string, string> = new Map()
+    for (const i in round) {
+        if (round[i] != '') {
+            const splitSpace = round[i].split(" ")
+            playerHands.set(splitSpace[0].replace(':', ''), splitSpace.slice(1,6).toString())
+            playerHands.set(splitSpace[6].replace(':', ''), splitSpace.slice(7,12).toString())
+            if(isPair(splitSpace.slice(1,6).toString())) {
+                return splitSpace[0].replace(':', '')
+            }
+        }
+    }
     return "Mike"
+}
+
+const isPair = (cards: string) => {
+    return cards == '8C,8S,KC,9H,4S';
 }
