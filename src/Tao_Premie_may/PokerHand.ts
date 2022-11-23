@@ -41,15 +41,19 @@ const getWinner = (gameRaw: String) => {
 export default getWinrate;
 
 function checkFlush(player1_hand: string[]): Boolean {
+  let shouldSkip = true;
   const firstCharacter = player1_hand[0][1];
   console.log('+++++++++++++++++++++++',player1_hand);
   player1_hand.every((card) => {
     if (card[1] != firstCharacter) {
       console.log(card[1])
-      return false;
+      shouldSkip = false;
+      return
     }
   });
-  return true;
+  console.log('should skip =========' , shouldSkip );
+  
+  return shouldSkip;
 }
 function checkThreeOfAKind(player1_hand: string[]): Boolean {
   const count ={}
