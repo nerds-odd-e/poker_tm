@@ -60,11 +60,7 @@ export function winnerOfGame(gameRaw: String) {
         if (gameRaw != '') {
             const splitSpace = gameRaw.split(" ")
             let startPosition = 0
-            const player1: PlayerHand = {
-                name: splitSpace[startPosition].replace(':', ''),
-                hand: splitSpace.slice(startPosition + 1, startPosition + 6),
-                point: calculateHighCard(splitSpace.slice(startPosition + 1, startPosition + 6))
-            }
+            const player1: PlayerHand =  new PlayerHand(splitSpace, startPosition)
 
             startPosition = 6
             const player2: PlayerHand = {
@@ -134,4 +130,12 @@ class PlayerHand {
     name: string
     point: number
     hand: string[]
+
+    constructor(splitSpace: string[], startPosition: number) {
+        return {
+            name: splitSpace[startPosition].replace(':', ''),
+            hand: splitSpace.slice(startPosition + 1, startPosition + 6),
+            point: calculateHighCard(splitSpace.slice(startPosition + 1, startPosition + 6))
+        }
+    }
 } 
