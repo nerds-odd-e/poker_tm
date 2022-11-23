@@ -14,6 +14,7 @@ const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[]) => {
       .map((e) => Number.parseInt(e.charAt(0)));
     return p1.reduce((a, b) => a + b) > p2.reduce((a, b) => a + b);
   }
+   const isCheckRoyalFlush = checkRoyalFlush(player1_hand,player2_hand) 
   return false;
 };
 
@@ -39,3 +40,8 @@ const  getWinner = (input: String) => {
 
 
 export default getWinrate;
+
+  function checkRoyalFlush(player1_hand: string[], player2_hand: string[]) {
+    return true
+  }
+
