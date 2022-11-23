@@ -59,9 +59,15 @@ describeWithDB("product ", () => {
 
 describeWithDB("WinRateCollector ", () => {
 
-it("should return amount of game won by player2 for single line file", () => {
+  it("should return amount of game won by player2 for single line file", () => {
     const winRateCollection = getNamesAndWinRate("tao_maxim_file/singleLinePlayer2RoyalFlush.txt");
     expect(winRateCollection.get("Mike")).toBe(1);
     expect(winRateCollection.get("Jane")).toBe(0);
   });  
+
+  it("should return amount of game won by player1 for single line file", () => {
+    const winRateCollection = getNamesAndWinRate("tao_maxim_file/singleLinePlayer1RoyalFlush.txt");
+    expect(winRateCollection.get("Mike")).toBe(0);
+    expect(winRateCollection.get("Jane")).toBe(1);
+  }); 
 });
