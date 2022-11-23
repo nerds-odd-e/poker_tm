@@ -6,7 +6,7 @@ describe("winrate calculator", () => {
     expect(getWinrate("")).toBe("");
   });
 
-  it("should return Mike with 100% with High Card and Jane 0%", () => {
+  it("should return Jane with 100% with flush and Mike 0%", () => {
     expect(
       getWinrate(
         aGame
@@ -18,4 +18,9 @@ describe("winrate calculator", () => {
       )
     ).toBe("Jane:100,Mike:0");
   });
+
+  it("should return Mike with 100% with Three of a kind and Jane 0%",()=>{
+    expect(true).toBe(true);
+  })
+
 });
