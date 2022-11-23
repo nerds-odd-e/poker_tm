@@ -56,8 +56,8 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
     .forEach((winner) => {
       
       if (allResults.has(winner)) {
-        const countOfwin = allResults.get(winner) as number;
-        allResults.set(winner, countOfwin + 1);
+        const currentNumberOfWins = allResults.get(winner) as number;
+        allResults.set(winner, currentNumberOfWins + 1);
       } 
       if (!allResults.has(winner)){
         allResults.set(winner, 1);
@@ -95,8 +95,8 @@ export function extractCards(game: string): Array<string> {
     .split(/(\s)/)
     .filter((item) => !item.endsWith(":") && item != ' ')
   return [
-    cards[0] + ' ' + cards[1] + ' ' + cards[2] + ' ' + cards[3] + ' ' + cards[4],
-    cards[5] + ' ' + cards[6] + ' ' + cards[7] + ' ' + cards[8] + ' ' + cards[9]]
+    cards.slice(0,5).join(' '),
+    cards.slice(5,10).join(' ')]
 }
 
 export function getRankOfHand(cards: string): number {
