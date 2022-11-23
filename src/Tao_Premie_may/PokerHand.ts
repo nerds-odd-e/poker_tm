@@ -45,6 +45,7 @@ function checkFlush(player1_hand: string[]): Boolean {
   console.log('+++++++++++++++++++++++',player1_hand);
   player1_hand.forEach((card) => {
     if (card[1] != firstCharacter) {
+      console.log(card[1])
       return false;
     }
   });
