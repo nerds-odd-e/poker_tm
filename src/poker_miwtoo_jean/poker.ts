@@ -119,14 +119,7 @@ export function winnerDetector2(data: String) {
             const player2 = splitSpace[6].replace(':', '');
             const player2Hands = splitSpace.slice(7, 12);
 
-            let maxPlayer2Point = 0
-            player2Hands.forEach(
-                hand => {
-                    const number = hand.charAt(0)
-                    const point = cardFace.get(number) || 0
-                    if (point > maxPlayer2Point) maxPlayer2Point = point
-                }
-            )
+            const maxPlayer2Point = calculateHighCard(player2Hands);
 
             if (maxPlayer1Point > maxPlayer2Point) {
                 return [
