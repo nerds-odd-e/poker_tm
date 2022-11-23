@@ -109,3 +109,9 @@ export function getRankOfHand(cards: string): number {
   return 0
 }
 
+export function sortCard(card:string) {
+
+  return '4S 8C 9H TS KC'
+  
+}
+

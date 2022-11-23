@@ -1,33 +1,11 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import describeWithDB from "../../test_helpers/describeWithDB";
 
-import { getNames, getNamesAndWinCount, getTheWinner } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
+import { getNames, getNamesAndWinCount, getTheWinner, sortCard } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 import { CardRank, extractCards, extractNames, getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 
 describeWithDB("product ", () => {
-  it("should return empty list of name for not existing file", async () => {
-    const s = getNames("non-existing-fileName");
-    expect(s).toStrictEqual(new Set());
-  });
-
-  it("should return empty list for empty file", async () => {
-    const s = getNames("tao_maxim_file_jean_kan/emptyNameList.txt");
-    expect(s).toStrictEqual(new Set());
-  });
-
-  it("should return names list for single line file", async () => {
-    const s = getNames("tao_maxim_file_jean_kan/singleLine.txt");
-    const expected = ["Jane", "Mike"];
-    expect(s).toStrictEqual(new Set(expected));
-  });
-
-  it("should return names list for multiple line file", async () => {
-    const s = getNames("tao_maxim_file_jean_kan/multipleLine.txt");
-    const expected = ["Jane", "Mike", "Wu", "Ken"];
-    expect(s).toStrictEqual(new Set(expected));
-  });
-
   it("should return names with games played list for multiple line file", async () => {
     const s = getNamesAndGamesCount("tao_maxim_file_jean_kan/multipleLine.txt");
     const expected = new Map<string, number>([
@@ -55,6 +33,55 @@ describeWithDB("product ", () => {
     expect(s.get("Mike")).toBe(1);
   });
   
+  it("play function",() => {
+    const player =  getTheWinner("Jane: 4H 5H 6H 7H 8H Mike: TS JS QS KS AS") ;
+    expect(player).toEqual('Mike');
+  }); 
+
+
+});
+
+describe("extractor", () => {
+  it("extractName should retirn [Jane, Mike]",() => {
+    const player =  extractNames("Jane: TS JS QS KS AS Mike: 4H 5H 6H 7H 8H") ;
+    expect(player).toEqual(["Jane","Mike"]);
+  }); 
+
+  it("extractCards",() => {
+    const cards =  extractCards("Jane: TS JS QS KS AS Mike: 4H 5H 6H 7H 8H") ;
+    expect(cards).toEqual(["TS JS QS KS AS","4H 5H 6H 7H 8H"]);
+  }); 
+
+  it("should return sort card",() => {
+    const CardHand =  sortCard("8C TS KC 9H 4S") ;
+    expect(CardHand).toEqual('4S 8C 9H TS KC');
+  }); 
+
+})
+
+describe("Infomation getter", () => {
+  it("should return empty list of name for not existing file", async () => {
+    const s = getNames("non-existing-fileName");
+    expect(s).toStrictEqual(new Set());
+  });
+
+  it("should return empty list for empty file", async () => {
+    const s = getNames("tao_maxim_file_jean_kan/emptyNameList.txt");
+    expect(s).toStrictEqual(new Set());
+  });
+
+  it("should return names list for single line file", async () => {
+    const s = getNames("tao_maxim_file_jean_kan/singleLine.txt");
+    const expected = ["Jane", "Mike"];
+    expect(s).toStrictEqual(new Set(expected));
+  });
+
+  it("should return names list for multiple line file", async () => {
+    const s = getNames("tao_maxim_file_jean_kan/multipleLine.txt");
+    const expected = ["Jane", "Mike", "Wu", "Ken"];
+    expect(s).toStrictEqual(new Set(expected));
+  });
+
   it("should return rank 0 when we have nothing",() => {
     const rank =  getRankOfHand('') ;
     expect(rank).toBe(0);
@@ -69,21 +96,6 @@ describeWithDB("product ", () => {
     const rank =  getRankOfHand("4H 5H 6H 7H 8H") ;
     expect(rank).toBe(CardRank.Straight_Flush);
   }); 
+})
 
-  it("extractCards",() => {
-    const cards =  extractCards("Jane: TS JS QS KS AS Mike: 4H 5H 6H 7H 8H") ;
-    expect(cards).toEqual(["TS JS QS KS AS","4H 5H 6H 7H 8H"]);
-  }); 
-
-  it("extractName should retirn [Jane, Mike]",() => {
-    const player =  extractNames("Jane: TS JS QS KS AS Mike: 4H 5H 6H 7H 8H") ;
-    expect(player).toEqual(["Jane","Mike"]);
-  }); 
-
-  it("play function",() => {
-    const player =  getTheWinner("Jane: 4H 5H 6H 7H 8H Mike: TS JS QS KS AS") ;
-    expect(player).toEqual('Mike');
-  }); 
-
-});
 
