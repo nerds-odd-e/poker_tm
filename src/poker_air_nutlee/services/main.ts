@@ -106,6 +106,13 @@ export class Card {
   }
 }
 
+enum Suit {
+    S = 4,
+    H = 3,
+    D = 2,
+    C = 1,
+}
+
 export function compareCards(card1: Card, card2: Card): number {
   if (card1.valueAsNumber() > card2.valueAsNumber()) {
     return 1;
