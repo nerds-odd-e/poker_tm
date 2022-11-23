@@ -90,21 +90,6 @@ export class Card {
         return parseInt(this.value);
     }
   }
-
-  suitAsNumber(): number {
-    switch (this.suit) {
-      case "S":
-        return 4;
-      case "H":
-        return 3;
-      case "D":
-        return 2;
-      case "C":
-        return 1;
-      default:
-        return 0;
-    }
-  }
 }
 
 enum Suit {
