@@ -1,4 +1,5 @@
 import getWinrate from '../../src/Tao_Premie_may/PokerHand';
+import aGame from '../../test_helpers/poker_game_builder'
 
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
@@ -31,8 +32,6 @@ class GameBuilder{
   }
 }
   
-
-const aGame = new GameBuilder()
 
 describe('winrate calculator', () => {
   it('should return empty when it input empty', () => {
