@@ -9,7 +9,7 @@ class GameBuilder{
     return this;
   }
   player1Name?: string
-  player1HHand?: string
+  player1Hand?: string
   player2Name?: string;
 
   of(name: string) {
@@ -21,12 +21,12 @@ class GameBuilder{
     return this;
   }
   highCardWithHighest(rank: string) {
-    this.player1HHand = highCardWithHighest(rank)
+    this.player1Hand = highCardWithHighest(rank)
     return this;
   }
 
   build() {
-    return `${this.player1Name}: ${this.player1HHand} ${this.player2Name}: ${this.player2HHand}`
+    return `${this.player1Name}: ${this.player1Hand} ${this.player2Name}: ${this.player2HHand}`
   }
 }
   
