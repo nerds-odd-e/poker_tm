@@ -52,6 +52,10 @@ function checkThreeOfAKind(player1_hand: string[]): Boolean {
   })
   listOfNumber.forEach((number) => {
     count[number] = (count[number] || 0)+1
+
   });
+  console.log(count);
+  
+  
   return true;
 }
