@@ -10,7 +10,7 @@ class GameResult {
   winner: boolean;
 }
 
-const play = (game: string) => {
+export function play(game: string) {
   const statistics: PlayerStatistics[] = [];
   const gameResult = getResult(game) as GameResult[];
 
@@ -26,6 +26,10 @@ const play = (game: string) => {
 
   return statistics
 };
+
+export function process(games: string[]): PlayerStatistics[] {
+    return []
+}
 
 const getResult = (game: string) => {
   const playerSplitted = game.split(" ");
@@ -59,5 +63,3 @@ const getPlayerResult = (
     return player2Data;
   }
 };
-
-export { play };
