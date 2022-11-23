@@ -69,7 +69,6 @@ class Hand {
         this.cards = cards
     }
 
-
     calculateHighCard() {
         let maxPlayerPoint = 0
         this.cards.forEach(
@@ -84,7 +83,6 @@ class Hand {
     }
 
 }
-
 
 class PlayerHand {
     static playerHand1(gameRaw: string): PlayerHand {
