@@ -4,19 +4,22 @@ const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
 class GameBuilder{
   player1Name?: string
+  player1HHand?: string
 
   of(name: string) {
     this.player1Name = name
     return this;
   }
-      highCardWithHighest(rank: string) {
-        return {
-          build() {
-        return `${name}: ${highCardWithHighest(rank)} Mike: ${highCardWithHighest('A')}`
+  highCardWithHighest(rank: string) {
+    this.player1HHand = highCardWithHighest(rank)
+    return this;
+  }
+
+  build() {
+        return `${this.player1Name}: ${this.player1HHand} Mike: ${highCardWithHighest('A')}`
           }
         }
-      }
-    }
+
   
 
 const aGame = {
