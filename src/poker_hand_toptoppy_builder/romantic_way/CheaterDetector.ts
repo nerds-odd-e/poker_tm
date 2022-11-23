@@ -33,12 +33,6 @@ export const winnerOfGame = (game: string) => {
   if (isSecondPlayWinA(firstPlayerHand, secondPlayerHand)) {
     return playerName(game, 6)
   }
-
-  if (isHaveAOnHand(secondPlayerHand) &&
-    (secondPlayerHand.toString().includes("K") ||
-      secondPlayerHand.toString().includes("9D"))) {
-    return playerName(game, 6)
-  }
   return playerName(game, 6)
 };
 
