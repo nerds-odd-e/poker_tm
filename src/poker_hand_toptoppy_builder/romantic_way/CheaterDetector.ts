@@ -15,7 +15,7 @@ export const winnerOfGame = (game: string) => {
     return playerName(game, 6)
   }
 
-  if (secondPlayerHand.toString().includes("A") &&
+  if (isHaveAOnHand(secondPlayerHand) &&
     (secondPlayerHand.toString().includes("K") ||
       secondPlayerHand.toString().includes("9D"))) {
     return playerName(game, 6)
@@ -31,12 +31,16 @@ const playerName = (game: string, index: number) => {
   return game.split(' ')[index].replace(':', '');
 }
 
+function isHaveAOnHand(player: string[]) {
+  return player.toString().includes("A");
+}
+
 function isSecondPlayWinA(firstPlayerHand: string[], secondPlayerHand: string[]) {
-  return !firstPlayerHand.toString().includes("A") &&
-    secondPlayerHand.toString().includes("A");
+  return !isHaveAOnHand(firstPlayerHand) &&
+    isHaveAOnHand(secondPlayerHand);
 }
 
 function isFirstPlayerWinA(firstPlayerHand: string[], secondPlayerHand: string[]) {
-  return firstPlayerHand.toString().includes("A") &&
-    !secondPlayerHand.toString().includes("A");
+  return isHaveAOnHand(firstPlayerHand) &&
+    !isHaveAOnHand(secondPlayerHand);
 }
