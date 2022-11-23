@@ -1,4 +1,4 @@
-class PlayerCollection {
+class PlayerStatistics {
   name: string;
   winningCount: number;
   gameCount: number;
@@ -11,23 +11,20 @@ class GameResult {
 }
 
 const winRateDetector = (game: string) => {
-  const playerCollection: PlayerCollection[] = [];
+  const statistics: PlayerStatistics[] = [];
   const gameResult = play(game) as GameResult[];
 
-  const player1Collection = playerCollection.find(
+  const player1 = statistics.find(
     (player) => player.name === gameResult[0].name
-  ) as PlayerCollection;
-  let player1result = getPlayerResult(player1Collection, gameResult[0]);
+  ) as PlayerStatistics;
+  statistics.push(getPlayerResult(player1, gameResult[0]));
 
-  const player2Collection = playerCollection.find(
+  const player2 = statistics.find(
     (player) => player.name === gameResult[1].name
-  ) as PlayerCollection;
-  let player2result = getPlayerResult(player2Collection, gameResult[1]);
+  ) as PlayerStatistics;
+  statistics.push(getPlayerResult(player2, gameResult[1]));
 
-  return [
-    { name: player1result.name, winRate: player1result.winRate },
-    { name: player2result.name, winRate: player2result.winRate },
-  ];
+  return statistics
 };
 
 const play = (game: string) => {
@@ -41,7 +38,7 @@ const play = (game: string) => {
 };
 
 const getPlayerResult = (
-  playerCollection: PlayerCollection,
+  playerCollection: PlayerStatistics,
   findWinnerResult: GameResult
 ) => {
   if (playerCollection) {
