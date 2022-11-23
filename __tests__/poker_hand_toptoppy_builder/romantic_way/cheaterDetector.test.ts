@@ -31,34 +31,36 @@ describe('Cheater detector', () => {
         expect(result).toContain('Jane 100%')
     })
 
-    it('Show win rate is Mike when both Mike and Jane not have A on hands', () => {
-        const record = 'Jane: 9D 2S 5D 3S 4C Mike: 8C 2D 5C 7H 9S'
-        const result = topFiveWinRatePlayer(record)
-        expect(result).toContain('Mike 100%')
-    })
+    describe('Both player not have A on hands', () => {
+        it('Show win rate is Mike', () => {
+            const record = 'Jane: 9D 2S 5D 3S 4C Mike: 8C 2D 5C 7H 9S'
+            const result = topFiveWinRatePlayer(record)
+            expect(result).toContain('Mike 100%')
+        })
 
-    it('Show win rate is Jane when both Mike and Jane not have A on hands', () => {
-        const record = 'Jane: 9D 8S 5D 3S 7C Mike: 8C 2D 5C 7H 9S'
-        const result = topFiveWinRatePlayer(record)
-        expect(result).toContain('Jane 100%')
-    })
+        it('Show win rate is Jane', () => {
+            const record = 'Jane: 9D 8S 5D 3S 7C Mike: 8C 2D 5C 7H 9S'
+            const result = topFiveWinRatePlayer(record)
+            expect(result).toContain('Jane 100%')
+        })
 
-    it('Show win rate is Jane when both Mike and Jane not have A on hands and have T', () => {
-        const record = 'Jane: 9D 8S 5D TS 7C Mike: 8C 2D 5C 7H 9S'
-        const result = topFiveWinRatePlayer(record)
-        expect(result).toContain('Jane 100%')
-    })
+        it('Show win rate is Jane have T', () => {
+            const record = 'Jane: 9D 8S 5D TS 7C Mike: 8C 2D 5C 7H 9S'
+            const result = topFiveWinRatePlayer(record)
+            expect(result).toContain('Jane 100%')
+        })
 
-    it('Show win rate is Mike when both Mike and Jane not have A on hands and have J', () => {
-        const record = 'Jane: 9D 8S 7C 5D TS Mike: 9S 8C 7H 5C JD'
-        const result = topFiveWinRatePlayer(record)
-        expect(result).toContain('Mike 100%')
-    })
+        it('Show win rate is Mike have J', () => {
+            const record = 'Jane: 9D 8S 7C 5D TS Mike: 9S 8C 7H 5C JD'
+            const result = topFiveWinRatePlayer(record)
+            expect(result).toContain('Mike 100%')
+        })
 
-    it('Show win rate is Mike when both Mike and Jane not have A on hands and have Q', () => {
-        const record = 'Jane: 9D 8S 7C 5D TS Mike: 9S 8C 7H QC JD'
-        const result = topFiveWinRatePlayer(record)
-        expect(result).toContain('Mike 100%')
+        it('Show win rate is Mike have Q', () => {
+            const record = 'Jane: 9D 8S 7C 5D TS Mike: 9S 8C 7H QC JD'
+            const result = topFiveWinRatePlayer(record)
+            expect(result).toContain('Mike 100%')
+        })
     })
 })
 
