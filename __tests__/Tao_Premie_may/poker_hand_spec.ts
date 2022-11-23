@@ -6,8 +6,11 @@ const aGame = {
   of(name: string) {
     return  {
       highCardWithHighest(rank: string) {
+        return {
+          build() {
         return `${name}: ${highCardWithHighest(rank)} Mike: ${highCardWithHighest('A')}`
-
+          }
+        }
       }
     }
     }
@@ -22,7 +25,7 @@ describe('winrate calculator', () => {
   it('should return Mike with 100% and Jane 0%', () => {
     expect(
       getWinrate(
-        aGame.of("Jane").highCardWithHighest('K')//.vs("Make").highCardWithHighest("A")
+        aGame.of("Jane").highCardWithHighest('K').build()//.vs("Make").highCardWithHighest("A")
       )
     ).toBe('Mike:100,Jane:0');
   });
