@@ -57,12 +57,12 @@ export function winnerDetector2(gamesRaw: string) {
 }
 
 export function winnerOfGame(gameRaw: string) {
-        if (gameRaw != '') {
-            const player1: PlayerHand = PlayerHand.playerHand1(gameRaw)
-            const player2: PlayerHand = PlayerHand.playerHand2(gameRaw)
+    if (gameRaw != '') {
+        const player1: PlayerHand = PlayerHand.playerHand1(gameRaw)
+        const player2: PlayerHand = PlayerHand.playerHand2(gameRaw)
 
-            return compareHands(player1, player2)
-        }
+        return compareHands(player1, player2)
+    }
 }
 
 function compareHands(player1: PlayerHand, player2: PlayerHand) {
@@ -130,22 +130,22 @@ class Hand {
 
 class PlayerHand {
     static playerHand1(gameRaw: string): PlayerHand {
-        return  new PlayerHand(gameRaw, 0)
+        return new PlayerHand(gameRaw, 0)
     }
     static playerHand2(gameRaw: string): PlayerHand {
-        return  new PlayerHand(gameRaw, 6)
+        return new PlayerHand(gameRaw, 6)
     }
     name: string
     hand: Hand
 
     private constructor(gameRaw: string, startPosition: number) {
         const splitSpace = gameRaw.split(" ")
-        this.name =  splitSpace[startPosition].replace(':', '')
+        this.name = splitSpace[startPosition].replace(':', '')
         this.hand = new Hand(splitSpace.slice(startPosition + 1, startPosition + 6))
     }
 
     get point() {
-    
+
         return this.hand.calculateHighCard();
     }
 } 
