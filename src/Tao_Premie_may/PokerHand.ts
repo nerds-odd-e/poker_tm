@@ -41,7 +41,7 @@ const getWinner = (input: String) => {
 export default getWinrate;
 
 function checkRoyalFlush(player1_hand: string[], player2_hand: string[]) {
-  const firstCharacter = player1_hand[0];
+  const firstCharacter = player1_hand[0][1];
 
   console.log(firstCharacter);
   return true;
