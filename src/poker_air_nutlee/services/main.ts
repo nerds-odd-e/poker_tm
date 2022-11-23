@@ -47,10 +47,10 @@ const getResult = (game: string) => {
 
   const highestCardInHand1 = play1Hand
     .map((c) => new Card(c))
-    .sort(compareCards)[4];
+    .sort(compareCards).pop();
   const highestCardInHand2 = play2Hand
     .map((c) => new Card(c))
-    .sort(compareCards)[4];
+    .sort(compareCards).pop();
 
   const player1win = compareCards(highestCardInHand1, highestCardInHand2) > 0;
 
