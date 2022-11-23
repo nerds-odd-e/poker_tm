@@ -22,8 +22,8 @@ const winRateDetector = (game: string) => {
     let player2result = getPlayerResult(player2Collection, gameResult[1])
     
     return [
-        { name: player1result.name, rate: player1result.winRate },
-        { name: player2result.name, rate: player2result.winRate },
+        { name: player1result.name, winRate: player1result.winRate },
+        { name: player2result.name, winRate: player2result.winRate },
     ]
 }
 

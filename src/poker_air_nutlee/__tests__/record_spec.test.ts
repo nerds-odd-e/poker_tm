@@ -7,10 +7,10 @@ describe("Win-rate Detector", () => {
 
         // Then
         expect(winRateDetector(gameRecord)).toContainEqual(
-            { name: "Jane", rate: 0 },
+            { name: "Jane", winRate: 0 },
         );
         expect(winRateDetector(gameRecord)).toContainEqual(
-            { name: "Mike", rate: 100 },
+            { name: "Mike", winRate: 100 },
         );
     });
 
@@ -20,10 +20,10 @@ describe("Win-rate Detector", () => {
 
         // Then
         expect(winRateDetector(gameRecord)).toContainEqual(
-            { name: "Wu", rate: 100 }
+            { name: "Wu", winRate: 100 }
         );
         expect(winRateDetector(gameRecord)).toContainEqual(
-            { name: "Ken", rate: 0 }
+            { name: "Ken", winRate: 0 }
         );
     });
 });
