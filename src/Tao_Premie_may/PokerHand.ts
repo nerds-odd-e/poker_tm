@@ -42,11 +42,11 @@ export default getWinrate;
 
 function checkRoyalFlush(player1_hand: string[], player2_hand: string[]) {
   const firstCharacter = player1_hand[0][1];
-const checkFlush = player1_hand.forEach((card) => {
+player1_hand.forEach((card) => {
   if (card[1] != firstCharacter) {
+    console.log("debug");
     return false
   }
   return true
 })
-  console.log(firstCharacter);
 }
