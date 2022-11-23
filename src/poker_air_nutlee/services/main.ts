@@ -52,7 +52,7 @@ const getResult = (game: string) => {
   ];
 };
 
-class Card {
+export class Card {
     value: string;
     suit: string;
 
@@ -73,7 +73,7 @@ class Card {
     }
 }
 
-function compareCards(card1: Card, card2: Card): number {
+export function compareCards(card1: Card, card2: Card): number {
     return 0
 }
 

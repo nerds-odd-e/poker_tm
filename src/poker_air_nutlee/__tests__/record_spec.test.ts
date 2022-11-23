@@ -1,4 +1,4 @@
-import { play, process } from "../services/main";
+import { Card, compareCards, play, process } from "../services/main";
 
 describe("Win-rate Detector", () => {
   it("should display win-rate of all players when player2 wins.", () => {
@@ -79,4 +79,26 @@ describe("Win-rate Detector", () => {
         { name: "Jane", winRate: 0, gameCount: 1, winCount: 0}
     );
   });
+
+  it("should comprae card by value", () => {
+    const sortedDeck: Card[] = [
+        new Card("AS"),
+        new Card("KS"),
+        new Card("QS"),
+        new Card("JS"),
+        new Card("TS"),
+        new Card("9S"),
+        new Card("8S"),
+        new Card("7S"),
+        new Card("6S"),
+        new Card("5S"),
+        new Card("4S"),
+        new Card("3S"),
+        new Card("2S")
+    ]    
+
+    //add shuffle - ????
+    const sorted = sortedDeck.sort(compareCards)
+    expect(sorted).toBe(sortedDeck);
+  })
 });
