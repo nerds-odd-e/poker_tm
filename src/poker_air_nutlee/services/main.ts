@@ -39,14 +39,34 @@ function playWithStatistics(game: string, statistics: PlayerStatistics[]) {
 }
 
 const getResult = (game: string) => {
+  // "Jane: AH TD JC 2D 8S Wu: 3H 7H 6S KC JS"
   const playerSplitted = game.split(" ");
   const player1Name = playerSplitted[0].replace(":", "");
   const player2Name = playerSplitted[6].replace(":", "");
+  const play1Hand = playerSplitted.slice(1, 6);
+  const play2Hand = playerSplitted.slice(7);
+
   return [
     { name: player1Name, winner: false },
     { name: player2Name, winner: true },
   ];
 };
+
+class Card {
+    value: string;
+    suit: string;
+
+    constructor(card: string){
+        this.value = card.charAt(0)
+        this.suit = card.charAt(1)
+    }
+
+
+}
+
+function compareCards(card1: Card, card2: Card): number {
+    return 0
+}
 
 const getPlayerResult = (
   playerStatistics: PlayerStatistics,

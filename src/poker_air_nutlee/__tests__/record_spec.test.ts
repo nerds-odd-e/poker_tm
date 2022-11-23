@@ -66,17 +66,17 @@ describe("Win-rate Detector", () => {
 
   it("should display win-rate of all players when player1 wins game", () => {
     // Given
-    const gameRecords = ["Jane: QH TD JC 2D 8S Wu: 3H 7H 6S KC JS"]
+    const gameRecords = ["Jane: AH TD JC 2D 8S Wu: 3H 7H 6S KC JS"]
 
     // When
     const result = process(gameRecords);
 
     //Then
     expect(result).toContainEqual(
-        { name: "Jane", winRate: 0, gameCount: 1, winCount: 0}
+        { name: "Wu", winRate: 100, gameCount: 1, winCount: 1}
     );
     expect(result).toContainEqual(
-        { name: "Wu", winRate: 100, gameCount: 1, winCount: 1}
+        { name: "Jane", winRate: 0, gameCount: 1, winCount: 0}
     );
   });
 });
