@@ -77,7 +77,7 @@ interface Hand {
 function play(game: string): string {
   return 'Jane'
 }
-enum CardRank{
+ export enum CardRank{
   Royal_Flush = 10
 }
 export function getRankOfHand(cards:string):number{

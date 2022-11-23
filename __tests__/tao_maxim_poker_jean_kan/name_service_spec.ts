@@ -3,7 +3,7 @@ import describeWithDB from "../../test_helpers/describeWithDB";
 
 import { getNames, getNamesAndWinCount } from "../../src/services/tao_maxim_poker/NameService";
 import { getNamesAndGamesCount } from "../../src/services/tao_maxim_poker/NameService";
-import { getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
+import { CardRank, getRankOfHand } from "../../src/services/tao_maxim_poker_jean_kan/NameService";
 
 describeWithDB("product ", () => {
   it("should return empty list of name for not existing file", async () => {
@@ -57,7 +57,7 @@ describeWithDB("product ", () => {
 
   it("should return rank of royal flush when we have TS JS QS KS AS",() => {
     const rank =  getRankOfHand("TS JS QS KS AS") ;
-    expect(rank).toBe(10);
+    expect(rank).toBe(CardRank.Royal_Flush);
   }); 
 
 
