@@ -6,7 +6,7 @@ class PlayerCollection {
     winRate: number;
 }
 
-class FindWinnerResult {
+class GameResult {
     name: string;
     winner: boolean;
 }
@@ -14,13 +14,13 @@ class FindWinnerResult {
 const winRateDetector = (game: string) => {
 
     const playerCollection: PlayerCollection[] = []
-    const findWinnerResult = findWinner(game) as FindWinnerResult[]
+    const gameResult = play(game) as GameResult[]
 
-    const player1Collection = playerCollection.find(player => player.name === findWinnerResult[0].name) as PlayerCollection
-    let player1result = getPlayerResult(player1Collection, findWinnerResult[0])
+    const player1Collection = playerCollection.find(player => player.name === gameResult[0].name) as PlayerCollection
+    let player1result = getPlayerResult(player1Collection, gameResult[0])
     
-    const player2Collection = playerCollection.find(player => player.name === findWinnerResult[1].name) as PlayerCollection
-    let player2result = getPlayerResult(player2Collection, findWinnerResult[1])
+    const player2Collection = playerCollection.find(player => player.name === gameResult[1].name) as PlayerCollection
+    let player2result = getPlayerResult(player2Collection, gameResult[1])
     
     return [
         { name: player1result.name, rate: player1result.winRate },
@@ -28,8 +28,8 @@ const winRateDetector = (game: string) => {
     ]
 }
 
-const findWinner = (record: string) => {
-    const playerSplitted = record.split(' ')
+const play = (game: string) => {
+    const playerSplitted = game.split(' ')
     const player1Name = playerSplitted[0].replace(':', '')
     const player2Name = playerSplitted[6].replace(':', '')
     return [
@@ -38,7 +38,7 @@ const findWinner = (record: string) => {
     ]
 }
 
-const getPlayerResult = (playerCollection: PlayerCollection, findWinnerResult: FindWinnerResult ) => {
+const getPlayerResult = (playerCollection: PlayerCollection, findWinnerResult: GameResult ) => {
     if (playerCollection) {
         playerCollection.gameCount++
         playerCollection.winningCount = findWinnerResult.winner ? playerCollection.winningCount + 1 : playerCollection.winningCount
