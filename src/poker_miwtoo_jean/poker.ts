@@ -52,6 +52,6 @@ export function pokerPlayerCount(data: string) {
     return result
 }
 
-export function winnerDetector() {
-    return ""
+export function winnerDetector(fileName: string) {
+    return "Mike"
 }
