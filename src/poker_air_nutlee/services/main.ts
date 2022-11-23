@@ -42,11 +42,11 @@ function getResult(game: string) {
   const playerSplitted = game.split(" ");
 
   const firstPlayerName = playerSplitted[0].replace(":", "");
-  const firstHand = playerSplitted.slice(1, 6);
+  const firstHand = new Hand(playerSplitted.slice(1, 6));
   const firstHandHighestCard = highestCardInHand(firstHand);
 
   const secondPlayerName = playerSplitted[6].replace(":", "");
-  const secondHand = playerSplitted.slice(7);
+  const secondHand = new Hand(playerSplitted.slice(7));
   const secondHandHighestCard = highestCardInHand(secondHand);
 
   const firstPlayerWin =
@@ -58,11 +58,19 @@ function getResult(game: string) {
   ];
 }
 
-function highestCardInHand(hand: string[]): Card {
+function highestCardInHand(hand: Hand): Card {
   return hand
-    .map((c) => new Card(c))
+  .cards
     .sort(compareCards)
     .pop() as Card;
+}
+
+class Hand {
+    cards: Card[]
+
+    constructor(hand: string[]) {
+        this.cards = hand.map(c => new Card(c))
+    }
 }
 
 export class Card {
