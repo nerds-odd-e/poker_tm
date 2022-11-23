@@ -111,17 +111,17 @@ export function winnerDetector2(data: String) {
     for (const i in round) {
         if (round[i] != '') {
             const splitSpace = round[i].split(" ")
-            const player1 = splitSpace[0].replace(':', '');
-            const player1Hands = splitSpace.slice(1, 6);
-
-            const maxPlayer1Point = calculateHighCard(player1Hands);
+            const player1: Player = {
+                name: splitSpace[0].replace(':', ''),
+                point: calculateHighCard(splitSpace.slice(1, 6))
+            }
 
             const player2 = splitSpace[6].replace(':', '');
             const player2Hands = splitSpace.slice(7, 12);
 
             const maxPlayer2Point = calculateHighCard(player2Hands);
 
-            return compareHands(maxPlayer1Point, player1, maxPlayer2Point, player2)
+            return compareHands(player1, maxPlayer2Point, player2)
         }
     }
 
@@ -138,11 +138,11 @@ export function winnerDetector2(data: String) {
         return maxPlayerPoint;
     }
 
-    function compareHands(player1Point: number, player1: string, player2Point: number, player2: string) {
-        if (player1Point > player2Point) {
+    function compareHands(player1: Player, player2Point: number, player2: string) {
+        if (player1.point > player2Point) {
             return [
                 {
-                    name: player1,
+                    name: player1.name,
                     winrate: 100
                 },
                 {
@@ -152,14 +152,14 @@ export function winnerDetector2(data: String) {
             ]
         }
 
-        if (player2Point > player1Point) {
+        if (player2Point > player1.point) {
             return [
                 {
                     name: player2,
                     winrate: 100
                 },
                 {
-                    name: player1,
+                    name: player1.name,
                     winrate: 0
                 }
             ]
@@ -167,3 +167,7 @@ export function winnerDetector2(data: String) {
     }
 }
 
+interface Player {
+    name: string,
+    point: number
+} 
