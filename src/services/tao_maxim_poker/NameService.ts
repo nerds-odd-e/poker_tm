@@ -73,13 +73,16 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
 
   const record = new Map<string, Map<string, number>>();
   record.set(player1Name, new Map<string, number>());
-  record.get(player1Name)?.set("count", 1);
-  record.get(player1Name)?.set("win", isPlayer1Win(game) ? 1: 0);
-  record.get(player1Name)?.set("rate", isPlayer1Win(game) ? 1: 0);
+  const player1Record = record.get(player1Name)!;
+  player1Record.set("count", 1);
+  player1Record.set("win", isPlayer1Win(game) ? 1: 0);
+  player1Record.set("rate", isPlayer1Win(game) ? 1: 0);
+  
   record.set(player2Name, new Map<string, number>());
-  record.get(player2Name)?.set("count", 1);
-  record.get(player2Name)?.set("win", isPlayer1Win(game) ? 0: 1);
-  record.get(player2Name)?.set("rate", isPlayer1Win(game) ? 0: 1);
+  const player2Record = record.get(player2Name)!;
+  player2Record.set("count", 1);
+  player2Record.set("win", isPlayer1Win(game) ? 0: 1);
+  player2Record.set("rate", isPlayer1Win(game) ? 0: 1);
 
 
   const result = new Map<string, number>();
