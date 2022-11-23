@@ -27,23 +27,28 @@ const getWinrate = (game: String) => {
   return winners.join(",");
 };
 
-const  getWinner = (game: String) => {
+const  getGameResult = (game: String) => {
   const s = game.split(' ');
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);
-
   let gameResult
   if (isFirstPlayerWin(player1_hand, player2_hand)) {
     gameResult = {
       playerNames: [s[0], s[6]]
     }
-    return `${gameResult.playerNames[0]}100,${gameResult.playerNames[1]}0`;
+    return gameResult
   }
   else {
    gameResult = {
     playerNames: [s[6], s[0]]
   }
 }
+  return gameResult
+}
+
+
+const  getWinner = (game: String) => {
+  let gameResult = getGameResult(game);
   return `${gameResult.playerNames[0]}100,${gameResult.playerNames[1]}0`;
 }
 
