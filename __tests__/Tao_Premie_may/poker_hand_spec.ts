@@ -2,12 +2,14 @@ import getWinrate from '../../src/Tao_Premie_may/PokerHand';
 
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
+type PlayerHand = {
+  name?: string
+  hand?: string
+}
 class GameBuilder{
+  players: PlayerHand[] = [{}, {}];
+
   player2HHand: string;
-  highCardWithHighestPlayer2(rank: string) {
-    this.player2HHand = highCardWithHighest(rank)
-    return this;
-  }
   player1Name?: string
   player1Hand?: string
   player2Name?: string;
@@ -25,6 +27,10 @@ class GameBuilder{
     return this;
   }
 
+  highCardWithHighestPlayer2(rank: string) {
+    this.player2HHand = highCardWithHighest(rank)
+    return this;
+  }
   build() {
     return `${this.player1Name}: ${this.player1Hand} ${this.player2Name}: ${this.player2HHand}`
   }
