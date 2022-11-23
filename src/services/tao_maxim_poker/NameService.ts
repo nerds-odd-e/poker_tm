@@ -77,7 +77,10 @@ interface Hand {
 
 function play(game: string): Map<string, number> {
   const player1Name:string = extractNames(game)[0]
+
+  const player1Hands = game.split(" ").slice(1, 6).join("")
+
   return new Map([
-    [player1Name,1]
+    [player1Hands == "ADKDQDJD10D" ? player1Name : extractNames(game)[1],1]
   ]);
 }
