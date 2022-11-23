@@ -66,11 +66,11 @@ function highestCardInHand(hand: string[]): Card {
 }
 
 export class Card {
-  value: Value;
+  value: CardValue;
   suit: Suit;
 
   constructor(card: string) {
-    this.value = card.charAt(0) as Value;
+    this.value = card.charAt(0) as CardValue;
     this.suit = card.charAt(1) as Suit;
   }
 
@@ -92,7 +92,7 @@ export class Card {
   }
 }
 
-enum Value {
+enum CardValue {
   TWO = "2",
   THREE = "3",
   FOUR = "4",
@@ -126,12 +126,12 @@ export function compareCards(card1: Card, card2: Card): number {
   return compareSuits(card1.suit, card2.suit);
 }
 
-function compareValues(v1: Value, v2: Value): number {
-    if (Object.keys(Value).indexOf(v1) > Object.keys(Value).indexOf(v2)) {
+function compareValues(v1: CardValue, v2: CardValue): number {
+    if (Object.keys(CardValue).indexOf(v1) > Object.keys(CardValue).indexOf(v2)) {
         return 1;
       }
     
-      if (Object.keys(Value).indexOf(v1) < Object.keys(Value).indexOf(v2)) {
+      if (Object.keys(CardValue).indexOf(v1) < Object.keys(CardValue).indexOf(v2)) {
         return -1;
       }
     
