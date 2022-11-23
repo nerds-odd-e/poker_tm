@@ -37,13 +37,11 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
 function updateRecord(records: Map<string, Map<string, number>>, playerName: string, playerWinScore: number) {
   if (records.has(playerName)) {
     const playerRecord = records.get(playerName)!;
-    const count = playerRecord.get("count") as number;
-    playerRecord.set("count", count + 1);
-
-    const win = playerRecord.get("win") as number;
-    playerRecord.set("win", win + playerWinScore);
-
-    playerRecord.set("rate", (playerRecord.get("win") as number) / (playerRecord.get("count") as number));
+    const count = playerRecord.get("count")! + 1;
+    const win = (playerRecord.get("win") as number) + playerWinScore;
+    playerRecord.set("count", count);    
+    playerRecord.set("win", win);
+    playerRecord.set("rate", win/count);
 
   } else {
     records.set(playerName, new Map<string, number>());
