@@ -59,5 +59,11 @@ describe('winrate calculator', () => {
         'Wu:100,Mike:0'
       );
     });
+
+    it('should return Wu (Royal flush) with 100% and Mike 0%', () => {
+      expect(getWinrate('Wu: AC KC QC JC TC Mike: 5D AH 5S AS 9S')).toBe(
+        'Mike:100,Wu:0'
+      );
+    });
   });
 });
