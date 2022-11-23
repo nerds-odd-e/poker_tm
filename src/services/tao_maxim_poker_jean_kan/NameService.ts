@@ -42,9 +42,9 @@ function splitIntoNames(content: string): string[][] {
 }
 
 export function getNamesAndWinCount(fileName: string): Map<string, number> {
-  if (!fs.existsSync(fileName)) {
-    return new Map();
-  }
+  // if (!fs.existsSync(fileName)) {
+  //   return new Map();
+  // }
 
   const allResults = new Map<string, number>();
   const content = fs.readFileSync(fileName, "utf8");
