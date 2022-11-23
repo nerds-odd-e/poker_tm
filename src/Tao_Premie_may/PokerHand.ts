@@ -5,6 +5,7 @@ const isFirstPlayerWin = (hand1: Hand , hand2:Hand) => {
   if (checkFlush(hand1.cards)) {
     return true;
   }
+  checkThreeOfAKind(hand1)
   return false;
 };
 
