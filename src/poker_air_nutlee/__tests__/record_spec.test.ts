@@ -125,14 +125,25 @@ describe("Win-rate Detector", () => {
       new Card("3S"),
       new Card("2S"),
     ];
+    const sortedExpected: Card[] = [
+        new Card("AS"),
+        new Card("KS"),
+        new Card("QS"),
+        new Card("JS"),
+        new Card("TS"),
+        new Card("9S"),
+        new Card("8S"),
+        new Card("7S"),
+        new Card("6S"),
+        new Card("5S"),
+        new Card("4S"),
+        new Card("3S"),
+        new Card("2S"),
+      ];
 
     //add shuffle - ????
     const shuffledDeck = sortedDeck.sort(() => Math.random() - 0.5);
-    console.log(`Sh:`)
-    shuffledDeck.map(e => e.value).forEach(e => console.log(`${e}`))
-    console.log(`Original:`)
-    sortedDeck.map(e => e.value).forEach(e => console.log(`${e}`))
     const sorted = shuffledDeck.sort(compareCards);
-    //expect(sorted).toBe(sortedDeck);
+    //expect(sorted).toBe(sortedExpected);
   });
 });
