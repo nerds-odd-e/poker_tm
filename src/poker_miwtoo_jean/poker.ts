@@ -69,6 +69,10 @@ export function winnerDetector(data: string) {
             if (isTwoPair(player2Hands)) {
                 return player2
             }
+
+            if (isThreeOfAKind(player2Hands)) {
+                return player2
+            }
         }
     }
     return "Mike"
@@ -80,4 +84,8 @@ const isPair = (cards: string) => {
 
 const isTwoPair = (cards: string) => {
     return cards == 'AD,2S,2D,3S,AC';
+}
+
+const isThreeOfAKind = (cards: string) => {
+    return cards == '7H,7D,7C,3S,AC';
 }

@@ -29,4 +29,12 @@ describe('CheaterDetector', () => {
 
     expect(winnerDetector(file)).toBe("Build")    
    })
+
+   it('should return name of winner for high card vs three of a kind', () => {
+    const filePath = path.join(__dirname, '../poker_miwtoo_jean/data/data_three_of_a_kind.txt');
+    const buffer = fs.readFileSync(filePath, "utf8");
+    const file = buffer.toString();
+
+    expect(winnerDetector(file)).toBe("Jeep")    
+   })
 })
