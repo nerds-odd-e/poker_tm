@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest"
+    "test": "npx jest",
+    "commit": "git add .;git commit -am \"tcring\" | tee /dev/tty | grep -qE \"nothing to commit$$\" || echo",
+    "reset": "git reset --hard; echo '----- TCR reverted -----'; exit 1"
   },
   "repository": {
     "type": "git",
