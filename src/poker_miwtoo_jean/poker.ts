@@ -114,7 +114,7 @@ export function winnerDetector2(data: String) {
             const player1 = splitSpace[0].replace(':', '');
             const player1Hands = splitSpace.slice(1, 6);
 
-            let maxPlayer1Point = calculateHighCard(player1Hands);
+            const maxPlayer1Point = calculateHighCard(player1Hands);
 
             const player2 = splitSpace[6].replace(':', '');
             const player2Hands = splitSpace.slice(7, 12);
