@@ -14,15 +14,10 @@ export const winnerOfGame = (game: string) => {
     return playerName(game, 0)
   }
 
-  const p1hand = firstPlayerHand.filter(e => !e.includes(":"))
-  const p2hand = secondPlayerHand.filter(e => !e.includes(":"))
   if (!isHaveAOnHand(firstPlayerHand) &&
     !isHaveAOnHand(secondPlayerHand)) {
-    const totalP1 = p1hand.map(e => Number.parseInt(e.charAt(0))).reduce(
-      (a, c) => a + c)
-    const totalP2 = p2hand.map(e => Number.parseInt(e.charAt(0))).reduce(
-      (a, c) => a + c)
-    if (totalP1 < totalP2) {
+    if (totalOnHand(getCardOnHand(firstPlayerHand)) <
+      totalOnHand(getCardOnHand(secondPlayerHand))) {
       return playerName(game, 6)
     }
   }
@@ -45,6 +40,15 @@ export const winnerOfGame = (game: string) => {
 
 const playerName = (game: string, index: number) => {
   return game.split(' ')[index].replace(':', '');
+}
+
+function getCardOnHand(player: string[]) {
+  return player.filter(e => !e.includes(":"));
+}
+
+function totalOnHand(cards: string[]) {
+  return cards.map(e => Number.parseInt(e.charAt(0))).reduce(
+    (a, c) => a + c);
 }
 
 function isHaveAOnHand(player: string[]) {
