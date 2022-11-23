@@ -21,8 +21,8 @@ const getWinRate = (game: String) => {
   if (game === '') {
     return '';
   }
-  const rounds = game.split(',')
-  const winners = rounds.map(round => getWinner(round))
+  const games = game.split(',')
+  const winners = games.map(game => getWinner(game))
 
   return winners.join(",");
 };
@@ -47,7 +47,6 @@ const  getGameResult = (game: String): GameResult => {
       loser: s[0]
   }
 }
-
 
 const  getWinner = (game: String) => {
   let gameResult = getGameResult(game);
