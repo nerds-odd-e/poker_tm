@@ -183,7 +183,7 @@ function compareHands(player1: PlayerHand, player2: PlayerHand) {
 }
 
 
-type PlayerHand = {
+class PlayerHand {
     name: string
     point: number
     hand: string[]
