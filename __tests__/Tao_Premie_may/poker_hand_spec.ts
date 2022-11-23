@@ -35,7 +35,7 @@ class GameBuilder{
     return this;
   }
   build() {
-    return `${this.players[0].name}: ${this.players[0].hand} ${this.player2Name}: ${this.player2HHand}`
+    return `${this.players[0].name}: ${this.players[0].hand} ${this.players[1].name}: ${this.player2HHand}`
   }
 }
   
