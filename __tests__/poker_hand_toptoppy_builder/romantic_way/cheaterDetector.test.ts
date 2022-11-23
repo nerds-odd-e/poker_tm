@@ -32,7 +32,7 @@ describe('Cheater detector', () => {
     })
 
     describe('Both player not have A on hands', () => {
-        xit('Show win rate is Mike when have highest rank', () => {
+        it('Show win rate is Mike when have highest rank', () => {
             const record = 'Jane: 9D 2S 5D 3S 4C Mike: 8C 2D 5C 7H 9S'
             const result = topFiveWinRatePlayer(record)
             expect(result).toContain('Mike 100%')
