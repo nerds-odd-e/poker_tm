@@ -1,12 +1,12 @@
 const totalACard = (cards: string[]) =>
   cards.filter((e) => e.includes("A")).length;
 
-const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[], hand1: Hand) => {
+const isFirstPlayerWin = (player1_hand1: string[], player2_hand: string[], hand1: Hand) => {
   if (totalACard(hand1.cards) > totalACard(player2_hand)) {
     return true;
   }
   if (totalACard(hand1.cards) == totalACard(player2_hand)) {
-    const p1 = player1_hand
+    const p1 = hand1.cards
       .filter((e) => !e.includes("A"))
       .map((e) => Number.parseInt(e.charAt(0)));
     const p2 = player2_hand
@@ -14,7 +14,7 @@ const isFirstPlayerWin = (player1_hand: string[], player2_hand: string[], hand1:
       .map((e) => Number.parseInt(e.charAt(0)));
     return p1.reduce((a, b) => a + b) > p2.reduce((a, b) => a + b);
   }
-  const isCheckRoyalFlush = checkRoyalFlush(player1_hand, player2_hand);
+  const isCheckRoyalFlush = checkRoyalFlush(hand1.cards, player2_hand);
   return false;
 };
 
