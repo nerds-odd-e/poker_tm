@@ -10,9 +10,9 @@ class GameResult {
   winner: boolean;
 }
 
-const winRateDetector = (game: string) => {
+const play = (game: string) => {
   const statistics: PlayerStatistics[] = [];
-  const gameResult = play(game) as GameResult[];
+  const gameResult = getResult(game) as GameResult[];
 
   const player1 = statistics.find(
     (player) => player.name === gameResult[0].name
@@ -27,7 +27,7 @@ const winRateDetector = (game: string) => {
   return statistics
 };
 
-const play = (game: string) => {
+const getResult = (game: string) => {
   const playerSplitted = game.split(" ");
   const player1Name = playerSplitted[0].replace(":", "");
   const player2Name = playerSplitted[6].replace(":", "");
@@ -60,4 +60,4 @@ const getPlayerResult = (
   }
 };
 
-export { winRateDetector };
+export { play };
