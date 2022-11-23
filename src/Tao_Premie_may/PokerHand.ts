@@ -2,10 +2,10 @@ const totalACard = (cards: string[]) =>
   cards.filter((e) => e.includes("A")).length;
 
 const isFirstPlayerWin = (hand1: Hand , hand2:Hand) => {
+  checkThreeOfAKind(hand1.cards)
   if (checkFlush(hand1.cards)) {
     return true;
   }
-  checkThreeOfAKind(hand1)
   return false;
 };
 
