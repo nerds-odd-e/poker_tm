@@ -77,3 +77,8 @@ interface Hand {
 function play(game: string): string {
   return 'Jane'
 }
+export function getRankOfHand(cards:string):number{
+
+  return 10
+}
+
