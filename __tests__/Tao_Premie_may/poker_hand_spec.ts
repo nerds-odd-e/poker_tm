@@ -3,8 +3,8 @@ import getWinrate from '../../src/Tao_Premie_may/PokerHand';
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
 const aGame = {
-  of(name) {
-    return  `Jane: ${highCardWithHighest('K')} Mike: ${highCardWithHighest('A')}`
+  of(name: string) {
+    return  `${name}: ${highCardWithHighest('K')} Mike: ${highCardWithHighest('A')}`
   }
 }
 describe('winrate calculator', () => {
