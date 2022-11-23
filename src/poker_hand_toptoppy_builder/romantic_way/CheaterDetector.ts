@@ -1,12 +1,12 @@
 export const topFiveWinRatePlayer = (record: string): string => {
   let winerName = winnerOfGame(record);
-
   return `${winerName} 100%, Jane 0%`;
 };
 
 export const winnerOfGame = (game: string) => {
   const firstPlayerHand = game.split(" ").slice(6)
-  if (firstPlayerHand.toString().includes("A") && firstPlayerHand.toString().includes("K")) {
+  if (firstPlayerHand.toString().includes("A") &&
+    firstPlayerHand.toString().includes("K")) {
     return playerName(game, 6)
   }
 
