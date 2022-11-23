@@ -44,12 +44,11 @@ function updateRecord(records: Map<string, Map<string, number>>, playerName: str
     playerRecord.set("rate", win/count);
 
   } else {
-    records.set(playerName, new Map<string, number>());
-    const playerRecord = records.get(playerName)!;
+    const playerRecord = new Map<string, number>();
     playerRecord.set("count", 1);
     playerRecord.set("win", playerWinScore);
     playerRecord.set("rate", playerWinScore);
-
+    records.set(playerName, playerRecord);
   }
 }
 
