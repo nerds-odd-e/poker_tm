@@ -82,8 +82,12 @@ function play(game: string): string {
   Straight_Flush = 9
 
 }
-export function extractCards(cards:string):Array<string> {
-  return ["TS JS QS KS AS","4H 5H 6H 7H 8H"]  
+export function extractCards(game:string):Array<string> {
+  const cards = game
+  .split(/(\s)/)
+  .filter((item) => !item.endsWith(":") && item != ' ')
+
+  return [cards[0]+' '+cards[1]+' '+cards[2]+' '+ cards[3]+' '+cards[4],"4H 5H 6H 7H 8H"]  
 }
 
 export function getRankOfHand(cards:string):number{
