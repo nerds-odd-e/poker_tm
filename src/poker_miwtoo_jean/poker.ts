@@ -132,12 +132,8 @@ class PlayerHand {
     private constructor(gameRaw: string, startPosition: number) {
         const splitSpace = gameRaw.split(" ")
         this.name =  splitSpace[startPosition].replace(':', '')
-        this.hand = splitSpace.slice(startPosition + 1, startPosition + 6),
+        this.hand = splitSpace.slice(startPosition + 1, startPosition + 6)
         this.point = calculateHighCard(splitSpace.slice(startPosition + 1, startPosition + 6))
-        return {
-            name: splitSpace[startPosition].replace(':', ''),
-            hand: splitSpace.slice(startPosition + 1, startPosition + 6),
-            point: calculateHighCard(splitSpace.slice(startPosition + 1, startPosition + 6))
-        }
+
     }
 } 
