@@ -6,7 +6,7 @@ const aGame = {
   of(name: string) {
     return  {
       highCardWithHighest(rank: string) {
-        return `${name}: ${highCardWithHighest('K')} Mike: ${highCardWithHighest('A')}`
+        return `${name}: ${highCardWithHighest(rank)} Mike: ${highCardWithHighest('A')}`
 
       }
     }
