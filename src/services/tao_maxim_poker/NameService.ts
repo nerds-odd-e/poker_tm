@@ -71,9 +71,20 @@ export function getNamesAndWinRate(fileName: string): Map<string, number> {
   const player1Name:string = extractNames(game)[0]
   const player2Name:string = extractNames(game)[1];
 
+  const record = new Map<string, Map<string, number>>();
+  record.set(player1Name, new Map<string, number>());
+  record.get(player1Name)?.set("count", 1);
+  record.get(player1Name)?.set("win", isPlayer1Win(game) ? 1: 0);
+  record.get(player1Name)?.set("rate", isPlayer1Win(game) ? 1: 0);
+  record.set(player2Name, new Map<string, number>());
+  record.get(player2Name)?.set("count", 1);
+  record.get(player2Name)?.set("win", isPlayer1Win(game) ? 0: 1);
+  record.get(player2Name)?.set("rate", isPlayer1Win(game) ? 0: 1);
+
+
   const result = new Map<string, number>();
-  result.set(player1Name, isPlayer1Win(game) ? 1.0: 0);
-  result.set(player2Name, isPlayer1Win(game) ? 0: 1.0);
+  result.set(player1Name, record.get(player1Name)!.get("rate")!);
+  result.set(player2Name, record.get(player2Name)!.get("rate")!);
   return result;
 }
 
