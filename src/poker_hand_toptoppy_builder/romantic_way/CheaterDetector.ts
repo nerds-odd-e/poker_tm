@@ -64,7 +64,7 @@ function highestCard(cards: string[]) {
 
 function secondHighestCard(cards: string[]) {
   const sorted = cards.map(e => Number.parseInt(mappedRanking(e.slice(0)))).sort((a, b) => b - a);
-  return sorted[0];
+  return sorted[1];
 }
 
 const mappedRanking = (rank: string) => {
