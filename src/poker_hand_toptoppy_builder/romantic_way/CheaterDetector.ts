@@ -12,6 +12,11 @@ export const winnerOfGame = (game: string) => {
     return playerName(game, 0)
   }
 
+  if (!firstPlayerHand.toString().includes("A") &&
+    secondPlayerHand.toString().includes("A")) {
+    return playerName(game, 6)
+  }
+
   if (secondPlayerHand.toString().includes("A") &&
     (secondPlayerHand.toString().includes("K") ||
       secondPlayerHand.toString().includes("9D"))) {
