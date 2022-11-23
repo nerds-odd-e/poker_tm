@@ -33,7 +33,12 @@ export const winnerOfGame = (game: string) => {
   if (isSecondPlayWinA(firstPlayerHand, secondPlayerHand)) {
     return playerName(game, 6)
   }
-  return playerName(game, 6)
+
+  if (isHaveAOnHand(secondPlayerHand) &&
+    (secondPlayerHand.toString().includes("K") ||
+      secondPlayerHand.toString().includes("9D"))) {
+    return playerName(game, 6)
+  }
 };
 
 const playerName = (game: string, index: number) => {
@@ -45,7 +50,7 @@ function getCardOnHand(player: string[]) {
 }
 
 function totalOnHand(cards: string[]) {
-  return cards.map(e => Number.parseInt(e.slice(0).replace("T", "10"))).reduce(
+  return cards.map(e => Number.parseInt(e.slice(0).replace("T", "10").replace("J", "11"))).reduce(
     (a, c) => a + c);
 }
 
