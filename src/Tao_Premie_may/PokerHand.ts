@@ -55,7 +55,7 @@ function checkThreeOfAKind(player1_hand: string[]): Boolean {
     count[number] = (count[number] || 0)+1
 
   });
-  console.log(count);
+  console.log("=================================================",count);
   
   
   return true;
