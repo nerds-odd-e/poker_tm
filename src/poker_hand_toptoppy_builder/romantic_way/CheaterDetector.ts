@@ -50,7 +50,7 @@ function getCardOnHand(player: string[]) {
 }
 
 function totalOnHand(cards: string[]) {
-  return cards.map(e => Number.parseInt(e.slice(0).replace("T", "10").replace("J", "11"))).reduce(
+  return cards.map(e => Number.parseInt(e.slice(0).replace("T", "10").replace("J", "11").replace("Q", "12"))).reduce(
     (a, c) => a + c);
 }
 
