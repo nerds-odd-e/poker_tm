@@ -77,6 +77,6 @@ interface Hand {
 
 function play(game: string): Map<string, number> {
   return new Map([
-    ["Jane",1]
+    [game,1]
   ]);
 }
