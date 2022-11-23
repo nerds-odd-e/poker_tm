@@ -56,8 +56,8 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
     .forEach((winner) => {
       
       if (allResults.has(winner)) {
-        const allRes = allResults.get(winner) as number;
-        allResults.set(winner, allRes + 1);
+        const countOfwin = allResults.get(winner) as number;
+        allResults.set(winner, countOfwin + 1);
       } 
       if (!allResults.has(winner)){
         allResults.set(winner, 1);
