@@ -32,8 +32,8 @@ const getWinRate = (game: String) => {
   return uniquePlayerList.map(player => {
     const winCount = winners.filter(winner => winner === player).length
     const gameCount = playerList.filter(playerName => playerName === player).length
-    const winRate = winCount / gameCount *100
-    return player+winRate
+    const winRate = Math.round(winCount / gameCount * 100 * 100) / 100
+    return player + winRate
   }).join(",");
 
 };
@@ -43,7 +43,7 @@ interface GameResult {
   loser: string
 }
 
-const  getGameResult = (game: String): GameResult => {
+const getGameResult = (game: String): GameResult => {
   const s = game.split(' ');
   const player1_hand = s.slice(1, 6);
   const player2_hand = s.slice(7);
@@ -54,8 +54,8 @@ const  getGameResult = (game: String): GameResult => {
     }
   }
   return {
-      winner: s[6],
-      loser: s[0]
+    winner: s[6],
+    loser: s[0]
   }
 }
 
