@@ -17,6 +17,7 @@ class GameBuilder{
 
   of(name: string) {
     this.player1Name = name
+    this.players[this.currentPlayer].name = name
     return this;
   }
   vs(name: string) {
