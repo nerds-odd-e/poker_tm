@@ -7,13 +7,11 @@ export const winnerOfGame = (game: string) => {
   const gameData = game.split(" ");
   const firstPlayerHand = gameData.slice(0, 5)
   const secondPlayerHand = gameData.slice(6)
-  if (firstPlayerHand.toString().includes("A") &&
-    !secondPlayerHand.toString().includes("A")) {
+  if (isFirstPlayerWinA(firstPlayerHand, secondPlayerHand)) {
     return playerName(game, 0)
   }
 
-  if (!firstPlayerHand.toString().includes("A") &&
-    secondPlayerHand.toString().includes("A")) {
+  if (isSecondPlayWinA(firstPlayerHand, secondPlayerHand)) {
     return playerName(game, 6)
   }
 
@@ -31,4 +29,14 @@ export const winnerOfGame = (game: string) => {
 
 const playerName = (game: string, index: number) => {
   return game.split(' ')[index].replace(':', '');
+}
+
+function isSecondPlayWinA(firstPlayerHand: string[], secondPlayerHand: string[]) {
+  return !firstPlayerHand.toString().includes("A") &&
+    secondPlayerHand.toString().includes("A");
+}
+
+function isFirstPlayerWinA(firstPlayerHand: string[], secondPlayerHand: string[]) {
+  return firstPlayerHand.toString().includes("A") &&
+    !secondPlayerHand.toString().includes("A");
 }
