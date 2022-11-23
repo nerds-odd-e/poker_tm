@@ -9,10 +9,12 @@ describe("Win-rate Detector", () => {
     const result = play(gameRecord);
 
     // Then
-    expect(result[0].name).toBe("Jane");
-    expect(result[0].winRate).toBe(0);
-    expect(result[1].name).toBe("Mike");
-    expect(result[1].winRate).toBe(100);
+    expect(result).toContainEqual(
+        { name: "Jane", winRate: 0, gameCount: 1, winCount: 0}
+    );
+    expect(result).toContainEqual(
+        { name: "Mike", winRate: 100, gameCount: 1, winCount: 1}
+    );
   });
 
   it("should display win-rate of all players when player2 wins in multiple games", () => {
