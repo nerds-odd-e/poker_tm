@@ -22,30 +22,21 @@ const getWinRate = (game: String) => {
     return '';
   }
   const games = game.split(',')
-  const winners = games.map(game => getWinner(game))
+  const gameResults = games.map(game => getGameResult(game))
+  const winners: string[] = []
+  const playerList = gameResults.flatMap(gameResult => {
+    winners.push(gameResult.winner)
+    return [gameResult.winner, gameResult.loser]
+  })
+  const uniquePlayerList = Array.from(new Set(playerList))
+  return uniquePlayerList.map(player => {
+    const winCount = winners.filter(winner => winner === player).length
+    const gameCount = playerList.filter(playerName => playerName === player).length
+    const winRate = winCount / gameCount *100
+    return player+winRate
+  }).join(",");
 
-  return winners.join(",");
 };
-
-interface GameRecord {
-  playerName: string;
-  gameResults: string[];
-}
-
-const  getWinner = (game: String) => {
-  let gameResult = getGameResult(game);
-  const gameRecord: GameRecord[] = [
-    {
-      playerName: gameResult.winner,
-      gameResults: ['win']
-    },
-    {
-      playerName: gameResult.loser,
-      gameResults: ['lose']
-    }
-  ]
-  return [`${gameResult.winner}${calWinRate(gameRecord[0])}`,`${gameResult.loser}${calWinRate(gameRecord[1])}`];
-}
 
 interface GameResult {
   winner: string
@@ -66,12 +57,6 @@ const  getGameResult = (game: String): GameResult => {
       winner: s[6],
       loser: s[0]
   }
-}
-const calWinRate = (game: GameRecord) => {
-  const winCount = game.gameResults.filter(gameResult => gameResult == 'win').length;
-  const gameCount = game.gameResults.length;
-
-  return winCount / gameCount * 100;
 }
 
 export default getWinRate;
