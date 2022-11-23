@@ -2,6 +2,23 @@ import getWinrate from '../../src/Tao_Premie_may/PokerHand';
 
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
 
+class GameBuilder{
+  player1Name?: string
+
+  of(name: string) {
+    this.player1Name = name
+    return this;
+  }
+      highCardWithHighest(rank: string) {
+        return {
+          build() {
+        return `${name}: ${highCardWithHighest(rank)} Mike: ${highCardWithHighest('A')}`
+          }
+        }
+      }
+    }
+  
+
 const aGame = {
   of(name: string) {
     return  {
