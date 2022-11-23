@@ -51,18 +51,16 @@ export function pokerPlayerCount(data: string) {
     return result
 }
 
-export function winnerDetector2(gamesRaw: String) {
+export function winnerDetector2(gamesRaw: string) {
     const gameRaw = gamesRaw;
     return winnerOfGame(gameRaw);
 }
 
-export function winnerOfGame(gameRaw: String) {
+export function winnerOfGame(gameRaw: string) {
         if (gameRaw != '') {
-            const splitSpace = gameRaw.split(" ")
-            
-            const player1: PlayerHand =  new PlayerHand(gameRaw, splitSpace, 0)
+            const player1: PlayerHand =  new PlayerHand(gameRaw, 0)
 
-            const player2: PlayerHand =new PlayerHand(gameRaw, splitSpace, 6)
+            const player2: PlayerHand =new PlayerHand(gameRaw, 6)
 
             return compareHands(player1, player2)
         }
@@ -126,7 +124,7 @@ class PlayerHand {
     point: number
     hand: string[]
 
-    constructor(gameRaw: string, splitSpacex: string[], startPosition: number) {
+    constructor(gameRaw: string, startPosition: number) {
         const splitSpace = gameRaw.split(" ")
         return {
             name: splitSpace[startPosition].replace(':', ''),
