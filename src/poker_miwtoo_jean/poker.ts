@@ -61,47 +61,8 @@ export function winnerOfGame(gameRaw: string) {
         const player1: PlayerHand = PlayerHand.playerHand1(gameRaw)
         const player2: PlayerHand = PlayerHand.playerHand2(gameRaw)
 
-        return compareHands(player1, player2)
+        return player1.compareHands(player2)
     }
-}
-
-function compareHands(player1: PlayerHand, player2: PlayerHand) {
-    if (player1.point > player2.point) {
-        return [
-            {
-                name: player1.name,
-                winrate: 100
-            },
-            {
-                name: player2.name,
-                winrate: 0
-            }
-        ]
-    }
-
-    if (player2.point > player1.point) {
-        return [
-            {
-                name: player2.name,
-                winrate: 100
-            },
-            {
-                name: player1.name,
-                winrate: 0
-            }
-        ]
-    }
-
-    return [
-        {
-            name: player1.name,
-            winrate: 50
-        },
-        {
-            name: player2.name,
-            winrate: 50
-        }
-    ]
 }
 
 class Hand {
@@ -147,5 +108,44 @@ class PlayerHand {
     get point() {
 
         return this.hand.calculateHighCard();
+    }
+
+    compareHands(player: PlayerHand) {
+        if (this.point > player.point) {
+            return [
+                {
+                    name: this.name,
+                    winrate: 100
+                },
+                {
+                    name: player.name,
+                    winrate: 0
+                }
+            ]
+        }
+    
+        if (player.point > this.point) {
+            return [
+                {
+                    name: player.name,
+                    winrate: 100
+                },
+                {
+                    name: this.name,
+                    winrate: 0
+                }
+            ]
+        }
+    
+        return [
+            {
+                name: this.name,
+                winrate: 50
+            },
+            {
+                name: player.name,
+                winrate: 50
+            }
+        ]
     }
 } 
