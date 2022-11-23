@@ -1,12 +1,19 @@
 import * as fs from "fs";
 
+
+function splitIntoNames(content: string): string[][] {
+  return content.split(/\r?\n/).map((line) => extractNames(line));
+}
+
 export function getNames(fileName: string): Set<string> {
   if (!fs.existsSync(fileName)) {
     return new Set();
   }
-
+  const content = fs.readFileSync(fileName, "utf8");
   return new Set(
-    splitIntoNames(fs.readFileSync(fileName, "utf8")).flatMap((array) => array)
+    content
+    .split(/\r?\n/).map(game => extractNames(game)).flatMap((array) => array)
+    // splitIntoNames(fs.readFileSync(fileName, "utf8")).flatMap((array) => array)
   );
 }
 
@@ -48,10 +55,6 @@ export function extractNames(game: string): string[] {
     .split(/(\s)/)
     .filter((item) => item.endsWith(":"))
     .map((name) => name.substring(0, name.length - 1));
-}
-
-function splitIntoNames(content: string): string[][] {
-  return content.split(/\r?\n/).map((line) => extractNames(line));
 }
 
 export function getNamesAndWinCount(fileName: string): Map<string, number> {
