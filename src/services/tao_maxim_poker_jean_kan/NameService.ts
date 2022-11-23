@@ -110,8 +110,33 @@ export function getRankOfHand(cards: string): number {
 }
 
 export function sortCard(card:string) {
+  const arrayHandOne = card.split(" ");
+  const sortedHand:Array<string> = []
+  const suits = ["C", "D", "H", "S"];
+  const ranks = [
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "T",
+    "J",
+    "Q",
+    "K",
+    "A"
+  ];
+  for (let i = 0; i < ranks.length; i++) {
+    for (let j = 0; j < arrayHandOne.length; j++) {
+      if (ranks[i] === arrayHandOne[j].charAt(0)) {
+        sortedHand.push(arrayHandOne[j]);
+      }
+    }
+  }
 
-  return '4S 8C 9H TS KC'
+  return sortedHand.join(' ')
   
 }
 
