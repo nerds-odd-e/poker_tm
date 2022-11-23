@@ -43,14 +43,15 @@ function getResult(game: string) {
 
   const firstPlayerName = playerSplitted[0].replace(":", "");
   const firstHand = new Hand(playerSplitted.slice(1, 6));
-  const firstHandHighestCard = highestCardInHand(firstHand);
 
   const secondPlayerName = playerSplitted[6].replace(":", "");
   const secondHand = new Hand(playerSplitted.slice(7));
-  const secondHandHighestCard = highestCardInHand(secondHand);
 
   const firstPlayerWin =
-    compareCards(firstHandHighestCard, secondHandHighestCard) > 0;
+    compareCards(
+      firstHand.highestCardInHand(),
+      secondHand.highestCardInHand()
+    ) > 0;
 
   return [
     { name: firstPlayerName, winner: firstPlayerWin },
@@ -58,19 +59,16 @@ function getResult(game: string) {
   ];
 }
 
-function highestCardInHand(hand: Hand): Card {
-  return hand
-  .cards
-    .sort(compareCards)
-    .pop() as Card;
-}
-
 class Hand {
-    cards: Card[]
+  cards: Card[];
 
-    constructor(hand: string[]) {
-        this.cards = hand.map(c => new Card(c))
-    }
+  constructor(hand: string[]) {
+    this.cards = hand.map((c) => new Card(c));
+  }
+
+  highestCardInHand(): Card {
+    return this.cards.sort(compareCards).pop() as Card;
+  }
 }
 
 export class Card {
@@ -135,15 +133,15 @@ export function compareCards(card1: Card, card2: Card): number {
 }
 
 function compareValues(v1: CardValue, v2: CardValue): number {
-    if (Object.keys(CardValue).indexOf(v1) > Object.keys(CardValue).indexOf(v2)) {
-        return 1;
-      }
-    
-      if (Object.keys(CardValue).indexOf(v1) < Object.keys(CardValue).indexOf(v2)) {
-        return -1;
-      }
-    
-      return 0;
+  if (Object.keys(CardValue).indexOf(v1) > Object.keys(CardValue).indexOf(v2)) {
+    return 1;
+  }
+
+  if (Object.keys(CardValue).indexOf(v1) < Object.keys(CardValue).indexOf(v2)) {
+    return -1;
+  }
+
+  return 0;
 }
 
 function compareSuits(s1: Suit, s2: Suit): number {
