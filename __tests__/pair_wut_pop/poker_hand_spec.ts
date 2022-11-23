@@ -43,7 +43,7 @@ describe('winrate calculator', () => {
 
   describe('Both Players got Equal A cards', () => {
     it('should return Wu (higher 9C) with 100% and Mike 0%', () => {
-      expect(getWinrate('Wu: 5C AD 6D AC 9C Mike: 5D AH 5S AH 8S')).toBe(
+      expect(getWinrate('Wu: 5C AD 6D AC 9C Mike: 5D AH 5S AS 8S')).toBe(
         'Wu:100,Mike:0'
       );
     });
