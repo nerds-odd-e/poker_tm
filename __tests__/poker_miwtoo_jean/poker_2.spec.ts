@@ -21,4 +21,12 @@ describe('CheaterDetector', () => {
 
     expect(winnerDetector(file)).toBe("Jane")
    })
+
+   it('should return name of winner for high card vs two pairs', () => {
+    const filePath = path.join(__dirname, '../poker_miwtoo_jean/data/data_twopair.txt');
+    const buffer = fs.readFileSync(filePath, "utf8");
+    const file = buffer.toString();
+
+    expect(winnerDetector(file)).toBe("Build")    
+   })
 })

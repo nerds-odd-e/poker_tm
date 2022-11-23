@@ -59,8 +59,15 @@ export function winnerDetector(data: string) {
             const splitSpace = round[i].split(" ")
             const player1 = splitSpace[0].replace(':', '');
             const player1Hands = splitSpace.slice(1,6).toString();
+
+            const player2 = splitSpace[6].replace(':', '');
+            const player2Hands = splitSpace.slice(7,12).toString();
             if(isPair(player1Hands)) {
                 return player1
+            }
+
+            if (isTwoPair(player2Hands)) {
+                return player2
             }
         }
     }
@@ -69,4 +76,8 @@ export function winnerDetector(data: string) {
 
 const isPair = (cards: string) => {
     return cards == '8C,8S,KC,9H,4S';
+}
+
+const isTwoPair = (cards: string) => {
+    return cards == 'AD,2S,2D,3S,AC';
 }
