@@ -70,4 +70,10 @@ describeWithDB("WinRateCollector ", () => {
     expect(winRateCollection.get("Mike")).toBe(0);
     expect(winRateCollection.get("Jane")).toBe(1);
   }); 
+
+  it("should return amount of game won by both player1 and player2 for two games", () => {
+    const winRateCollection = getNamesAndWinRate("tao_maxim_file/singleLinePlayer2RoyalFlush.txt");
+    expect(winRateCollection.get("Mike")).toBe(1);
+    expect(winRateCollection.get("Jane")).toBe(0);
+  }); 
 });
