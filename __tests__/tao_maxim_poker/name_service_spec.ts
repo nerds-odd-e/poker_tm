@@ -30,6 +30,11 @@ import { getNamesAndWinRate } from "../../src/services/tao_maxim_poker/NameServi
 
 describeWithDB("WinRateCollector ", () => {
 
+  it("should return names list for empty file", () => {
+    const winRateCollection = getNamesAndWinRate("tao_maxim_file/emptyNameList.txt");
+    expect(winRateCollection.keys.length).toBe(0);
+  }); 
+
   it("should return amount of game won by player2 for single line file", () => {
     const winRateCollection = getNamesAndWinRate("tao_maxim_file/singleLinePlayer2RoyalFlush.txt");
     expect(winRateCollection.get("Mike")).toBe(1);
