@@ -46,65 +46,65 @@ export function getNamesAndWinCount(fileName: string): Map<string, number> {
     return new Map();
   }
 
-  const allResults = new Map<string,number>();
+  const allResults = new Map<string, number>();
   const content = fs.readFileSync(fileName, "utf8");
   content
     .split(/\r?\n/)
     .map((game) => play(game))
-    .forEach((winners) => {
-        for (let name of winners) {
-            if (allResults.has(name)) {
-                const allRes = allResults.get(name) as number;
-                allResults.set(name, allRes + 1);
-            } else {
-                allResults.set(name, 1);
-            }
-        }
+    .forEach((winner) => {
+
+      if (allResults.has(winner)) {
+        const allRes = allResults.get(winner) as number;
+        allResults.set(winner, allRes + 1);
+      } else {
+        allResults.set(winner, 1);
+      }
+
     });
 
   return allResults;
 }
 
 interface Card {
-    suit : string,
-    value : string
+  suit: string,
+  value: string
 }
 
 interface Hand {
-    cards : Set<Card>   
+  cards: Set<Card>
 }
 
- function play(game: string): string {
+function play(game: string): string {
   const cards = extractCards(game);
   const player = extractNames(game);
-  if(getRankOfHand(cards[0]) < getRankOfHand(cards[1])){
+  if (getRankOfHand(cards[0]) < getRankOfHand(cards[1])) {
     return player[1]
   }
   return player[0]
 }
- export enum CardRank{
+export enum CardRank {
   Royal_Flush = 10,
   Straight_Flush = 9
 
 }
-export function extractCards(game:string):Array<string> {
+export function extractCards(game: string): Array<string> {
   const cards = game
-  .split(/(\s)/)
-  .filter((item) => !item.endsWith(":") && item != ' ')
+    .split(/(\s)/)
+    .filter((item) => !item.endsWith(":") && item != ' ')
   return [
-    cards[0]+' '+cards[1]+' '+cards[2]+' '+ cards[3]+' '+cards[4],
-    cards[5]+' '+cards[6]+' '+cards[7]+' '+ cards[8]+' '+cards[9]]  
+    cards[0] + ' ' + cards[1] + ' ' + cards[2] + ' ' + cards[3] + ' ' + cards[4],
+    cards[5] + ' ' + cards[6] + ' ' + cards[7] + ' ' + cards[8] + ' ' + cards[9]]
 }
 
-export function getRankOfHand(cards:string):number{
+export function getRankOfHand(cards: string): number {
 
-  if(cards == 'TS JS QS KS AS'){
-    return 10
+  if (cards == 'TS JS QS KS AS') {
+    return CardRank.Royal_Flush
   }
-  if(cards == '4H 5H 6H 7H 8H'){
-    return 9
+  if (cards == '4H 5H 6H 7H 8H') {
+    return CardRank.Straight_Flush
   }
-  
+
   return 0
 }
 
