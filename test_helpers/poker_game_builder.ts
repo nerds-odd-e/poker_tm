@@ -1,6 +1,6 @@
 const highCardWithHighest = (rank: string) => `2H 3D 4D 5D ${rank}D`;
-const diamondFlusHand = (rank: string) => `2D 3D 4D 5D 7D`;
-const highCardWithKHeart = (rank: string) => `6H 4S 3C KH JS`;
+const diamondFlusHand = () => `2D 3D 4D 5D 7D`;
+const highCardWithKHeart = () => `6H 4S 3C KH JS`;
 
 type PlayerHand = {
   name?: string
@@ -26,14 +26,14 @@ class GameBuilder{
     return this;
   }
 
-  diamondFlusHand(rank: string) {
-    this.players[this.currentPlayer].hand = diamondFlusHand(rank)
+  diamondFlushHand() {
+    this.players[this.currentPlayer].hand = diamondFlusHand()
     return this;
   }
 
-  highCardWithKHeart(rank: string) {
-    this.players[this.currentPlayer].hand = highCardWithKHeart(rank)
-    return this;
+  highCardWithKHeart() {
+    this.players[this.currentPlayer].hand = highCardWithKHeart()
+    return this
   }
 
   please() {
