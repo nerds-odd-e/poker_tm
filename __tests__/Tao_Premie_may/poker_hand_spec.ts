@@ -20,7 +20,15 @@ describe("winrate calculator", () => {
   });
 
   it("should return Mike with 100% with Three of a kind and Jane 0%",()=>{
-    expect(true).toBe(true);
+    expect(      
+      getWinrate(
+      aGame
+        .between("Jane")
+        .threeOfAKind()
+        .vs("Mike")
+        .highCardWithKHeart()
+        .please()
+    )).toBe("Jane:100,Mike:0");
   })
 
 });
