@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import { Types } from "mongoose";
 
 export function getNames(fileName: string): Set<string> {
   if (!fs.existsSync(fileName)) {
@@ -17,21 +16,35 @@ export function getNamesAndGamesCount(fileName: string): Map<string, number> {
   }
 
   const mapNameAndGame = new Map();
+  const content = fs.readFileSync(fileName, "utf8");
 
-  splitIntoNames(fs.readFileSync(fileName, "utf8")).forEach((lineNames) => {
-    lineNames.forEach((name) => {
-      if (mapNameAndGame.has(name)) {
+  content
+    .split(/\r?\n/)
+    .forEach((game) => {
+      extractNames(game).forEach((name)=>{
+         if (mapNameAndGame.has(name)) {
         mapNameAndGame.set(name, mapNameAndGame.get(name) + 1);
       } else {
         mapNameAndGame.set(name, 1);
       }
+      })
     });
-  });
+    
+
+  // splitIntoNames(content).forEach((lineNames) => {
+  //   lineNames.forEach((name) => {
+  //     if (mapNameAndGame.has(name)) {
+  //       mapNameAndGame.set(name, mapNameAndGame.get(name) + 1);
+  //     } else {
+  //       mapNameAndGame.set(name, 1);
+  //     }
+  //   });
+  // });
   return mapNameAndGame;
 }
 
-export function extractNames(line: string): string[] {
-  return line
+export function extractNames(game: string): string[] {
+  return game
     .split(/(\s)/)
     .filter((item) => item.endsWith(":"))
     .map((name) => name.substring(0, name.length - 1));
@@ -99,14 +112,12 @@ export function extractCards(game: string): Array<string> {
 }
 
 export function getRankOfHand(cards: string): number {
-
   if (cards == 'TS JS QS KS AS') {
     return CardRank.Royal_Flush
   }
   if (cards == '4H 5H 6H 7H 8H') {
     return CardRank.Straight_Flush
   }
-
   return 0
 }
 
