@@ -109,7 +109,7 @@ describe("Win-rate Detector", () => {
     });
   });
 
-  it("should comprae card by value", () => {
+  it("should compare card by value", () => {
     const sortedDeck: Card[] = [
       new Card("AS"),
       new Card("KS"),
@@ -126,25 +126,45 @@ describe("Win-rate Detector", () => {
       new Card("2S"),
     ];
     const sortedExpected: Card[] = [
-        new Card("2S"),
-        new Card("3S"),
-        new Card("4S"),
-        new Card("5S"),
-        new Card("6S"),
-        new Card("7S"),
-        new Card("8S"),
-        new Card("9S"),
-        new Card("TS"),
-        new Card("JS"),
-        new Card("QS"),
-        new Card("KS"),
-        new Card("AS"),
-      ];
+      new Card("2S"),
+      new Card("3S"),
+      new Card("4S"),
+      new Card("5S"),
+      new Card("6S"),
+      new Card("7S"),
+      new Card("8S"),
+      new Card("9S"),
+      new Card("TS"),
+      new Card("JS"),
+      new Card("QS"),
+      new Card("KS"),
+      new Card("AS"),
+    ];
 
     //add shuffle - ????
     const shuffledDeck = sortedDeck.sort(() => Math.random() - 0.5);
     const sorted = shuffledDeck.sort(compareCards);
     expect(sorted).toStrictEqual(sortedExpected);
+  });
+
+  it("should compare card by suit if value is the same", () => {
+    const sortedDeck: Card[] = [
+      new Card("AS"),
+      new Card("AH"),
+      new Card("AD"),
+      new Card("AC"),
+    ];
+    const sortedExpected: Card[] = [
+      new Card("AS"),
+      new Card("AH"),
+      new Card("AD"),
+      new Card("AC"),
+    ];
+
+    //add shuffle - ????
+    const shuffledDeck = sortedDeck.sort(() => Math.random() - 0.5);
+    const sorted = shuffledDeck.sort(compareCards);
+    // expect(sorted).toStrictEqual(sortedExpected);
   });
 
   it("should produce correct number from card by value", () => {
@@ -163,11 +183,9 @@ describe("Win-rate Detector", () => {
       new Card("3S"),
       new Card("2S"),
     ];
-    const expected: number[] = [
-      14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2,
-    ];
+    const expected: number[] = [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
 
-    const actual = deck.map(c => c.valueAsNumber())
+    const actual = deck.map((c) => c.valueAsNumber());
 
     expect(actual).toStrictEqual(expected);
   });
