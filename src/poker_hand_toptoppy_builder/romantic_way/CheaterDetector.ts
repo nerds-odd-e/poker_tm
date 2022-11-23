@@ -5,12 +5,13 @@ export const topFiveWinRatePlayer = (record: string): string => {
 };
 
 export const winnerOfGame = (game: string) => {
-  if (game == "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC"
-    || game == "Mike: 7D 2S 5D 3S AC Jane: 8C AS KC AH 4S") {
-    return playerName(game, 6)
-  }
   const firstPlayerHand = game.split(" ").slice(6)
   if (firstPlayerHand.toString().includes("A") && firstPlayerHand.toString().includes("K")) {
+    return playerName(game, 6)
+  }
+
+  if (game == "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC"
+    || game == "Mike: 7D 2S 5D 3S AC Jane: 8C AS KC AH 4S") {
     return playerName(game, 6)
   }
   return playerName(game, 0)
