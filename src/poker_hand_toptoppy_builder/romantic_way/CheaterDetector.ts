@@ -35,7 +35,7 @@ export const winnerOfGame = (game: string) => {
       secondPlayerHand.toString().includes("9D"))) {
     return playerName(game, 6)
   }
-  return playerName(game, 0)
+  return playerName(game, 6)
 };
 
 const playerName = (game: string, index: number) => {
