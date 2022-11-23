@@ -65,10 +65,11 @@ export function winnerOfGame(gameRaw: String) {
                 point: calculateHighCard(splitSpace.slice(1, 6))
             }
 
+            const startPosition = 6
             const player2: PlayerHand = {
-                name: splitSpace[6].replace(':', ''),
-                hand: splitSpace.slice(7, 12),
-                point: calculateHighCard(splitSpace.slice(7, 12))
+                name: splitSpace[startPosition].replace(':', ''),
+                hand: splitSpace.slice(startPosition + 1, startPosition + 6),
+                point: calculateHighCard(splitSpace.slice(startPosition + 1, startPosition + 6))
             }
 
             return compareHands(player1, player2)
