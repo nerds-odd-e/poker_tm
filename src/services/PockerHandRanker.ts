@@ -4,8 +4,8 @@ export function isSinglePair(game: string): Boolean {
   return isHandSinglePair(firstHand) || isHandSinglePair(secondHand);
 }
 
-export function isTwoPair(game:string ):Boolean {
-    return false;
+export function isTwoPair(game: string): Boolean {
+  return false;
 }
 
 export function isHandSinglePair(hand: string[]): boolean {
@@ -51,10 +51,9 @@ function isHandThreeOfAKind(hand: string[]): boolean {
   return ranks.size == 3;
 }
 
-
 export default {
   isFlush,
   isStraight,
   isSinglePair,
-  isThreeOfAKind
+  isThreeOfAKind,
 };

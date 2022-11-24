@@ -2,7 +2,7 @@ import Game from "../src/models/Game";
 import PokerHandRanker, {
   isSinglePair,
   isTwoPair,
-  isThreeOfAKind
+  isThreeOfAKind,
 } from "../src/services/PockerHandRanker";
 import {
   winRateFromFile,
@@ -109,7 +109,6 @@ describe("PokerHandRanker", () => {
   it("should return true when hand is straight", () => {
     expect(PokerHandRanker.isStraight(["AS", "KD", "QS", "JS", "TS"])).toBe(true);
   });
-
 });
 
 describe("validate full house", () => {
@@ -222,6 +221,19 @@ it("should return true for first player have three of kind", () => {
       aGame
         .between("Jane")
         .threeOfAKind()
+        .vs("Mike")
+        .highCardWithKHeart()
+        .please()
+    )
+  ).toBe(true);
+});
+
+it("should return false for two pair hand three of kind check ", () => {
+  expect(
+    isThreeOfAKind(
+      aGame
+        .between("Jane")
+        .twoPairInHand()
         .vs("Mike")
         .highCardWithKHeart()
         .please()
