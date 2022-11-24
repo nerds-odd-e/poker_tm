@@ -169,21 +169,22 @@ describeWithDB("Games Counting", () => {
 
 describeWithDB("Game Data Loader", () => {
   it("should return 0 when there is no record", async () => {
-    const actual = await loadData("")
-    expect(actual).toBe(0);
+    await loadData("")
+    const count = await Game.find().count()
+    expect(count).toBe(0);
     
   });
 
   it("should return 1 when there is 1 record", async () => {
-    const actual = await loadData("one_game.txt")
+    await loadData("one_game.txt")
     const count = await Game.find().count()
-    expect(count).toBe(actual);
+    expect(count).toBe(1);
   });
 
   it("should return 2 when there is 2 record", async () => {
-    const actual = await loadData("two_game.txt")
+    await loadData("two_game.txt")
     const count = await Game.find().count()
-    expect(count).toBe(actual);
+    expect(count).toBe(2);
   });
 });
 
