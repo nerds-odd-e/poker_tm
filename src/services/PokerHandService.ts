@@ -53,13 +53,17 @@ export function winRateFromFile(file: string) {
   if (file == "") {
     return "";
   }
+  
+  const gameData= file.split(" ");
+  const p1Name = gameData[0].replace(":","");
+  const p2Name = gameData[6].replace(":","");
   return [{
-    name: file.split(" ")[0].replace(":",""),
+    name: p1Name,
     winRate: 100,
     gameCount: 1,
     winCount: 1,
   }, {
-    name: file.split(" ")[6].replace(":",""),
+    name: p2Name,
     winRate: 0,
     gameCount: 1,
     winCount: 0,
