@@ -8,6 +8,7 @@ describe("fizzbuzz", () => {
     });
 
     it("should say fizz when number is 6", () => {
+
         let result = fizzbuzz(6);
         expect(result).toBe("fizz");
     });
