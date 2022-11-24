@@ -13,13 +13,11 @@ export function winRateFromFile(file: string): string {
 }
 
 export function loadData(fileName: string) {
-    if (fileName === '') return 0
-
-    return 1
+  return "ok";
 }
 
 export const getTotalGames = (): number => {
     return 0
 }
 
-export default { create }
+export default { create };
