@@ -88,13 +88,13 @@ export function winRateFromFile(file: string) {
   return gameResult;
 }
 
-export function loadData(fileName: string) {
+export async function loadData(fileName: string) {
   if (fileName === "") return 0;
   const filePath = path.join(__dirname, `../../example_data/${fileName}`);
   const buffer = fs.readFileSync(filePath, "utf-8");
   const lines = buffer.split("\n")
   for (var line of lines) {
-    createGameModel({
+    var newGame = new GameModel({
         player1: {
             name: line,
             hands: line
@@ -104,6 +104,7 @@ export function loadData(fileName: string) {
             hands: line
         }
     })
+    await newGame.save()
   }
   return lines.length;
 }
