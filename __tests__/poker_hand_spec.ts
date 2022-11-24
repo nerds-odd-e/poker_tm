@@ -96,9 +96,9 @@ describe("Validate Hight Card", () => {
       const game = "Mike: 8C TS KC 9H 4S Jane: 7D 2S 5D 3S AC";
       const result = winnerOfHighCard(game);
       expect(result).toBe("Jane");
-      it("should return false when hand is not flush", () => {
-        expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
-      });
+    });
+    it("should return false when hand is not flush", () => {
+      expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
     });
   });
 
