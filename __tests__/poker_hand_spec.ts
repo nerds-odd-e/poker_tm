@@ -177,11 +177,18 @@ describeWithDB("Game Data Loader", () => {
     expect(count).toBe(2);
   });
 
-  it("should return player 1 & 2 name when there is a record", async () => {
+  it("should persist player 1 & 2 name when there is a record", async () => {
     await loadData("one_game.txt")
     const game = await Game.find({})
     expect(game[0].player1?.name).toBe("Jane");
     expect(game[0].player2?.name).toBe("Mike");
+  })
+
+  it("should persist player 1 & 2 hands", async () => {
+    await loadData("one_game.txt")
+    const game = await Game.find({})
+    expect(game[0].player1?.hands).toBe("8C TS KC 9H 4S");
+    expect(game[0].player2?.hands).toBe("7D 2S 5D 3S AC");
   })
 });
 

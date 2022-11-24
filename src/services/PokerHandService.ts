@@ -113,11 +113,11 @@ export async function loadData(fileName: string) {
     var newGame = new GameModel({
         player1: {
             name: line.split(" ")[0].replace(":", ""),
-            hands: line
+            hands: line.split(" ").slice(1,6).join(" ")
         }, 
         player2: {
             name: line.split(" ")[6].replace(":", ""),
-            hands: line
+            hands: line.split(" ").slice(7,13).join(" ")
         }
     })
     await newGame.save()
