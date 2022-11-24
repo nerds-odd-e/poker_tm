@@ -8,4 +8,4 @@ describe("Cheater Dectector", () => {
             expect(true).toBe(true);
         });
     })
-})
+});
