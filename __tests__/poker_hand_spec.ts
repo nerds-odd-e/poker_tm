@@ -57,6 +57,12 @@ describe("PokerHandRanker", () => {
       const result = winnerOfHighCard(game);
       expect(result).toBe("Jane");
     });
+
+    it("should be get player win with hight card", () => {
+      const game = "Wu: 5C AD 5D AC 9C Mike: 7C 5H 8D TD KS";
+      const result = winnerOfHighCard(game);
+      expect(result).toBe("Wu");
+    });
   });
 });
 
@@ -65,7 +71,6 @@ describe("Games Counting", () => {
     expect(getGameRecords("Mike")).toBe(0);
   });
 });
-
 
 describeWithDB("Game Data Loader", () => {
   it("should return 0 when there is no record", () => {
@@ -82,6 +87,8 @@ describe("Hand", () => {
     expect(isPair(aGame.between("Jane").pairCardInHand().please())).toBe(true);
   });
   it("should return true for pair", () => {
-    expect(isPair(aGame.between("Jane").highCardWithHighest("H").please())).toBe(false);
+    expect(
+      isPair(aGame.between("Jane").highCardWithHighest("H").please())
+    ).toBe(false);
   });
 });
