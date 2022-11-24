@@ -30,7 +30,7 @@ describe("Games Counting", () => {
 });
     
 describeWithDB("Game Data Loader", () => {
-    it ("shouldn't save any data when there is no record", () => {
-        expect(loadData("")).toBe("ok")
+    it ("should return 0 when there is no record", () => {
+        expect(loadData("")).toBe(0)
     })
 })

@@ -9,7 +9,7 @@ export function winRateFromFile(file: string): string {
 }
 
 export function loadData(fileName: string) {
-    if (fileName === '') return "ok"
+    if (fileName === '') return 0
 }
 
 export default { create }
