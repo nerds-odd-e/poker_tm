@@ -2,8 +2,43 @@ import * as fs from "fs";
 import * as path from "path";
 import PlayerModel from "../models/player";
 
+const cards = new Map<string, number>([
+  ["A", 13],
+  ["K", 12],
+  ["Q", 11],
+  ["J", 10],
+  ["T", 9],
+  ["9", 8],
+  ["8", 7],
+  ["7", 6],
+  ["6", 5],
+  ["5", 4],
+  ["4", 3],
+  ["3", 2],
+  ["2", 1],
+]);
+
 export const winnerOfHighCard = (gameRaw: string) => {
   const game = gameRaw.split(" ");
+  const player1Hands = game.slice(1, 6);
+  const maxPointOfPlayer1 = player1Hands.reduce((maxPoint, card) => {
+    const pointOfCard = cards.get(card[0]) || 0;
+    if (pointOfCard > parseInt(maxPoint)) {
+      return pointOfCard.toString();
+    }
+    return maxPoint;
+  });
+  const player2Hands = game.slice(7, 12);
+  const maxPointOfPlayer2 = player2Hands.reduce((maxPoint, card) => {
+    const pointOfCard = cards.get(card[0]) || 0;
+    if (pointOfCard > parseInt(maxPoint)) {
+      return pointOfCard.toString();
+    }
+    return maxPoint;
+  });
+  if (maxPointOfPlayer1 > maxPointOfPlayer2) {
+    return game[0].replace(":", "");
+  }
   return game[6].replace(":", "");
 };
 

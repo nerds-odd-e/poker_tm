@@ -51,6 +51,12 @@ describe("PokerHandRanker", () => {
       const result = winnerOfHighCard(game);
       expect(result).toBe("Mike");
     });
+
+    it("should be get player win with hight card", () => {
+      const game = "Mike: 8C TS KC 9H 4S Jane: 7D 2S 5D 3S AC";
+      const result = winnerOfHighCard(game);
+      expect(result).toBe("Jane");
+    });
   });
 });
 
