@@ -156,7 +156,7 @@ describeWithDB("Game Data Loader", () => {
   it("should return 1 when there is 1 record", async () => {
     const actual = loadData("one_game.txt")
     const count = await Game.find().count()
-    expect(actual).toBe(count);
+    expect(count).toBe(actual);
   });
 });
 

@@ -94,7 +94,7 @@ export function loadData(fileName: string) {
   const buffer = fs.readFileSync(filePath, "utf-8");
   const lines = buffer.split("\n")
   for (const line in lines) {
-    var data = new GameModel({
+    createGameModel({
         player1: {
             name: line,
             hands: line
@@ -104,8 +104,6 @@ export function loadData(fileName: string) {
             hands: line
         }
     })
-
-    data.save()
   }
   return lines.length;
 }
@@ -123,7 +121,7 @@ const createPlayerModel = async (player) => {
 };
 
 const createGameModel = async (game) => {
-  return await GameModel.create(game);
+    return await GameModel.create(game);
 };
 
 export default { createPlayerModel, createGameModel };
