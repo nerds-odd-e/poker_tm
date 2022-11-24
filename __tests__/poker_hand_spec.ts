@@ -17,7 +17,7 @@ describe("Cheater Dectector", () => {
 
     expect(result).toBe("");
   });
-  it("when load file should return list of statisitc players", () => {
+  it("should return Jane with 100 winRate and Wu 0 winRate", () => {
     const file = "Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S";
 
     const result = winRateFromFile(file);
@@ -45,12 +45,10 @@ describe("PokerHandRanker", () => {
 
 describe("validate full house", () => {
   it("it say yes when hand is full house", () => {
-    const result = isFullHouse("2D 2C 2S 3D 3S")
-    expect(result).toBe(true)
-
-  })
-
-})
+    const result = isFullHouse("2D 2C 2S 3D 3S");
+    expect(result).toBe(true);
+  });
+});
 
 it("should return false when hand is not flush", () => {
   expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
