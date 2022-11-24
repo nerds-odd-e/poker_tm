@@ -117,7 +117,7 @@ export async function loadData(fileName: string) {
         }, 
         player2: {
             name: line.split(" ")[6].replace(":", ""),
-            hands: line.split(" ").slice(7,13).join(" ")
+            hands: line.split(" ").slice(7,12).join(" ")
         }
     })
     await newGame.save()
