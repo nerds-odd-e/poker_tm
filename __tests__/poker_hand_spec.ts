@@ -1,4 +1,6 @@
-import PokerHandRanker, { isPair } from "../src/services/PockerHandRanker";
+import PokerHandRanker, {
+  isSinglePair,
+} from "../src/services/PockerHandRanker";
 import {
   winRateFromFile,
   loadData,
@@ -79,6 +81,8 @@ describe("Validate Hight Card", () => {
 
   it("should return false when hand is straight", () => {
     expect(PokerHandRanker.isStraight(["2","4","3","7","5"])).toBe(false);
+  it("should return true when hand is straight", () => {
+    expect(PokerHandRanker.isStraight(["2", "4", "3", "6", "5"])).toBe(true);
   });
 
   describe("Validate Hight Card", () => {
@@ -92,13 +96,16 @@ describe("Validate Hight Card", () => {
       const game = "Mike: 8C TS KC 9H 4S Jane: 7D 2S 5D 3S AC";
       const result = winnerOfHighCard(game);
       expect(result).toBe("Jane");
+      it("should return false when hand is not flush", () => {
+        expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
+      });
     });
+  });
 
-    it("should be get player win with hight card", () => {
-      const game = "Wu: 5C AD 5D AC 9C Mike: 7C 5H 8D TD KS";
-      const result = winnerOfHighCard(game);
-      expect(result).toBe("Wu");
-    });
+  it("should be get player win with hight card", () => {
+    const game = "Wu: 5C AD 5D AC 9C Mike: 7C 5H 8D TD KS";
+    const result = winnerOfHighCard(game);
+    expect(result).toBe("Wu");
   });
 });
 
@@ -124,7 +131,7 @@ describeWithDB("Game Data Loader", () => {
 describe("Hand", () => {
   it("should return true for first player pair", () => {
     expect(
-      isPair(
+      isSinglePair(
         aGame
           .between("Jane")
           .pairCardInHand()
@@ -137,7 +144,7 @@ describe("Hand", () => {
 
   it("should return true for second player pair", () => {
     expect(
-      isPair(
+      isSinglePair(
         aGame
           .between("Jane")
           .highCardWithHighest("D")
@@ -150,7 +157,7 @@ describe("Hand", () => {
 
   it("should return false for pair if no pair", () => {
     expect(
-      isPair(
+      isSinglePair(
         aGame
           .between("Jane")
           .highCardWithHighest("H")
