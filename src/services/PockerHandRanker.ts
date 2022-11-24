@@ -29,5 +29,5 @@ function isStraight(hands: string[]) {
 export default {
   isFlush,
   isStraight,
-  isSinglePair,
+  isSinglePair
 };
