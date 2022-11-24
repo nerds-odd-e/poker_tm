@@ -3,6 +3,7 @@ const diamondFlushHand = () => `2D 3D 4D 5D 7D`;
 const highCardWithKHeart = () => `6H 4S 3C KH JS`;
 const threeOfAKind = () => `7S 7H 7D 2H 3D`;
 const pairCardInHand = () => `9S 9H 2H 3C 4S`;
+const fullHouseInHand = () => `KS KH KC 7S 7H`;
 
 type PlayerHand = {
   name?: string;
@@ -40,10 +41,16 @@ class GameBuilder {
 
   pairCardInHand() {
     this.players[this.currentPlayer].hand = pairCardInHand();
+    return this;
   }
-  
+
   threeOfAKind() {
     this.players[this.currentPlayer].hand = threeOfAKind();
+    return this;
+  }
+
+  fullHouseInHand() {
+    this.players[this.currentPlayer].hand = fullHouseInHand();
     return this;
   }
 
