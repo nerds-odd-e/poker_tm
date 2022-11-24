@@ -93,7 +93,7 @@ export function loadData(fileName: string) {
   const filePath = path.join(__dirname, `../../example_data/${fileName}`);
   const buffer = fs.readFileSync(filePath, "utf-8");
   const lines = buffer.split("\n")
-  for (const line in lines) {
+  for (var line of lines) {
     createGameModel({
         player1: {
             name: line,
