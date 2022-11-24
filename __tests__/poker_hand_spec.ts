@@ -1,5 +1,5 @@
-import { winRateFromFile } from "../src/services/PokerHandService";
-
+import { winRateFromFile, loadData } from "../src/services/PokerHandService";
+import describeWithDB from "../test_helpers/describeWithDB";
 
 describe("Cheater Dectector", () => {
 it("when load empty file should return empty list", () => {
@@ -28,3 +28,9 @@ describe("Games Counting", () => {
     expect(true).toBe(true);
   });
 });
+    
+describeWithDB("Game Data Loader", () => {
+    it ("shouldn't save any data when there is no record", () => {
+        expect(loadData("")).toBe("ok")
+    })
+})

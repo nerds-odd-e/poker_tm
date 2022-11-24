@@ -8,4 +8,9 @@ export function winRateFromFile(file: string): string {
     return ''
 }
 
+export function loadData(fileName: string) {
+    return "ok"
+}
+
 export default { create }
+
