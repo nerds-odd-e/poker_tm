@@ -111,7 +111,7 @@ export async function loadData(fileName: string) {
             hands: line
         }, 
         player2: {
-            name: line,
+            name: line.split(" ")[6].replace(":", ""),
             hands: line
         }
     })
