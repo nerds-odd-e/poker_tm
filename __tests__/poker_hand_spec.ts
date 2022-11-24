@@ -179,6 +179,12 @@ describeWithDB("Game Data Loader", () => {
     const count = await Game.find().count()
     expect(count).toBe(actual);
   });
+
+  it("should return 2 when there is 2 record", async () => {
+    const actual = await loadData("two_game.txt")
+    const count = await Game.find().count()
+    expect(count).toBe(actual);
+  });
 });
 
 describe("Hand", () => {
