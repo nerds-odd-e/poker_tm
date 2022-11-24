@@ -10,7 +10,7 @@
     "commit": "git add .;git commit -am \"tcring\" | tee /dev/tty | grep -qE \"nothing to commit$$\" || echo",
     "revert": "git reset --hard; echo '----- TCR reverted -----'; exit 1",
     "pull_rebase": "set -o pipefail; git pull --rebase | tee /dev/tty > ./limbo.local",
-    "push": "grep -qE \"up to date\\.$$\" ./limbo.local && git push || make limbo"
+    "push": "grep -qE \"up to date\\.$$\" ./limbo.local && git push || yarn limbo"
   },
   "repository": {
     "type": "git",
