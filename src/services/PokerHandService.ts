@@ -80,24 +80,28 @@ export function winRateFromFile(file: string) {
     const p1Name = gameData[0].replace(":", "");
     const p2Name = gameData[6].replace(":", "");
 
-    if (gameResult.length < 2) {
+    if (gameResult.find((e) => e.name == p1Name)) {
+      const playerStatistic = gameResult.find((e) => e.name == p1Name) as Statistics;
+      playerStatistic.gameCount += 1;
+      playerStatistic.winCount += 1;
+    } else {
       gameResult.push({
         name: p1Name,
         winRate: 100,
         gameCount: 1,
         winCount: 1,
       });
-
+    }
+    if (gameResult.find((e) => e.name == p2Name)) {
+      const playerStatistic = gameResult.find((e) => e.name == p2Name) as Statistics;
+      playerStatistic.gameCount += 1;
+    } else {
       gameResult.push({
         name: p2Name,
         winRate: 0,
         gameCount: 1,
         winCount: 0,
       });
-    } else {
-      gameResult[0].gameCount += 1;
-      gameResult[0].winCount += 1;
-      gameResult[1].gameCount += 1;
     }
   });
 
@@ -108,9 +112,10 @@ export async function loadData(fileName: string) {
   if (fileName === "") return 0;
   const filePath = path.join(__dirname, `../../example_data/${fileName}`);
   const buffer = fs.readFileSync(filePath, "utf-8");
-  const lines = buffer.split("\n")
+  const lines = buffer.split("\n");
   for (var line of lines) {
     var newGame = new GameModel({
+<<<<<<< HEAD
         player1: {
             name: line.split(" ")[0].replace(":", ""),
             hands: line.split(" ").slice(1,6).join(" ")
@@ -121,6 +126,18 @@ export async function loadData(fileName: string) {
         }
     })
     await newGame.save()
+=======
+      player1: {
+        name: line,
+        hands: line,
+      },
+      player2: {
+        name: line,
+        hands: line,
+      },
+    });
+    await newGame.save();
+>>>>>>> 1cb9e05 (tcring)
   }
   return lines.length;
 }
@@ -140,7 +157,7 @@ const createPlayerModel = async (player) => {
 };
 
 const createGameModel = async (game) => {
-    return await GameModel.create(game);
+  return await GameModel.create(game);
 };
 
 export default { createPlayerModel, createGameModel };
