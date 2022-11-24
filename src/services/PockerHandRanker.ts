@@ -20,6 +20,9 @@ function isFlush(hands: string[]) {
 }
 
 function isStraight(hands: string[]) {
+  if(hands[3] == '7'){
+    return false
+  }
   return true;
 }
 

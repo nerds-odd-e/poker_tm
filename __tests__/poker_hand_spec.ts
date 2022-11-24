@@ -79,6 +79,10 @@ describe("Validate Hight Card", () => {
     expect(PokerHandRanker.isFlush(["S", "S", "S", "S", "S"])).toBe(true);
   });
 
+  it("should return false when hand is straight", () => {
+    expect(PokerHandRanker.isStraight(["2","4","3","7","5"])).toBe(false);
+  });
+
   describe("Validate Hight Card", () => {
     it("should be get player win with hight card", () => {
       const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
