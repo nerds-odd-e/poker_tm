@@ -1,8 +1,8 @@
+import { isPair } from "../src/services/PockerHandRanker";
 import {
   winRateFromFile,
   loadData,
   getTotalGames,
-  isPair,
 } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
 
