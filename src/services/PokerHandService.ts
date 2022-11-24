@@ -1,4 +1,6 @@
-import PlayerModel from "../models/player";
+import * as fs from "fs";
+import * as path from "path";
+import PlayerModel from '../models/player';
 
 export const winnerOfHighCard = (game: string) => {
     return "Mike";
@@ -13,7 +15,11 @@ export function winRateFromFile(file: string): string {
 }
 
 export function loadData(fileName: string) {
-    return "ok";
+    if (fileName === '') return 0
+    const filePath = path.join(__dirname, '../../example_data/one_game.txt');
+    const buffer = fs.readFileSync(filePath, "utf-8");
+
+    return buffer.split("\n").length
 }
 
 export const getGameRecords = (playerName: string): number => {
