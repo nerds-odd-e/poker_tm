@@ -270,4 +270,9 @@ describe("WinnerOfGame", () => {
     const result = winnerOfGame(game);
     expect(result).toBe("Mike");
   });
+  it("should return name of winner", () => {
+    const game = "Jane: 8C TC KC 9C 4C Mike: 7D 2S 5D 3S AC";
+    const result = winnerOfGame(game);
+    expect(result).toBe("Jane");
+  });
 });

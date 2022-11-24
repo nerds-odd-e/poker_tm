@@ -3,6 +3,7 @@ import * as path from "path";
 import PlayerModel from "../models/player";
 import GameModel from "../models/game";
 import game from "../models/game";
+import { isFlush } from "./PockerHandRanker";
 
 const cards = new Map<string, number>([
   ["A", 13],
@@ -51,6 +52,10 @@ export const winnerOfHighCard = (gameRaw: string): string => {
 };
 
 export const winnerOfGame = (game:string): string => {
+  const player1 = new PlayerHand(game, 0);
+  if (isFlush(player1.hands)) {
+    return player1.name;
+  }
   return winnerOfHighCard(game);
 }; 
 
