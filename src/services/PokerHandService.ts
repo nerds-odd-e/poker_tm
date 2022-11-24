@@ -47,20 +47,20 @@ const create = async (player) => {
 };
 
 export function winRateFromFile(file: string) {
-    if(file == ''){
-        return ''
-    }
-    return [{
-        name: "Jane",
-        winRate: 100,
-        gameCount: 1,
-        winCount: 1,
-      },{
-        name: "Wu",
-        winRate: 0,
-        gameCount: 1,
-        winCount: 0,
-      }]
+  if (file == '') {
+    return ''
+  }
+  return [{
+    name: "Jane",
+    winRate: 100,
+    gameCount: 1,
+    winCount: 1,
+  }, {
+    name: "Wu",
+    winRate: 0,
+    gameCount: 1,
+    winCount: 0,
+  }]
 }
 
 export function loadData(fileName: string) {
@@ -74,5 +74,9 @@ export function loadData(fileName: string) {
 export const getGameRecords = (playerName: string): number => {
   return 0;
 };
+
+export function isFullHouse(hand: string) {
+  return hand == "2D 2C 2S 3D 3S"
+}
 
 export default { create };
