@@ -115,7 +115,6 @@ export async function loadData(fileName: string) {
   const lines = buffer.split("\n");
   for (var line of lines) {
     var newGame = new GameModel({
-<<<<<<< HEAD
         player1: {
             name: line.split(" ")[0].replace(":", ""),
             hands: line.split(" ").slice(1,6).join(" ")
@@ -126,18 +125,6 @@ export async function loadData(fileName: string) {
         }
     })
     await newGame.save()
-=======
-      player1: {
-        name: line,
-        hands: line,
-      },
-      player2: {
-        name: line,
-        hands: line,
-      },
-    });
-    await newGame.save();
->>>>>>> 1cb9e05 (tcring)
   }
   return lines.length;
 }
