@@ -1,5 +1,6 @@
 import PokerHandRanker, {
   isSinglePair,
+  isTwoPair,
 } from "../src/services/PockerHandRanker";
 import {
   winRateFromFile,
@@ -156,6 +157,19 @@ describe("Hand", () => {
   it("should return false for pair if no pair", () => {
     expect(
       isSinglePair(
+        aGame
+          .between("Jane")
+          .highCardWithHighest("H")
+          .vs("Mike")
+          .highCardWithKHeart()
+          .please()
+      )
+    ).toBe(false);
+  });
+
+  it("should return false for two pair", () => {
+    expect(
+      isTwoPair(
         aGame
           .between("Jane")
           .highCardWithHighest("H")

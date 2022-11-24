@@ -4,6 +4,9 @@ export function isSinglePair(game: string): Boolean {
   return isHandSinglePair(firstHand) || isHandSinglePair(secondHand);
 }
 
+export function isTwoPair(game:string ):Boolean {
+    return false;
+}
 
 export function isHandSinglePair(hand: string[]): boolean {
   const ranks = new Set(hand.map((card) => card.charAt(0)));
