@@ -62,15 +62,15 @@ describe("Cheater Dectector", () => {
 
 describe("PokerHandRanker", () => {
   it("should return true when hand is flush", () => {
-    expect(PokerHandRanker.isFlush(["D", "D", "D", "D", "D"])).toBe(true);
+    expect(PokerHandRanker.isFlush(["2D", "4D", "TD", "KD", "6D"])).toBe(true);
   });
 
   it("should return false when hand is not flush", () => {
-    expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
+    expect(PokerHandRanker.isFlush(["2D", "5A", "TD", "JD", "AD"])).toBe(false);
   });
 
   it("should return true when hand is flush", () => {
-    expect(PokerHandRanker.isFlush(["S", "S", "S", "S", "S"])).toBe(true);
+    expect(PokerHandRanker.isFlush(["2S", "3S", "4S", "5S", "6S"])).toBe(true);
   });
 
   it("should return true when hand is straight", () => {

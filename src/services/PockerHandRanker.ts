@@ -14,8 +14,9 @@ export function isHandSinglePair(hand: string[]): boolean {
 }
 
 function isFlush(hands: string[]) {
-  const firstSuit = hands[0];
-  for (const suit of hands.slice(1)) {
+  const extractedSuits = hands.map(e => e.charAt(1));
+  const firstSuit = extractedSuits[0];
+  for (const suit of extractedSuits.slice(1)) {
     if (suit != firstSuit) {
       return false;
     }
