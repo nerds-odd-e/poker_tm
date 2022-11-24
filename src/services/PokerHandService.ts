@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import PlayerModel from "../models/player";
 import GameModel from "../models/game";
+import game from "../models/game";
 
 const cards = new Map<string, number>([
   ["A", 13],
@@ -48,6 +49,10 @@ export const winnerOfHighCard = (gameRaw: string): string => {
   }
   return player2.name;
 };
+
+export const winnerOfGame = (game:string): string => {
+  return winnerOfHighCard(game);
+}; 
 
 class Statistics {
   name: string;

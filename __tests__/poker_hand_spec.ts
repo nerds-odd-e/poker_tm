@@ -1,5 +1,7 @@
 import Game from "../src/models/Game";
 import {
+  isFlush,
+  isStraight,
   isSinglePair,
   isTwoPair,
   isThreeOfAKind,
@@ -9,10 +11,108 @@ import {
   getGameRecords,
   winnerOfHighCard,
   isFullHouse,
+  winnerOfGame,
+  winRateFromFile,
 } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
 import aGame from "../test_helpers/poker_game_builder";
 
+describe("Cheater Dectector", () => {
+  it("when load empty file should return empty list", () => {
+    const file = "";
+
+    const result = winRateFromFile(file);
+
+    expect(result).toBe("");
+  });
+  it("should return Jane with 100 winRate and Wu 0 winRate", () => {
+    const file = "Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S";
+
+    const result = winRateFromFile(file);
+
+    expect(result).toContainEqual({
+      name: "Jane",
+      winRate: 100,
+      gameCount: 1,
+      winCount: 1,
+    });
+    expect(result).toContainEqual({
+      name: "Wu",
+      winRate: 0,
+      gameCount: 1,
+      winCount: 0,
+    });
+  });
+
+  it("should return Wu with 100 winRate and Jane 0 winRate", () => {
+    const file = "Wu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS";
+
+    const result = winRateFromFile(file);
+
+    expect(result).toContainEqual({
+      name: "Wu",
+      winRate: 100,
+      gameCount: 1,
+      winCount: 1,
+    });
+    expect(result).toContainEqual({
+      name: "Jane",
+      winRate: 0,
+      gameCount: 1,
+      winCount: 0,
+    });
+  });
+
+  it("should return Wu with 100 winRate and Jane 0 winRate", () => {
+    const file =
+      "Wu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS";
+
+    const result = winRateFromFile(file);
+
+    expect(result).toContainEqual({
+      name: "Wu",
+      winRate: 100,
+      gameCount: 1,
+      winCount: 1,
+    });
+    expect(result).toContainEqual({
+      name: "Jane",
+      winRate: 0,
+      gameCount: 1,
+      winCount: 0,
+    });
+  });
+});
+
+describe("PokerHandRanker", () => {
+  it("should return true when hand is flush", () => {
+    expect(isFlush(["2D", "4D", "TD", "KD", "6D"])).toBe(true);
+  });
+
+  it("should return false when hand is not flush", () => {
+    expect(isFlush(["2D", "5A", "TD", "JD", "AD"])).toBe(false);
+  });
+
+  it("should return true when hand is flush", () => {
+    expect(isFlush(["2S", "3S", "4S", "5S", "6S"])).toBe(true);
+  });
+
+  it("should return true when hand is straight", () => {
+    expect(isStraight(["2D", "4S", "3S", "6D", "5S"])).toBe(true);
+  });
+
+  it("should return false when hand is straight", () => {
+    expect(isStraight(["2S", "4D", "3D", "7D", "5D"])).toBe(false);
+  });
+
+  it("should return false when hand is straight", () => {
+    expect(isStraight(["2S", "4D", "3S", "8D", "5S"])).toBe(false);
+  });
+
+  it("should return true when hand is straight", () => {
+    expect(isStraight(["AS", "KD", "QS", "JS", "TS"])).toBe(true);
+  });
+});
 
 describe("validate full house", () => {
   it("it say yes when hand is full house", () => {
@@ -155,4 +255,11 @@ it("should return false for two pair hand three of kind check ", () => {
         .please()
     )
   ).toBe(true);
+});
+describe("WinnerOfGame", () => {
+  it("should return name of winner", () => {
+    const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
+    const result = winnerOfGame(game);
+    expect(result).toBe("Mike");
+  });
 });

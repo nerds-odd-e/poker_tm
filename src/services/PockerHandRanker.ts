@@ -13,7 +13,7 @@ export function isHandSinglePair(hand: string[]): boolean {
   return ranks.size == 4;
 }
 
-function isFlush(hands: string[]) {
+export function isFlush(hands: string[]) {
   const extractedSuits = hands.map(e => e.charAt(1));
   const firstSuit = extractedSuits[0];
   for (const suit of extractedSuits.slice(1)) {
@@ -24,7 +24,7 @@ function isFlush(hands: string[]) {
   return true;
 }
 
-function isStraight(hands: string[]) {
+export function isStraight(hands: string[]) {
   const extractedRanks = hands.map(e => e.charAt(0));
   const sortedHands = extractedRanks.map(e => e.replace('A','14')
   .replace('K','13')
