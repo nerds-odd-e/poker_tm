@@ -2,17 +2,9 @@ import { winRateFromFile, loadData } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
 
 describe("Cheater Dectector", () => {
-it("when load empty file should return empty list", () => {
-    const file = '';
-
-    const result = winRateFromFile(file);
-
-    expect(result).toBe('');
-  });
-  
-  describe("PokerHandRanker", () => {
-    it("should return true when hand is flush", ()=> {
-        expect(true).toBe(true);
+  describe("Games Counting", () => {
+    it("should show how many each player play the game", () => {
+      expect(true).toBe(true);
     });
   });
 
@@ -21,11 +13,21 @@ it("when load empty file should return empty list", () => {
       expect(true).toBe(true);
     });
   });
-});
 
-describe("Games Counting", () => {
-  it("should show how many each player play the game", () => {
-    expect(true).toBe(true);
+  describe("Games Counting", () => {
+    it("should show how many each player play the game", () => {
+      expect(true).toBe(true);
+    });
+  });
+
+  describe("WinRate statistics for each players", () => {
+    it("when load empty file should return empty list", () => {
+      const file = "";
+
+      const result = winRateFromFile(file);
+
+      expect(result).toBe("");
+    });
   });
 });
     
