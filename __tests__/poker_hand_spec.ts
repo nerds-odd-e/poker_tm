@@ -1,4 +1,4 @@
-import { isPair } from "../src/services/PockerHandRanker";
+import PokerHandRanker from "../src/services/PockerHandRanker";
 import {
   winRateFromFile,
   loadData,
@@ -13,22 +13,26 @@ describe("Cheater Dectector", () => {
 
     const result = winRateFromFile(file);
 
-    expect(result).toBe("");
-  });
+        expect(result).toBe('');
+    });
 });
 
 describe("PokerHandRanker", () => {
-  it("should return true when hand is flush", () => {
-    expect(true).toBe(true);
-  });
-
-  describe("Validate Hight Card", () => {
-    it("should be get player win with hight card", () => {
-      const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
-      const result = winnerOfHighCard(game);
-      expect(result).toBe("Mike");
+    it("should return true when hand is flush", ()=> {
+        expect(PokerHandRanker.isFlush(["D","D","D","D","D"])).toBe(true);
     });
-  });
+
+    it("should return false when hand is not flush", ()=> {
+        expect(PokerHandRanker.isFlush(["D","A","D","D","D"])).toBe(false);
+    });
+
+    describe("Validate Hight Card", () => {
+        it("should be get player win with hight card", () => {
+            const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
+            const result = winnerOfHighCard(game);
+            expect(result).toBe("Mike");
+        });
+    });
 });
 
 describe("Games Counting", () => {
@@ -39,7 +43,7 @@ describe("Games Counting", () => {
 
 describe("Hand", () => {
   it("should return true for pair", () => {
-    expect(isPair("")).toBe(true);
+    expect(PokerHandRanker.isPair("")).toBe(true);
   });
 });
 
