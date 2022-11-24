@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "limbo": "yarn tcr && yarn pull_rebase && yarn push",
     "tcr": "yarn test && yarn commit || yarn revert",
     "test": "npx jest",
     "commit": "git add .;git commit -am \"tcring\" | tee /dev/tty | grep -qE \"nothing to commit$$\" || echo",
-    "revert": "git reset --hard; echo '----- TCR reverted -----'; exit 1"
+    "revert": "git reset --hard; echo '----- TCR reverted -----'; exit 1",
+    "pull_rebase": "set -o pipefail; git pull --rebase | tee /dev/tty > ./limbo.local",
+    "push": "grep -qE \"up to date\\.$$\" ./limbo.local && git push || make limbo"
   },
   "repository": {
     "type": "git",
