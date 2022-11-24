@@ -61,7 +61,7 @@ describe("Cheater Dectector", () => {
 
   it("should return Wu with 100 winRate and Jane 0 winRate", () => {
     const file =
-      "Wu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS\nWu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS";
+      "Wu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS";
 
     const result = winRateFromFile(file);
 
