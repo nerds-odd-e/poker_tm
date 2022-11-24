@@ -57,7 +57,27 @@ describe("Cheater Dectector", () => {
       gameCount: 1,
       winCount: 0,
     });
-  })
+  });
+
+  it("should return Wu with 100 winRate and Jane 0 winRate", () => {
+    const file =
+      "Wu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS\nWu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS";
+
+    const result = winRateFromFile(file);
+
+    expect(result).toContainEqual({
+      name: "Wu",
+      winRate: 100,
+      gameCount: 1,
+      winCount: 1,
+    });
+    expect(result).toContainEqual({
+      name: "Jane",
+      winRate: 0,
+      gameCount: 1,
+      winCount: 0,
+    });
+  });
 });
 
 describe("PokerHandRanker", () => {

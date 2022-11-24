@@ -49,24 +49,43 @@ export const winnerOfHighCard = (gameRaw: string): string => {
   return player2.name;
 };
 
+class Statistics {
+  name: string;
+  winRate: number;
+  gameCount: number;
+  winCount: number;
+}
+
 export function winRateFromFile(file: string) {
   if (file == "") {
     return "";
   }
-  return [
-    {
-      name: file.split(" ")[0].replace(":", ""),
+
+  const games = file.split("\n");
+
+  let gameResult: Statistics[] = [];
+
+  games.forEach((game) => {
+    const gameData = game.split(" ");
+    const p1Name = gameData[0].replace(":", "");
+    const p2Name = gameData[6].replace(":", "");
+
+    gameResult.push({
+      name: p1Name,
       winRate: 100,
       gameCount: 1,
       winCount: 1,
-    },
-    {
-      name: file.split(" ")[6].replace(":", ""),
+    });
+
+    gameResult.push({
+      name: p2Name,
       winRate: 0,
       gameCount: 1,
       winCount: 0,
-    },
-  ];
+    });
+  });
+
+  return gameResult;
 }
 
 export function loadData(fileName: string) {
