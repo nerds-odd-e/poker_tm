@@ -9,6 +9,7 @@ import {
   getGameRecords,
   winnerOfHighCard,
   isFullHouse,
+  createGameModel
 } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
 import aGame from "../test_helpers/poker_game_builder";
