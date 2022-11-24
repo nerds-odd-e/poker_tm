@@ -23,10 +23,10 @@ class PlayerHand {
   name: string;
   hands: string[];
 
-  constructor(gameRaw: string) {
+  constructor(gameRaw: string, startPosition: number) {
     const game = gameRaw.split(" ");
-    this.name = game[0].replace(":", "");
-    this.hands = game.slice(1, 6);
+    this.name = game[startPosition].replace(":", "");
+    this.hands = game.slice(startPosition + 1, startPosition + 6);
   }
 
   get point() {
@@ -41,19 +41,12 @@ class PlayerHand {
 }
 
 export const winnerOfHighCard = (gameRaw: string) => {
-  const player1 = new PlayerHand(gameRaw);
-  const player2Hands = gameRaw.split(" ").slice(7, 12);
-  const maxPointOfPlayer2 = player2Hands.reduce((maxPoint, card) => {
-    const pointOfCard = cards.get(card[0]) || 0;
-    if (pointOfCard > parseInt(maxPoint)) {
-      return pointOfCard.toString();
-    }
-    return maxPoint;
-  });
-  if (player1.point > maxPointOfPlayer2) {
+  const player1 = new PlayerHand(gameRaw, 0);
+  const player2 = new PlayerHand(gameRaw, 6);
+  if (player1.point > player2.point) {
     return player1.name;
   }
-  return gameRaw.split(" ")[6].replace(":", "");
+  return player2.name;
 };
 
 export function winRateFromFile(file: string) {
