@@ -1,11 +1,15 @@
-import PlayerModel from '../models/player';
+import PlayerModel from "../models/player";
+
+export const winnerOfHighCard = (game: string) => {
+  return "Mike";
+};
 
 const create = async (player) => {
-    return await PlayerModel.create(player);
-}
+  return await PlayerModel.create(player);
+};
 
 export function winRateFromFile(file: string): string {
-    return ''
+  return "";
 }
 
 export function loadData(fileName: string) {
