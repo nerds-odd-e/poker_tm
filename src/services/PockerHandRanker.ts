@@ -1,11 +1,12 @@
 export function isPair(game: string): Boolean {
-   const firstHand = game.split(" ").slice(1, 6)
-   const secondHand = game.split(" ").slice(7)
+  const firstHand = game.split(" ").slice(1, 6);
+  const secondHand = game.split(" ").slice(7);
   return isHandPair(firstHand) || isHandPair(secondHand);
 }
 
 export function isHandPair(hand: string[]): boolean {
-    return false;
+  const ranks = new Set(hand.map((card) => card.charAt(1)));
+  return ranks.size == 4;
 }
 
 function isFlush(hands: string[]) {

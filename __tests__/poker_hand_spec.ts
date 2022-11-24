@@ -91,12 +91,29 @@ describeWithDB("Game Data Loader", () => {
 });
 
 describe("Hand", () => {
-  xit("should return true for pair", () => {
-    expect(isPair(aGame.between("Jane").pairCardInHand().please())).toBe(true);
-  });
-  it("should return true for pair", () => {
+  xit("should return true for first player pair", () => {
     expect(
-      isPair(aGame.between("Jane").highCardWithHighest("H").please())
+      isPair(
+        aGame
+          .between("Jane")
+          .pairCardInHand()
+          .vs("Mike")
+          .highCardWithKHeart()
+          .please()
+      )
+    ).toBe(true);
+  });
+
+  it("should return false for pair if no pair", () => {
+    expect(
+      isPair(
+        aGame
+          .between("Jane")
+          .highCardWithHighest("H")
+          .vs("Mike")
+          .highCardWithKHeart()
+          .please()
+      )
     ).toBe(false);
   });
 });
