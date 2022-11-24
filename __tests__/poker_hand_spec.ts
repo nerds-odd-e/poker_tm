@@ -5,7 +5,6 @@ import PokerHandRanker, {
   isThreeOfAKind,
 } from "../src/services/PockerHandRanker";
 import {
-  winRateFromFile,
   loadData,
   getGameRecords,
   winnerOfHighCard,
