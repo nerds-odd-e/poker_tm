@@ -70,19 +70,25 @@ export function winRateFromFile(file: string) {
     const p1Name = gameData[0].replace(":", "");
     const p2Name = gameData[6].replace(":", "");
 
-    gameResult.push({
-      name: p1Name,
-      winRate: 100,
-      gameCount: 1,
-      winCount: 1,
-    });
+    if (gameResult.length < 2) {
+      gameResult.push({
+        name: p1Name,
+        winRate: 100,
+        gameCount: 1,
+        winCount: 1,
+      });
 
-    gameResult.push({
-      name: p2Name,
-      winRate: 0,
-      gameCount: 1,
-      winCount: 0,
-    });
+      gameResult.push({
+        name: p2Name,
+        winRate: 0,
+        gameCount: 1,
+        winCount: 0,
+      });
+    } else {
+      gameResult[0].gameCount += 1;
+      gameResult[0].winCount += 1;
+      gameResult[1].gameCount += 1;
+    }
   });
 
   return gameResult;
