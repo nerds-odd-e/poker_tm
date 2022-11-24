@@ -43,6 +43,22 @@ describe("PokerHandRanker", () => {
   it("should return true when hand is flush", () => {
     expect(PokerHandRanker.isFlush(["D", "D", "D", "D", "D"])).toBe(true);
   });
+
+  it("should return false when hand is not flush", () => {
+    expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
+  });
+  
+  it("should return true when hand is flush", () => {
+    expect(PokerHandRanker.isFlush(["S", "S", "S", "S", "S"])).toBe(true);
+  });
+  
+  it("should return true when hand is straight", () => {
+    expect(PokerHandRanker.isStraight(["2", "4", "3", "6", "5"])).toBe(true);
+  });
+
+  it("should return false when hand is straight", () => {
+    expect(PokerHandRanker.isStraight(["2", "4", "3", "7", "5"])).toBe(false);
+  });
 });
 
 describe("validate full house", () => {
@@ -52,18 +68,6 @@ describe("validate full house", () => {
   });
 });
 
-it("should return false when hand is not flush", () => {
-  expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
-});
-
-it("should return true when hand is flush", () => {
-  expect(PokerHandRanker.isFlush(["S", "S", "S", "S", "S"])).toBe(true);
-});
-
-it("should return true when hand is straight", () => {
-  expect(PokerHandRanker.isStraight(["2", "4", "3", "6", "5"])).toBe(true);
-});
-
 describe("Validate Hight Card", () => {
   it("should be get player win with hight card", () => {
     const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
@@ -71,36 +75,10 @@ describe("Validate Hight Card", () => {
     expect(result).toBe("Mike");
   });
 
-  it("should return false when hand is not flush", () => {
-    expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
-  });
-
-  it("should return true when hand is flush", () => {
-    expect(PokerHandRanker.isFlush(["S", "S", "S", "S", "S"])).toBe(true);
-  });
-
-  it("should return false when hand is straight", () => {
-    expect(PokerHandRanker.isStraight(["2", "4", "3", "7", "5"])).toBe(false);
-  });
-  it("should return true when hand is straight", () => {
-    expect(PokerHandRanker.isStraight(["2", "4", "3", "6", "5"])).toBe(true);
-  });
-
-  describe("Validate Hight Card", () => {
-    it("should be get player win with hight card", () => {
-      const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
-      const result = winnerOfHighCard(game);
-      expect(result).toBe("Mike");
-    });
-
-    it("should be get player win with hight card", () => {
-      const game = "Mike: 8C TS KC 9H 4S Jane: 7D 2S 5D 3S AC";
-      const result = winnerOfHighCard(game);
-      expect(result).toBe("Jane");
-    });
-    it("should return false when hand is not flush", () => {
-      expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
-    });
+  it("should be get player win with hight card", () => {
+    const game = "Mike: 8C TS KC 9H 4S Jane: 7D 2S 5D 3S AC";
+    const result = winnerOfHighCard(game);
+    expect(result).toBe("Jane");
   });
 
   it("should be get player win with hight card", () => {
