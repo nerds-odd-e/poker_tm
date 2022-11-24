@@ -1,4 +1,6 @@
 export function isPair(game: string): Boolean {
+   const firstHand = game.split(" ").slice(1, 6)
+   const secondHand = game.split(" ").slice(7)
   return false;
 }
 
