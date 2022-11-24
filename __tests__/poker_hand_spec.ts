@@ -1,4 +1,4 @@
-import PokerHandRanker from "../src/services/PockerHandRanker";
+import PokerHandRanker, { isPair } from "../src/services/PockerHandRanker";
 import {
   winRateFromFile,
   loadData,
@@ -6,6 +6,7 @@ import {
   winnerOfHighCard,
 } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
+import aGame from "../test_helpers/poker_game_builder";
 
 describe("Cheater Dectector", () => {
   it("when load empty file should return empty list", () => {
@@ -13,26 +14,26 @@ describe("Cheater Dectector", () => {
 
     const result = winRateFromFile(file);
 
-        expect(result).toBe('');
-    });
+    expect(result).toBe("");
+  });
 });
 
 describe("PokerHandRanker", () => {
-    it("should return true when hand is flush", ()=> {
-        expect(PokerHandRanker.isFlush(["D","D","D","D","D"])).toBe(true);
-    });
+  it("should return true when hand is flush", () => {
+    expect(PokerHandRanker.isFlush(["D", "D", "D", "D", "D"])).toBe(true);
+  });
 
-    it("should return false when hand is not flush", ()=> {
-        expect(PokerHandRanker.isFlush(["D","A","D","D","D"])).toBe(false);
-    });
+  it("should return false when hand is not flush", () => {
+    expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
+  });
 
-    describe("Validate Hight Card", () => {
-        it("should be get player win with hight card", () => {
-            const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
-            const result = winnerOfHighCard(game);
-            expect(result).toBe("Mike");
-        });
+  describe("Validate Hight Card", () => {
+    it("should be get player win with hight card", () => {
+      const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
+      const result = winnerOfHighCard(game);
+      expect(result).toBe("Mike");
     });
+  });
 });
 
 describe("Games Counting", () => {
@@ -54,5 +55,15 @@ describeWithDB("Game Data Loader", () => {
 
   it("should return 1 when there is 1 record", () => {
     expect(loadData("one_game.txt")).toBe(1);
+  });
+
+  it("shouldn't save any data when there is no record", () => {
+    expect(loadData("")).toBe("ok");
+  });
+});
+
+describe("Hand", () => {
+  it("should return true for pair", () => {
+    expect(isPair(aGame.between("Jane").pairCardInHand().please())).toBe(true);
   });
 });
