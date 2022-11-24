@@ -17,7 +17,11 @@ export function loadData(fileName: string) {
 }
 
 export const getTotalGames = (): number => {
-    return 0
+  return 0;
+};
+
+export function isPair(hand: string): Boolean {
+  return true;
 }
 
 export default { create };

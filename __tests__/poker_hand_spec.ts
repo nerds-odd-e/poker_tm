@@ -2,6 +2,7 @@ import {
   winRateFromFile,
   loadData,
   getTotalGames,
+  isPair,
 } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
 
@@ -37,15 +38,16 @@ describeWithDB("Game Data Loader", () => {
   it("should return 0 when there is no record", () => {
     expect(loadData("")).toBe("ok");
   });
+});
+it("shouldn't save any data when there is no record", () => {
+  expect(loadData("")).toBe("ok");
+});
 
-  it("should return 1 when there is 1 record", () => {
-    expect(loadData("one_game.txt")).toBe(1);
+it("shouldn't save any data when there is no record", () => {
+  expect(loadData("")).toBe("ok");
+});
+describe("Hand", () => {
+  it("should return true for pair", () => {
+    expect(isPair("")).toBe(true);
   });
-});
-it("shouldn't save any data when there is no record", () => {
-  expect(loadData("")).toBe("ok");
-});
-
-it("shouldn't save any data when there is no record", () => {
-  expect(loadData("")).toBe("ok");
 });
