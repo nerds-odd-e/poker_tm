@@ -25,7 +25,8 @@ function isFlush(hands: string[]) {
 }
 
 function isStraight(hands: string[]) {
-  const sortedHands = hands.map(e => e.replace('A','14')
+  const extractedRanks = hands.map(e => e.charAt(0));
+  const sortedHands = extractedRanks.map(e => e.replace('A','14')
   .replace('K','13')
   .replace('Q','12')
   .replace('J','11')

@@ -94,19 +94,19 @@ describe("PokerHandRanker", () => {
   });
 
   it("should return true when hand is straight", () => {
-    expect(PokerHandRanker.isStraight(["2", "4", "3", "6", "5"])).toBe(true);
+    expect(PokerHandRanker.isStraight(["2D", "4S", "3S", "6D", "5S"])).toBe(true);
   });
 
   it("should return false when hand is straight", () => {
-    expect(PokerHandRanker.isStraight(["2", "4", "3", "7", "5"])).toBe(false);
+    expect(PokerHandRanker.isStraight(["2S", "4D", "3D", "7D", "5D"])).toBe(false);
   });
 
   it("should return false when hand is straight", () => {
-    expect(PokerHandRanker.isStraight(["2", "4", "3", "8", "5"])).toBe(false);
+    expect(PokerHandRanker.isStraight(["2S", "4D", "3S", "8D", "5S"])).toBe(false);
   });
 
   it("should return true when hand is straight", () => {
-    expect(PokerHandRanker.isStraight(["A", "K", "Q", "J", "T"])).toBe(true);
+    expect(PokerHandRanker.isStraight(["AS", "KD", "QS", "JS", "TS"])).toBe(true);
   });
 
 });
