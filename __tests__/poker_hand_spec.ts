@@ -104,6 +104,19 @@ describe("Hand", () => {
     ).toBe(true);
   });
 
+  it("should return true for second player pair", () => {
+    expect(
+      isPair(
+        aGame
+          .between("Jane")
+          .highCardWithHighest("D")
+          .vs("Mike")
+          .pairCardInHand()
+          .please()
+      )
+    ).toBe(true);
+  });
+
   it("should return false for pair if no pair", () => {
     expect(
       isPair(
