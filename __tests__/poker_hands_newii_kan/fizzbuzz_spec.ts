@@ -2,6 +2,7 @@ import fizzbuzz from '../../src/poker_hands_newii_kan/fizzbuzz'
 
 describe("fizzbuzz", () => {
     it("should say fizz when number is 3", () => {
+
         let result = fizzbuzz(3);
         expect(result).toBe("fizz");
     });
