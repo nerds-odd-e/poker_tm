@@ -29,7 +29,7 @@ class PlayerHand {
     this.hands = game.slice(startPosition + 1, startPosition + 6);
   }
 
-  get point() {
+  get point(): string {
     return this.hands.reduce((maxPoint, card) => {
       const pointOfCard = cards.get(card[0]) || 0;
       if (pointOfCard > parseInt(maxPoint)) {
@@ -40,7 +40,7 @@ class PlayerHand {
   }
 }
 
-export const winnerOfHighCard = (gameRaw: string) => {
+export const winnerOfHighCard = (gameRaw: string): string => {
   const player1 = new PlayerHand(gameRaw, 0);
   const player2 = new PlayerHand(gameRaw, 6);
   if (player1.point > player2.point) {
@@ -53,21 +53,20 @@ export function winRateFromFile(file: string) {
   if (file == "") {
     return "";
   }
-  
-  const gameData= file.split(" ");
-  const p1Name = gameData[0].replace(":","");
-  const p2Name = gameData[6].replace(":","");
-  return [{
-    name: p1Name,
-    winRate: 100,
-    gameCount: 1,
-    winCount: 1,
-  }, {
-    name: p2Name,
-    winRate: 0,
-    gameCount: 1,
-    winCount: 0,
-  }]
+  return [
+    {
+      name: file.split(" ")[0].replace(":", ""),
+      winRate: 100,
+      gameCount: 1,
+      winCount: 1,
+    },
+    {
+      name: file.split(" ")[6].replace(":", ""),
+      winRate: 0,
+      gameCount: 1,
+      winCount: 0,
+    },
+  ];
 }
 
 export function loadData(fileName: string) {
