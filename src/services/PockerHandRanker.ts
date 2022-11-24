@@ -4,6 +4,12 @@ export function isPair(hand: string): Boolean {
 }
 
 function isFlush(hands : Array<string>) {
+    // const coutSuit = 0
+    // hands.forEach((value,index)=>{
+    //     if(hands[0] == hands[index]){
+    //         coutSuit += 1;
+    //     }
+    // })
     if(hands[1] != 'D'){
         return false;
     }
