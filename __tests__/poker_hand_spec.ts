@@ -50,7 +50,7 @@ describe("PokerHandRanker", () => {
   });
 
   it("should return true when hand is straight", () => {
-    expect(true).toBe(true);
+    expect(PokerHandRanker.isStraight(["2","4","3","6","5"])).toBe(true);
   });
 
   describe("Validate Hight Card", () => {

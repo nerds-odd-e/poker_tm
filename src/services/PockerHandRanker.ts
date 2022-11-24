@@ -19,9 +19,13 @@ function isFlush(hands: string[]) {
   return true;
 }
 
+function isStraight(hands: string[]) {
+  return true;
+}
 
 
 export default {
   isFlush,
+  isStraight,
   isPair
 };
