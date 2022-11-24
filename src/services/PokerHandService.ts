@@ -65,7 +65,7 @@ export function winRateFromFile(file: string) {
 
 export function loadData(fileName: string) {
   if (fileName === "") return 0;
-  const filePath = path.join(__dirname, "../../example_data/one_game.txt");
+  const filePath = path.join(__dirname, `../../example_data/${fileName}`);
   const buffer = fs.readFileSync(filePath, "utf-8");
 
   return buffer.split("\n").length;
