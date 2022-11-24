@@ -64,13 +64,17 @@ describeWithDB("Game Data Loader", () => {
     expect(count).toBe(1);
   });
 
-  it("should return 2 when there is 2 record", async () => {
+  it("should return 2 when there are 2 records", async () => {
     await loadData("two_game.txt")
     const count = await Game.find().count()
     expect(count).toBe(2);
   });
 
-  
+  it("should return player 1 name when there is a record", async () => {
+    await loadData("one_game.txt")
+    const game = await Game.find({})
+    expect(game[0].player1?.name).toBe("Jane");
+  })
 });
 
 describe("Hand", () => {
