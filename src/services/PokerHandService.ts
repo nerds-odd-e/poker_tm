@@ -102,7 +102,7 @@ export async function loadData(fileName: string) {
   for (var line of lines) {
     var newGame = new GameModel({
         player1: {
-            name: line,
+            name: line.split(" ")[0].replace(":", ""),
             hands: line
         }, 
         player2: {
