@@ -1,6 +1,7 @@
 import PokerHandRanker, {
   isSinglePair,
   isTwoPair,
+  isThreeOfAKind
 } from "../src/services/PockerHandRanker";
 import {
   winRateFromFile,
@@ -38,8 +39,8 @@ describe("Cheater Dectector", () => {
       winCount: 0,
     });
   });
-  
-  it("should return Wu with 100 winRate and Jane 0 winRate",() =>{
+
+  it("should return Wu with 100 winRate and Jane 0 winRate", () => {
     const file = "Wu: QH TD JC 2D 8S Jane: 3H 7H 6S KC JS";
 
     const result = winRateFromFile(file);
@@ -67,11 +68,11 @@ describe("PokerHandRanker", () => {
   it("should return false when hand is not flush", () => {
     expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
   });
-  
+
   it("should return true when hand is flush", () => {
     expect(PokerHandRanker.isFlush(["S", "S", "S", "S", "S"])).toBe(true);
   });
-  
+
   it("should return true when hand is straight", () => {
     expect(PokerHandRanker.isStraight(["2", "4", "3", "6", "5"])).toBe(true);
   });
@@ -179,4 +180,17 @@ describe("Hand", () => {
       )
     ).toBe(false);
   });
+});
+
+it("should return true for first player have three of kind", () => {
+  expect(
+    isThreeOfAKind(
+      aGame
+        .between("Jane")
+        .threeOfAKind()
+        .vs("Mike")
+        .highCardWithKHeart()
+        .please()
+    )
+  ).toBe(true);
 });

@@ -24,14 +24,27 @@ function isFlush(hands: string[]) {
 }
 
 function isStraight(hands: string[]) {
-  if(hands[3] == '7'){
+  if (hands[3] == '7') {
     return false
   }
   return true;
 }
 
+export function isThreeOfAKind(game: string): Boolean {
+  const firstHand = game.split(" ").slice(1, 6);
+  const secondHand = game.split(" ").slice(7);
+  return isHandThreeOfAKind(firstHand) || isHandThreeOfAKind(secondHand);
+}
+
+function isHandThreeOfAKind(hand: string[]): boolean {
+  const ranks = new Set(hand.map((card) => card.charAt(0)));
+  return ranks.size == 3;
+}
+
+
 export default {
   isFlush,
   isStraight,
-  isSinglePair
+  isSinglePair,
+  isThreeOfAKind
 };
