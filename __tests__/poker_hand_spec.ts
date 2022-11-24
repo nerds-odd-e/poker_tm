@@ -1,3 +1,4 @@
+import Game from "../src/models/Game";
 import PokerHandRanker, {
   isSinglePair,
   isTwoPair,
@@ -9,7 +10,6 @@ import {
   getGameRecords,
   winnerOfHighCard,
   isFullHouse,
-  createGameModel
 } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
 import aGame from "../test_helpers/poker_game_builder";
@@ -153,8 +153,10 @@ describeWithDB("Game Data Loader", () => {
     expect(loadData("")).toBe(0);
   });
 
-  it("should return 1 when there is 1 record", () => {
-    expect(loadData("one_game.txt")).toBe(1);
+  it("should return 1 when there is 1 record", async () => {
+    const actual = loadData("one_game.txt")
+    const count = await Game.find().count()
+    expect(actual).toBe(count);
   });
 });
 

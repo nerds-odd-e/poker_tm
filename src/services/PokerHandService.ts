@@ -92,8 +92,22 @@ export function loadData(fileName: string) {
   if (fileName === "") return 0;
   const filePath = path.join(__dirname, `../../example_data/${fileName}`);
   const buffer = fs.readFileSync(filePath, "utf-8");
+  const lines = buffer.split("\n")
+  for (const line in lines) {
+    var data = new GameModel({
+        player1: {
+            name: line,
+            hands: line
+        }, 
+        player2: {
+            name: line,
+            hands: line
+        }
+    })
 
-  return buffer.split("\n").length;
+    data.save()
+  }
+  return lines.length;
 }
 
 export const getGameRecords = (playerName: string): number => {
