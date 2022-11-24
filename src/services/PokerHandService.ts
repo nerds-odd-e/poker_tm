@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import PlayerModel from "../models/player";
+import GameModel from "../models/game";
 
 const cards = new Map<string, number>([
   ["A", 13],
@@ -42,10 +43,6 @@ export const winnerOfHighCard = (gameRaw: string) => {
   return game[6].replace(":", "");
 };
 
-const create = async (player) => {
-  return await PlayerModel.create(player);
-};
-
 export function winRateFromFile(file: string) {
   if (file == '') {
     return ''
@@ -79,4 +76,12 @@ export function isFullHouse(hand: string) {
   return hand == "2D 2C 2S 3D 3S"
 }
 
-export default { create };
+const createPlayerModel = async (player) => {
+  return await PlayerModel.create(player);
+};
+
+const createGameModel = async (game) => {
+  return await GameModel.create(game);
+};
+
+export default { createPlayerModel, createGameModel };
