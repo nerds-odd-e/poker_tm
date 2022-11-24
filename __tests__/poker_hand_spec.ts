@@ -1,4 +1,5 @@
 import { winRateFromFile, loadData, getTotalGames } from "../src/services/PokerHandService";
+import PokerHandRanker from "../src/services/PockerHandRanker";
 import describeWithDB from "../test_helpers/describeWithDB";
 
 describe("Cheater Dectector", () => {
@@ -9,11 +10,11 @@ describe("Cheater Dectector", () => {
 
         expect(result).toBe('');
     });
-});
-
-describe("PokerHandRanker", () => {
-    it("should return true when hand is flush", () => {
-        expect(true).toBe(true);
+    
+    describe("PokerHandRanker", () => {
+        it("should return true when hand is flush", ()=> {
+            expect(PokerHandRanker.isFlush(["D","D","D","D","D"])).toBe(true);
+        });
     });
 
     describe("Validate Hight Card", () => {
