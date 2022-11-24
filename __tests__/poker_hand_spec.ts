@@ -30,7 +30,7 @@ describe("PokerHandRanker", () => {
 });
 
 describe("Games Counting", () => {
-    it("should show total games", () => {
+    it("should show total games as 0 when no game data", () => {
         expect(getTotalGames()).toBe(0);
     });
 })
