@@ -9,10 +9,10 @@ it("when load empty file should return empty list", () => {
 
     expect(result).toBe('');
   });
-
-  describe("Games Counting", () => {
-    it("should show how many each player play the game", () => {
-      expect(true).toBe(true);
+  
+  describe("PokerHandRanker", () => {
+    it("should return true when hand is flush", ()=> {
+        expect(true).toBe(true);
     });
   });
 
