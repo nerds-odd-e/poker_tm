@@ -24,7 +24,12 @@ function isFlush(hands: string[]) {
 }
 
 function isStraight(hands: string[]) {
-  const sortedHands = hands.map(e => parseInt(e)).sort();
+  const sortedHands = hands.map(e => e.replace('A','14')
+  .replace('K','13')
+  .replace('Q','12')
+  .replace('J','11')
+  .replace('T','10'))
+  .map(e => parseInt(e)).sort();
   for(var i = 1; i < sortedHands.length; i++) {
     if(sortedHands[i] != sortedHands[0] + i) {
       return false;
