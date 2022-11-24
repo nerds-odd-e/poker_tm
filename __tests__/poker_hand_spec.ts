@@ -3,6 +3,7 @@ import {
   winRateFromFile,
   loadData,
   getGameRecords,
+  winnerOfHighCard,
 } from "../src/services/PokerHandService";
 import describeWithDB from "../test_helpers/describeWithDB";
 
@@ -23,7 +24,9 @@ describe("PokerHandRanker", () => {
 
   describe("Validate Hight Card", () => {
     it("should be get player win with hight card", () => {
-      expect(true).toBe(true);
+      const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";
+      const result = winnerOfHighCard(game);
+      expect(result).toBe("Mike");
     });
   });
 });
@@ -32,7 +35,7 @@ describe("Games Counting", () => {
   it("should show 0 when player have no game record", () => {
     expect(getGameRecords("Mike")).toBe(0);
   });
-})
+});
 
 describe("Hand", () => {
   it("should return true for pair", () => {
@@ -42,10 +45,10 @@ describe("Hand", () => {
 
 describeWithDB("Game Data Loader", () => {
   it("should return 0 when there is no record", () => {
-    expect(loadData("")).toBe(0)
-  })
+    expect(loadData("")).toBe(0);
+  });
 
   it("should return 1 when there is 1 record", () => {
-    expect(loadData("one_game.txt")).toBe(1)
-  })
-})
+    expect(loadData("one_game.txt")).toBe(1);
+  });
+});

@@ -4,7 +4,7 @@ import PlayerModel from "../models/player";
 
 export const winnerOfHighCard = (gameRaw: string) => {
   const game = gameRaw.split(" ");
-  return game[6];
+  return game[6].replace(":", "");
 };
 
 const create = async (player) => {
