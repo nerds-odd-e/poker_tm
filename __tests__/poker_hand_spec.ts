@@ -35,9 +35,17 @@ describe("Games Counting", () => {
 
 describeWithDB("Game Data Loader", () => {
   it("should return 0 when there is no record", () => {
-    expect(loadData("")).toBe(0);
+    expect(loadData("")).toBe("ok");
+  });
+
+  it("should return 1 when there is 1 record", () => {
+    expect(loadData("one_game.txt")).toBe(1);
   });
 });
+it("shouldn't save any data when there is no record", () => {
+  expect(loadData("")).toBe("ok");
+});
+
 it("shouldn't save any data when there is no record", () => {
   expect(loadData("")).toBe("ok");
 });
