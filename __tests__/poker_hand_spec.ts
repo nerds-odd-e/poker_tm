@@ -16,6 +16,24 @@ describe("Cheater Dectector", () => {
 
     expect(result).toBe("");
   });
+  it("when load file should return list of statisitc players", () => {
+    const file = "Jane: 3H 7H 6S KC JS Wu: QH TD JC 2D 8S";
+
+    const result = winRateFromFile(file);
+
+    expect(result).toContainEqual({
+      name: "Jane",
+      winRate: 100,
+      gameCount: 1,
+      winCount: 1,
+    });
+    expect(result).toContainEqual({
+      name: "Wu",
+      winRate: 0,
+      gameCount: 1,
+      winCount: 0,
+    });
+  });
 });
 
 describe("PokerHandRanker", () => {

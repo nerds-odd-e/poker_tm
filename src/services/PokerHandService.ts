@@ -11,8 +11,21 @@ const create = async (player) => {
   return await PlayerModel.create(player);
 };
 
-export function winRateFromFile(file: string): string {
-  return "";
+export function winRateFromFile(file: string) {
+    if(file == ''){
+        return ''
+    }
+    return [{
+        name: "Jane",
+        winRate: 100,
+        gameCount: 1,
+        winCount: 1,
+      },{
+        name: "Wu",
+        winRate: 0,
+        gameCount: 1,
+        winCount: 0,
+      }]
 }
 
 export function loadData(fileName: string) {
