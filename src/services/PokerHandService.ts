@@ -14,5 +14,8 @@ export function loadData(fileName: string) {
     return 1
 }
 
-export default { create }
+export const getTotalGames = (): number => {
+    return 0
+}
 
+export default { create }
