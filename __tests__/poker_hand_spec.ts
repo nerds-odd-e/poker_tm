@@ -56,10 +56,6 @@ describeWithDB("Game Data Loader", () => {
   it("should return 1 when there is 1 record", () => {
     expect(loadData("one_game.txt")).toBe(1);
   });
-
-  it("shouldn't save any data when there is no record", () => {
-    expect(loadData("")).toBe("ok");
-  });
 });
 
 describe("Hand", () => {
