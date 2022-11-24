@@ -120,8 +120,10 @@ export async function loadData(fileName: string) {
   return lines.length;
 }
 
-export const getGameRecords = (playerName: string): number => {
-  return 0;
+export const getGameRecords = async (playerName: string) => {
+  const count = await GameModel.find().count()
+  console.log(count)
+  return count;
 };
 
 export function isFullHouse(hand: string) {

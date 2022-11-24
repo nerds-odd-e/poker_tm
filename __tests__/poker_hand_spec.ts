@@ -142,11 +142,18 @@ describe("Validate Hight Card", () => {
 });
 
 describeWithDB("Games Counting", () => {
-  it("should show 0 when can not found player record", () => {
-    expect(getGameRecords("")).toBe(0);
+  it("should show 0 when can not found player record", async () => {
+    const result = await getGameRecords("Mike")
+    expect(result).toBe(0);
   });
-  it("should show 0 when player have no game record", () => {
-    expect(getGameRecords("Mike")).toBe(0);
+  it("should show 0 when player have no game record", async () => {
+    const result = await getGameRecords("Mike")
+    expect(result).toBe(0);
+  });
+  it("should show 1 when found Mike play 1 game", async () => {
+    await loadData("one_game.txt")
+    const result = await getGameRecords("Mike")
+    expect(result).toBe(1);
   });
 });
 
