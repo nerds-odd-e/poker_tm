@@ -130,8 +130,8 @@ export async function loadData(fileName: string) {
 }
 
 export const getGameRecords = async (playerName: string) => {
-  const count = await GameModel.find().count()
-  console.log(count)
+  const games = await GameModel.find()
+  const count = games.filter(game => game.player1?.name === playerName || game.player2?.name === playerName).length
   return count;
 };
 
