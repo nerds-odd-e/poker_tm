@@ -19,17 +19,30 @@ const cards = new Map<string, number>([
   ["2", 1],
 ]);
 
+class PlayerHand {
+  name: string;
+  hands: string[];
+
+  constructor(gameRaw: string) {
+    const game = gameRaw.split(" ");
+    this.name = game[0].replace(":", "");
+    this.hands = game.slice(1, 6);
+  }
+
+  get point() {
+    return this.hands.reduce((maxPoint, card) => {
+      const pointOfCard = cards.get(card[0]) || 0;
+      if (pointOfCard > parseInt(maxPoint)) {
+        return pointOfCard.toString();
+      }
+      return maxPoint;
+    });
+  }
+}
+
 export const winnerOfHighCard = (gameRaw: string) => {
-  const game = gameRaw.split(" ");
-  const player1Hands = game.slice(1, 6);
-  const maxPointOfPlayer1 = player1Hands.reduce((maxPoint, card) => {
-    const pointOfCard = cards.get(card[0]) || 0;
-    if (pointOfCard > parseInt(maxPoint)) {
-      return pointOfCard.toString();
-    }
-    return maxPoint;
-  });
-  const player2Hands = game.slice(7, 12);
+  const player1 = new PlayerHand(gameRaw);
+  const player2Hands = gameRaw.split(" ").slice(7, 12);
   const maxPointOfPlayer2 = player2Hands.reduce((maxPoint, card) => {
     const pointOfCard = cards.get(card[0]) || 0;
     if (pointOfCard > parseInt(maxPoint)) {
@@ -37,27 +50,30 @@ export const winnerOfHighCard = (gameRaw: string) => {
     }
     return maxPoint;
   });
-  if (maxPointOfPlayer1 > maxPointOfPlayer2) {
-    return game[0].replace(":", "");
+  if (player1.point > maxPointOfPlayer2) {
+    return player1.name;
   }
-  return game[6].replace(":", "");
+  return gameRaw.split(" ")[6].replace(":", "");
 };
 
 export function winRateFromFile(file: string) {
-  if (file == '') {
-    return ''
+  if (file == "") {
+    return "";
   }
-  return [{
-    name: "Jane",
-    winRate: 100,
-    gameCount: 1,
-    winCount: 1,
-  }, {
-    name: "Wu",
-    winRate: 0,
-    gameCount: 1,
-    winCount: 0,
-  }]
+  return [
+    {
+      name: "Jane",
+      winRate: 100,
+      gameCount: 1,
+      winCount: 1,
+    },
+    {
+      name: "Wu",
+      winRate: 0,
+      gameCount: 1,
+      winCount: 0,
+    },
+  ];
 }
 
 export function loadData(fileName: string) {
@@ -73,7 +89,7 @@ export const getGameRecords = (playerName: string): number => {
 };
 
 export function isFullHouse(hand: string) {
-  return hand == "2D 2C 2S 3D 3S"
+  return hand == "2D 2C 2S 3D 3S";
 }
 
 const createPlayerModel = async (player) => {
