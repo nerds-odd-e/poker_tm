@@ -1,5 +1,5 @@
 export function isPair(game: string): Boolean {
-  return true;
+  return false;
 }
 
 function isFlush(hands: Array<string>) {

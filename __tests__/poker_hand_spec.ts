@@ -60,11 +60,6 @@ describe("Games Counting", () => {
   });
 });
 
-describe("Hand", () => {
-  it("should return true for pair", () => {
-    expect(PokerHandRanker.isPair("")).toBe(true);
-  });
-});
 
 describeWithDB("Game Data Loader", () => {
   it("should return 0 when there is no record", () => {
@@ -77,7 +72,10 @@ describeWithDB("Game Data Loader", () => {
 });
 
 describe("Hand", () => {
-  it("should return true for pair", () => {
+  xit("should return true for pair", () => {
     expect(isPair(aGame.between("Jane").pairCardInHand().please())).toBe(true);
+  });
+  it("should return true for pair", () => {
+    expect(isPair(aGame.between("Jane").highCardWithHighest("H").please())).toBe(false);
   });
 });
