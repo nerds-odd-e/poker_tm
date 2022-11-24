@@ -45,6 +45,10 @@ describe("PokerHandRanker", () => {
     expect(PokerHandRanker.isFlush(["D", "A", "D", "D", "D"])).toBe(false);
   });
 
+  it("should return true when hand is flush", ()=> {
+    expect(PokerHandRanker.isFlush(["S","S","S","S","S"])).toBe(true);
+  });
+
   describe("Validate Hight Card", () => {
     it("should be get player win with hight card", () => {
       const game = "Jane: 8C TS KC 9H 4S Mike: 7D 2S 5D 3S AC";

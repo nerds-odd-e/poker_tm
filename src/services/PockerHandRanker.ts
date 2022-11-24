@@ -8,14 +8,19 @@ export function isHandPair(hand: string[]): boolean {
     return false;
 }
 
-function isFlush(hands: Array<string>) {
-  if (hands[1] != "D") {
-    return false;
+function isFlush(hands: string[]) {
+  const firstSuit = hands[0];
+  for (const suit of hands.slice(1)) {
+    if (suit != firstSuit) {
+      return false;
+    }
   }
   return true;
 }
 
+
+
 export default {
   isFlush,
-  isPair,
+  isPair
 };
