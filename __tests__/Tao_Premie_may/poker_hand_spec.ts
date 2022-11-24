@@ -3,6 +3,7 @@ import aGame from "../../test_helpers/poker_game_builder";
 
 describe("winrate calculator", () => {
   it("should return empty when it input empty", () => {
+    
     expect(getWinrate("")).toBe("");
   });
 
