@@ -80,6 +80,11 @@ describe("PokerHandRanker", () => {
   it("should return false when hand is straight", () => {
     expect(PokerHandRanker.isStraight(["2", "4", "3", "7", "5"])).toBe(false);
   });
+
+  it("should return false when hand is straight", () => {
+    expect(PokerHandRanker.isStraight(["2", "4", "3", "8", "5"])).toBe(false);
+  });
+
 });
 
 describe("validate full house", () => {
