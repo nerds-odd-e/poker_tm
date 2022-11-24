@@ -5,7 +5,7 @@ export function isPair(game: string): Boolean {
 }
 
 export function isHandPair(hand: string[]): boolean {
-  const ranks = new Set(hand.map((card) => card.charAt(1)));
+  const ranks = new Set(hand.map((card) => card.charAt(0)));
   return ranks.size == 4;
 }
 

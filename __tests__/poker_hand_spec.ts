@@ -91,7 +91,7 @@ describeWithDB("Game Data Loader", () => {
 });
 
 describe("Hand", () => {
-  xit("should return true for first player pair", () => {
+  it("should return true for first player pair", () => {
     expect(
       isPair(
         aGame
